@@ -37,25 +37,25 @@ const handleSignin = async (email: string, password: string) => {
     if(err instanceof AuthError && err.type === "CredentialsSignin")
       return {ok: false, message: "Invalid credentials"};
     else
-      return {ok: false, message: "Error in sign in"}
+      return {ok: false, message: "Error in sign in"};
   }
 }
 
 const verifyCaptchaToken = async (token: string | null) => {
   if (!token) return { ok: false, message: "Captcha Verification Failed" };
 
-  const captchaBody = {
-    secret: CONST.hcaptcha.SECRET,
-    response: token,
-    sitekey: CONST.hcaptcha.SITEKEY,
-  };
+  const captchaBody = new URLSearchParams([
+    ["secret", CONST.hcaptcha.SECRET || ""],
+    ["response", token],
+    ["sitekey", CONST.hcaptcha.SITEKEY || ""],
+  ]);
 
   const captchaResponse = await fetch(CONST.hcaptcha.VERIFICATION_URL, {
     method: "POST",
     headers: {
-      "Content-Type": "x-www-form-urlencoded",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: JSON.stringify(captchaBody),
+    body: captchaBody.toString(),
   });
 
   const captchaStatus = await captchaResponse.json();
@@ -64,7 +64,7 @@ const verifyCaptchaToken = async (token: string | null) => {
 
 const signup = async (user: User, hCaptchaToken: string | null) => {
   try {
-    const validCaptcha = verifyCaptchaToken(hCaptchaToken);
+    const validCaptcha = await verifyCaptchaToken(hCaptchaToken);
     if (!validCaptcha)
       return { ok: false, message: "Captcha Verification Failed" };
 

@@ -41,6 +41,7 @@ const sendVerificationEmail = async (email: string, code: string) => {
       <tr>
       <td style="padding: 5px 0; color: #333;">${code}</td>
       </tr>
+      </table>
       </div>
       
       <br/>
@@ -66,7 +67,7 @@ const sendPasswordResetEmail = async (email: string, link: string) => {
       to: email,
       subject: "Password Reset for CodeClub JUSL",
       html: `<div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; border: 1px solid #e0e0e0; background-color: #ffffff;">
-      <h2 style="color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px; margin-bottom: 30px;">Verify Email</h2>
+      <h2 style="color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px; margin-bottom: 30px;">Reset Password</h2>
       
       <p style="font-size: 16px; color: #333; line-height: 1.6;">
       Please visit the following page to reset your password.
@@ -78,6 +79,7 @@ const sendPasswordResetEmail = async (email: string, link: string) => {
       <tr>
       <td style="padding: 5px 0; color: #333;">${link}</td>
       </tr>
+      </table>
       </div>
       
       <br/>

@@ -22,8 +22,12 @@ function MemberControls({
       "Are you sure you want to transfer team lead?",
       () => {
         transferTeamLead(team, memberId).then((res) => {
-          toast(res.message);
-          if (res.ok) router.refresh();
+          if(res.ok){
+            toast.success(res.message);
+            router.refresh();
+          }else{
+            toast.error(res.message);
+          }
         });
       },
     );
@@ -31,8 +35,12 @@ function MemberControls({
   const handleRemoveMember = () => {
     modalContext.showDialog("Are you sure you want to remove this member?", () => {
       removeMember(team, memberId).then((res) => {
-        toast(res.message);
-        if (res.ok) router.refresh();
+        if(res.ok){
+            toast.success(res.message);
+            router.refresh();
+          }else{
+            toast.error(res.message);
+          }
       });
     });
   };

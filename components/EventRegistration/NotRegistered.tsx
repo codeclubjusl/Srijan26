@@ -32,8 +32,9 @@ function NotRegistered({ user, event }: { user: SessionUser; event: Event }) {
     .then((res) => {
       if(res.ok) router.refresh();
       else toast.error(res.message);
-    });
-    setLoading(false);
+    }).finally(() => {
+      setLoading(false);
+    })
   };
 
   return (

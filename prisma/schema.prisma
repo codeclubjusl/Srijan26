@@ -193,4 +193,6 @@ model ResetPasswordToken {
   token     String   @unique
   user_id   String   @db.ObjectId
   expiresAt DateTime
+
+  @@map("reset_password_token")
 }

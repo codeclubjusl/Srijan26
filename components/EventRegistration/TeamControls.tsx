@@ -1,7 +1,7 @@
 "use client";
 
 import { useConfirmationDialogContext } from "@/hooks/useConfirmationDialog";
-import { resetJoiningCode } from "@/services/EventsService";
+import { deleteTeam, resetJoiningCode } from "@/services/EventsService";
 import { Event, Team } from "@/types/types";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -15,7 +15,7 @@ function TeamControls({ team, event }: { team: Team; event: Event }) {
   const handleCopyCode = () => {
     navigator.clipboard
       .writeText(team.joiningCode)
-      .then(() => toast.success("Copied Joining Code")); // TODO: replace with react hot toast
+      .then(() => toast.success("Copied Joining Code"));
   };
 
   // TODO: complete this with lock option or add pending state
@@ -30,16 +30,31 @@ function TeamControls({ team, event }: { team: Team; event: Event }) {
     modalContext.showDialog(
       "Are you sure you want to reset the code? You can only perform this once",
       () => {
-        resetJoiningCode(team).then((res) => {
+        resetJoiningCode(team)
+        .then((res) => {
           if (res.ok && res.code) {
             toast.success("Code reset successfully");
             router.refresh();
           } else toast.error("Error occurred while resetting code");
-        });
+        })
       },
     );
     setResettingCode(false);
   };
+
+  const handleDeleteTeam = () => {
+    modalContext.showDialog("Are you sure you want to delete this team?", () => {
+      deleteTeam(team)
+      .then(res => {
+        if(res.ok){
+          toast.success(res.message);
+          router.refresh();
+        }else{
+          toast.error(res.message);
+        }
+      })
+    })
+  }
 
   return (
     <div className="flex w-full flex-col items-center gap-4">
@@ -76,6 +91,10 @@ function TeamControls({ team, event }: { team: Team; event: Event }) {
           </p>
         )}
       </div>
+      <button className="rounded-xs bg-white px-2 py-1 text-sm text-black transition-colors duration-300 hover:bg-white/90 active:bg-white/60"
+      onClick={() => handleDeleteTeam()}>
+        Delete Team
+      </button>
     </div>
   );
 }

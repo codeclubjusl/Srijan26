@@ -42,7 +42,7 @@ function Page() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className="rounded-sm border px-2 py-1"
-        placeholder="Email Addresss"
+        placeholder="Email Address"
       />
       <div className="relative">
         <button

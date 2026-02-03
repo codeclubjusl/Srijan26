@@ -3,6 +3,7 @@ import React from "react";
 import TeamControls from "./TeamControls";
 import NotRegistered from "./NotRegistered";
 import MemberControls from "./MemberControls";
+import LeaveTeam from "./LeaveTeam";
 
 function Registered({
   user,
@@ -54,7 +55,7 @@ function Registered({
             Allowed Team Size: {event.minMembers} - {event.maxMembers} members
           </p>
           <p>Current Team Size: {team?.members.length}</p>
-          {isTeamLead && <TeamControls team={team} event={event} />}
+          {isTeamLead ? <TeamControls team={team} event={event} /> : <LeaveTeam team={team} id={user.id} />}
         </div>
       </div>
     </div>
