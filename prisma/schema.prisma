@@ -6,35 +6,12 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "./generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-}
-
-
-enum Role {
-  User
-  Admin
-  SuperAdmin
-  CampusAmbassador
-}
-
-enum Consent {
-  y
-  n
-}
-
-enum InvitationStatus {
-  pending
-  accepted
-  rejected
-}
-
-enum GroupMemberStatus {
-  accepted
-  pending
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 enum GroupStatus {
@@ -67,7 +44,6 @@ enum PaymentStatus {
 }
 
 enum PaymentTargetType {
-  EVENT
   WORKSHOP
   MERCHANDISE
 }
@@ -78,289 +54,145 @@ enum Foodtype {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String
-  email         String    @unique
-  emailVerified Boolean   @default(false)
-  image         String?
-  password      String?
-  phone         String?   @unique
-  rollNumber    String    @unique
-  foodPreference Foodtype  @default(veg)
-  consent       Consent   @default(y)
-  referralCount Int       @default(0)
-  institution   String    @default("Jadavpur University")
-  userInstitution String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  role          Role      @default(User)
-  forgotPasswordToken  String?
-  forgotPasswordExpiry DateTime?
-  otp                  String?
-  otpExpiry            DateTime?
+  id                   String    @id @default(auto()) @map("_id") @db.ObjectId
+  name                 String
+  email                String    @unique
+  image                String?
+  password             String?
+  phone                String?   @unique
+  college              String?
+  year                 String?
+  department           String?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  role                 String    @default("USER")
+  emailVerified        DateTime?
+  registrationComplete Boolean   @default(false)
+  verificationToken    String?
 
-  sessions      Session[]
   accounts      Account[]
-  photo         UserPhoto?
   notifications Notification[]
   merchandise   Merchandise[]
-  wishlist         UserWishlist[]
-  registeredEvents UserRegisteredEvent[]
-  pendingEvents    UserPendingEvent[]
-  invitations      Invitation[]
-  createdGroups    Group[]       @relation("GroupCreator")
-  groupMemberships GroupMember[]
-  participatingEvents EventParticipant[]
-  workshops        Workshop[]
-  payments   Payment[]   @relation("UserPayments")
+  teamIds       String[]       @db.ObjectId
+  teams         Team[]         @relation(fields: [teamIds], references: [id])
+  workshopIds   String[]       @db.ObjectId
+  workshops     Workshop[]     @relation(fields: [workshopIds], references: [id])
+  payments      Payment[]      @relation("UserPayments")
 
   @@map("user")
 }
 
-model Session {
-  id        String   @id @default(cuid())
-  expiresAt DateTime
-  token     String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ipAddress String?
-  userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@map("session")
-}
-
 model Account {
-  id                    String    @id @default(cuid())
-  accountId             String
-  providerId            String
-  userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken           String?
-  refreshToken          String?
-  idToken               String?
-  accessTokenExpiresAt  DateTime?
-  refreshTokenExpiresAt DateTime?
-  scope                 String?
-  password              String?
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  token_type        String?
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  id_token          String? @db.String
+  scope             String?
+  session_state     String?
+  expires_at        Int?
 
-  @@index([userId])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @db.ObjectId
+
+  @@unique([provider, providerAccountId])
   @@map("account")
 }
 
-model Verification {
-  id         String   @id @default(cuid())
-  identifier String
-  value      String
-  expiresAt  DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  @@index([identifier])
-  @@map("verification")
-}
-
-model UserPhoto {
-  id            String  @id @default(cuid())
-  url           String?
-visibleId     String  @default("")  // was 'id' in mongoose
-  isGooglePhoto Boolean @default(false)
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("user_photo")
-}
-
 model Notification {
-  id          String   @id @default(cuid())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
   read        Boolean  @default(false)
   createdAt   DateTime @default(now())
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@map("notification")
 }
 
 model Merchandise {
-  id     String            @id @default(cuid())
-  size   MerchandiseSize?
-  color  MerchandiseColor?
-  status PaymentStatus?  
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  payments  Payment[] @relation("MerchPayments")
+  id       String            @id @default(auto()) @map("_id") @db.ObjectId
+  size     MerchandiseSize?
+  color    MerchandiseColor?
+  status   PaymentStatus?
+  userId   String
+  user     User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payments Payment[]         @relation("MerchPayments")
 
   @@index([userId])
   @@map("merchandise")
 }
 
+model Team {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  eventSlug      String
+  event          Event    @relation(fields: [eventSlug], references: [slug], onDelete: Cascade)
+  memberIds      String[] @db.ObjectId
+  members        User[]   @relation(fields: [memberIds], references: [id])
+  leader         String   @db.ObjectId
+  joiningCode    String   @unique
+  allowResetCode Boolean  @default(true)
+
+  @@map("team")
+}
 
 model Event {
-  id              String  @id @default(cuid())
-  name            String
-  slug            String  @unique
-  description     String
-  category        String?
-  isSolo          Boolean
-  minParticipants Int
-  maxParticipants Int
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  slug       String @unique
+  name       String
+  minMembers Int
+  maxMembers Int
 
-  participants              EventParticipant[]
-  participantGroups         Group[]            @relation("EventGroups")
-  pendingParticipantGroups  Group[]            @relation("EventPendingGroups")
-  wishlistedBy   UserWishlist[]
-  registeredBy   UserRegisteredEvent[]
-  pendingBy      UserPendingEvent[]
-  invitations    Invitation[]
-  payments       Payment[]   @relation("EventPayments")
-  groups         Group[]               @relation("GroupEvent")
+  teams Team[]
+
   @@map("event")
 }
 
 model Workshop {
-  id          String   @id @default(cuid())
-  slug        String   @unique
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String    @unique
   name        String
   price       Float
-  payments   Payment[]   @relation("WorkshopPayments")
-  attendees   User[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  payments    Payment[] @relation("WorkshopPayments")
+  attendeeIds String[]  @db.ObjectId
+  attendees   User[]    @relation(fields: [attendeeIds], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
   @@map("workshop")
 }
 
-
-model EventParticipant {
-  id      String @id @default(cuid())
-  userId  String
-  eventId String  
-  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, eventId])
-  @@index([eventId])
-  @@map("event_participant")
-}
-
-
-model UserWishlist {
-  id      String @id @default(cuid())
-  userId  String
-  eventId String
-  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, eventId])
-  @@index([eventId])
-  @@map("user_wishlist")
-}
-
-model UserRegisteredEvent {
-  id      String @id @default(cuid())
-  userId  String
-  eventId String
-  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, eventId])
-  @@index([eventId])
-  @@map("user_registered_event")
-}
-
-model UserPendingEvent {
-  id      String @id @default(cuid())
-  userId  String
-  eventId String
-  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, eventId])
-  @@index([eventId])
-  @@map("user_pending_event")
-}
-
-model Invitation {
-  id      String           @id @default(cuid())
-  status  InvitationStatus @default(pending)
-  userId  String
-  eventId String
-  groupId String
-  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, eventId, groupId])
-  @@index([eventId])
-  @@index([groupId])
-  @@map("invitation")
-}
-
-
-model Group {
-  id        String      @id @default(cuid())
-  name      String
-  status    GroupStatus @default(pending)
-  createdAt DateTime    @default(now())  
-  creatorId String
-  creator   User   @relation("GroupCreator", fields: [creatorId], references: [id], onDelete: Cascade)
-  eventId String
-  event   Event  @relation("GroupEvent", fields: [eventId], references: [id], onDelete: Cascade)
-  members GroupMember[]
-  invitations Invitation[]
-  participantOfEvents Event[] @relation("EventGroups")
-  pendingOfEvents     Event[] @relation("EventPendingGroups")
-
-  @@index([creatorId])
-  @@index([eventId])
-  @@map("group")
-}
-
-model GroupMember {
-  id     String            @id @default(cuid())
-  status GroupMemberStatus @default(pending)
-  userId  String
-  groupId String
-  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, groupId])
-  @@index([groupId])
-  @@map("group_member")
-}
-
-model Newsletter {
-  id    String @id @default(cuid())
-  email String @unique
-
-  @@map("newsletter")
-}
-
 model Payment {
-  id              String            @id @default(cuid())
-  userId          String
-  user            User              @relation("UserPayments", fields: [userId], references: [id], onDelete: Cascade)
-  amount          Float
-  paymentDate     DateTime          @default(now())
-  transactionId   String            @unique
-  status          PaymentStatus
-  targetType      PaymentTargetType
-  eventId         String?
-  event           Event?            @relation("EventPayments", fields: [eventId], references: [id])
-  workshopId      String?
-  workshop        Workshop?         @relation("WorkshopPayments", fields: [workshopId], references: [id])
-  merchandiseId   String?
-  merchandise     Merchandise?      @relation("MerchPayments", fields: [merchandiseId], references: [id])
+  id            String            @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String
+  user          User              @relation("UserPayments", fields: [userId], references: [id], onDelete: Cascade)
+  amount        Float
+  paymentDate   DateTime          @default(now())
+  transactionId String            @unique
+  status        PaymentStatus
+  targetType    PaymentTargetType
+  workshopId    String?
+  workshop      Workshop?         @relation("WorkshopPayments", fields: [workshopId], references: [id])
+  merchandiseId String?
+  merchandise   Merchandise?      @relation("MerchPayments", fields: [merchandiseId], references: [id])
 
   @@index([userId])
-  @@index([eventId])
   @@index([workshopId])
   @@index([merchandiseId])
   @@map("payment")
+}
+
+model ResetPasswordToken {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  token     String   @unique
+  user_id   String   @db.ObjectId
+  expiresAt DateTime
+
+  @@map("reset_password_token")
 }
