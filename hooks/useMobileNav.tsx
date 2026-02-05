@@ -28,7 +28,7 @@ export const MobileNavProvider = ({ children }: { children: ReactNode }) => {
       {children}
       <div
         className={clsx(
-          "bg-background px-4 fixed flex flex-col items-center h-screen w-screen z-10 transition-all duration-1000",
+          "bg-background fixed flex flex-col items-center h-screen w-screen z-10 transition-all duration-500",
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none invisible",
         )}
       >

@@ -52,8 +52,7 @@ export default function NavBar() {
         {[
           { href: "/events", label: "events" },
           { href: "/merchandise", label: "merchandise" },
-          { href: "/notifications", label: "notifications" },
-          { href: "/dashboard", label: "dashboard" },
+          { href: "/notifications", label: "notifications" }
         ].map((item) => (
           <li key={item.label}>
             <Clickable as="a" iconOnly href={item.href} className="px-2! uppercase">
@@ -61,6 +60,15 @@ export default function NavBar() {
             </Clickable>
           </li>
         ))}
+        <li>
+          <Clickable
+            as="a"
+            href="/"
+            className="w-fit! uppercase bg-foreground hover:bg-gray-300 text-black"
+          >
+            login
+          </Clickable>
+        </li>
       </ul>
     </nav>
   );
