@@ -1,6 +1,6 @@
 export default function Balls() {
   return (
-    <div className="fixed w-full h-full overflow-hidden">
+    <div className="fixed -z-10 w-full h-full overflow-hidden">
       <div
         className="ball"
         style={

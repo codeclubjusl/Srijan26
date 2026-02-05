@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ConfirmationDialogContextProvider } from "@/hooks/useConfirmationDialog";
+import { MobileNavProvider } from "@/hooks/useMobileNav";
+import NavBar from "@/components/NavBar";
 import { Toaster } from "react-hot-toast";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
+const euclid = localFont({
+    variable: "--font-euclid",
+    src: "../public/fonts/Euclid-Circular-B.woff2",
+    display: "swap",
+    preload: true,
 });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
-
-const poppins = Poppins({
-    variable: "--font-poppins",
-    subsets: ["latin"],
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800"]
+const elnath = localFont({
+    variable: "--font-elnath",
+    src: "../public/fonts/ELNATH.woff2",
+    display: "swap",
+    preload: true,
 });
 
 export const metadata: Metadata = {
@@ -34,11 +34,14 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
+                className={`${euclid.variable} ${elnath.variable} antialiased`}
             >
-                <ConfirmationDialogContextProvider>
-                    {children}
-                </ConfirmationDialogContextProvider>
+                <MobileNavProvider>
+                    <ConfirmationDialogContextProvider>
+                        <NavBar />
+                        {children}
+                    </ConfirmationDialogContextProvider>
+                </MobileNavProvider>
                 <Toaster
                     position="bottom-right"
                     toastOptions={{

@@ -48,7 +48,7 @@ export const ConfirmationDialogContextProvider = ({
   return (
     <ConfirmationDialogContext.Provider value={{ showDialog: handleShow }}>
       {children}
-      <div className="fixed h-screen w-screen">
+      <div className="fixed h-screen w-screen -z-10">
         <dialog
           ref={dialogRef}
           className="fixed top-1/2 left-1/2 -translate-1/2 z-300 rounded-sm backdrop:bg-gray-800/75"
