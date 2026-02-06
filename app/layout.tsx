@@ -5,6 +5,7 @@ import { ConfirmationDialogContextProvider } from "@/hooks/useConfirmationDialog
 import { MobileNavProvider } from "@/hooks/useMobileNav";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "react-hot-toast";
+import SmoothScroll from "@/components/Landing/SmoothScroll";
 
 const euclid = localFont({
     variable: "--font-euclid",
@@ -16,6 +17,13 @@ const euclid = localFont({
 const elnath = localFont({
     variable: "--font-elnath",
     src: "../public/fonts/ELNATH.woff2",
+    display: "swap",
+    preload: true,
+});
+
+const futura = localFont({
+    variable: "--font-futura",
+    src: "../public/fonts/Futura-Now-Headline.woff2",
     display: "swap",
     preload: true,
 });
@@ -34,14 +42,16 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${euclid.variable} ${elnath.variable} antialiased`}
+                className={`${euclid.variable} ${elnath.variable} ${futura.variable} antialiased`}
             >
-                <MobileNavProvider>
-                    <ConfirmationDialogContextProvider>
-                        <NavBar />
-                        {children}
-                    </ConfirmationDialogContextProvider>
-                </MobileNavProvider>
+                <SmoothScroll>
+                    <MobileNavProvider>
+                        <ConfirmationDialogContextProvider>
+                            <NavBar />
+                            {children}
+                        </ConfirmationDialogContextProvider>
+                    </MobileNavProvider>
+                </SmoothScroll>
                 <Toaster
                     position="bottom-right"
                     toastOptions={{
