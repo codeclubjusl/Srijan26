@@ -62,7 +62,8 @@ export default function RootLayout({
                             borderRadius: "6px",
                             minWidth: "300px",
                             textAlign: "left",
-                            fontFamily: "JetBrains Mono",
+                            fontFamily: "Futura",
+                            fontWeight: "bold",
                         },
                         success: {
                             iconTheme: {

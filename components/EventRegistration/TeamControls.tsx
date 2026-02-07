@@ -26,20 +26,21 @@ function TeamControls({ team, event }: { team: Team; event: Event }) {
   }; */
 
   const handleResetCode = () => {
-    setResettingCode(true);
     modalContext.showDialog(
       "Are you sure you want to reset the code? You can only perform this once",
       () => {
+        setResettingCode(true);
         resetJoiningCode(team)
         .then((res) => {
           if (res.ok && res.code) {
             toast.success("Code reset successfully");
             router.refresh();
           } else toast.error("Error occurred while resetting code");
+        }).finally(() => {
+          setResettingCode(false);
         })
       },
     );
-    setResettingCode(false);
   };
 
   const handleDeleteTeam = () => {

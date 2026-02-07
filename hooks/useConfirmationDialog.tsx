@@ -53,7 +53,7 @@ export const ConfirmationDialogContextProvider = ({
           ref={dialogRef}
           className="fixed top-1/2 left-1/2 -translate-1/2 z-300 rounded-sm backdrop:bg-gray-800/75"
         >
-          <div className="font-jetbrains-mono flex flex-col items-center gap-4 px-8 py-3">
+          <div className="flex flex-col items-center gap-4 px-8 py-3">
             <h3 className="text-2xl underline underline-offset-4">
               Confirmation
             </h3>

@@ -21,8 +21,9 @@ function NotRegistered({ user, event }: { user: SessionUser; event: Event }) {
         router.refresh()
       else
         toast.error(res.message);
-  });
+  }).finally(() => {
     setLoading(false);
+  })
   };
   
   const handleJoinTeam = (e: React.FormEvent) => {
@@ -38,7 +39,7 @@ function NotRegistered({ user, event }: { user: SessionUser; event: Event }) {
   };
 
   return (
-    <div className="font-jetbrains-mono flex flex-col items-center gap-8 p-12">
+    <div className="flex flex-col items-center gap-8 p-12">
       <h1 className="text-5xl font-semibold">{event.name} Registration</h1>
       <div className="flex flex-col items-center gap-3">
         <h4 className="text-xl">Create a new team</h4>

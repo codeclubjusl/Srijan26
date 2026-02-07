@@ -27,7 +27,7 @@ const sendVerificationEmail = async (email: string, code: string) => {
     const mailOptions = {
       from: process.env.SMTP_USER,
       to: email,
-      subject: "Verify your email for CodeClub JUSL",
+      subject: "Verify your email for Srijan 2026",
       html: `<div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; border: 1px solid #e0e0e0; background-color: #ffffff;">
       <h2 style="color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px; margin-bottom: 30px;">Verify Email</h2>
       
@@ -48,7 +48,7 @@ const sendVerificationEmail = async (email: string, code: string) => {
       <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
       <p style="font-size: 14px; color: #666;">
       Kind regards,<br/>
-      <strong>CodeClub JUSL</strong>
+      <strong>Team Srijan</strong>
       </p>
       </div>`,
     };
@@ -65,7 +65,7 @@ const sendPasswordResetEmail = async (email: string, link: string) => {
     const mailOptions = {
       from: process.env.SMTP_USER,
       to: email,
-      subject: "Password Reset for CodeClub JUSL",
+      subject: "Password Reset for Srijan 2026",
       html: `<div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; border: 1px solid #e0e0e0; background-color: #ffffff;">
       <h2 style="color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px; margin-bottom: 30px;">Reset Password</h2>
       
@@ -86,7 +86,7 @@ const sendPasswordResetEmail = async (email: string, link: string) => {
       <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
       <p style="font-size: 14px; color: #666;">
       Kind regards,<br/>
-      <strong>CodeClub JUSL</strong>
+      <strong>Team Srijan</strong>
       </p>
       </div>`,
     };

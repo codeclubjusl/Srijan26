@@ -23,7 +23,7 @@ function Registered({
   else status = "Not enough members";
 
   return (
-    <div className="font-jetbrains-mono flex flex-col items-center gap-8 p-12">
+    <div className="flex flex-col items-center gap-8 p-12">
       <h1 className="text-4xl font-semibold">{event.name} Registration</h1>
       <div className="flex w-full justify-around">
         <div className="flex w-2/3 flex-col items-center">

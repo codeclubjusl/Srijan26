@@ -1,5 +1,7 @@
 "use client";
 
+import Balls from "@/components/Balls";
+import { Clickable } from "@/components/Clickable";
 import Tooltip from "@/components/Tooltip";
 import { handleForgotPassword } from "@/services/UserService";
 import React, { useState } from "react";
@@ -19,7 +21,8 @@ function Page() {
       setLoading(false);
       return;
     }
-    handleForgotPassword(email).then(() => {
+    handleForgotPassword(email)
+    .then(() => {
       toast("Please check your email for further instructions");
       setTimeout(
         () => {
@@ -27,11 +30,14 @@ function Page() {
         },
         1000 * 60 * 2,
       );
-    });
+    }).catch(() => {
+      toast.error("Error occurred. Please try again later.")
+    })
   };
   return (
-    <div className="font-jetbrains-mono flex flex-col items-center gap-8 p-12">
-      <h1 className="text-5xl font-semibold">Forgot Password</h1>
+    <div className="flex flex-col items-center justify-center gap-8 h-full min-h-[80vh]">
+      <Balls />
+      <h1 className="text-5xl font-semibold font-elnath text-yellow text-center">Forgot Password</h1>
       <p>
         If the email is registered, you will receive an email containing a link
         to a password reset page.
@@ -41,17 +47,18 @@ function Page() {
         name="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="rounded-sm border px-2 py-1"
+        className="px-5 py-3 border border-yellow/70 rounded-full outline-none w-full sm:w-1/3 2xl:w-1/4"
         placeholder="Email Address"
       />
       <div className="relative">
-        <button
-          className="rounded-xs bg-white px-2 py-1 text-black transition-colors duration-300 hover:bg-white/90 active:bg-white/60"
+        <Clickable
+          as="button"
+          className="bg-red hover:bg-red/70 active:bg-red/40"
           onClick={() => handleSubmit()}
           disabled={loading}
         >
           Send Email
-        </button>
+        </Clickable>
         {loading && (
           <div className="absolute top-1/2 -right-10 -translate-y-1/2">
             <Tooltip message="Please wait for 2 minutes before sending another email">

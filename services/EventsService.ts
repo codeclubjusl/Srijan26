@@ -142,7 +142,7 @@ const transferTeamLead = async (team: Team, newLeadId: string) => {
             select: { memberIds: true },
         });
 
-        if (currentTeam?.memberIds.indexOf(newLeadId) == -1)
+        if (currentTeam?.memberIds.indexOf(newLeadId) === -1)
             return { ok: false, message: "Member has left team" };
 
         await prisma.team.update({
@@ -163,7 +163,7 @@ const transferTeamLead = async (team: Team, newLeadId: string) => {
 const removeMember = async (team: Team, memberId: string) => {
     try {
         const updatedMemberIds = team.members
-            .filter((member) => member.id && member.id != memberId)
+            .filter((member) => member.id && member.id !== memberId)
             .map((member) => member.id ?? "");
         await prisma.team.update({
             where: {
@@ -184,28 +184,15 @@ const removeMember = async (team: Team, memberId: string) => {
 
 const deleteTeam = async (team: Team) => {
     try {
-        const memberIds = team.members.map((member) => member.id!);
-
         await prisma.$transaction(async (txn) => {
-            const members = await txn.user.findMany({
-                where: { id: { in: memberIds } },
-                select: { id: true, teamIds: true },
+            await txn.$runCommandRaw({
+                update: 'User',
+                updates: [{
+                    q: { teamIds: team.id},
+                    u: { $pull: { teamIds: team.id}},
+                    multi: true
+                }]
             });
-
-            await Promise.all(
-                members.map((member) => {
-                    txn.user.update({
-                        where: {
-                            id: member.id,
-                        },
-                        data: {
-                            teamIds: member.teamIds.filter(
-                                (id) => id !== team.id,
-                            ),
-                        },
-                    });
-                }),
-            );
 
             await txn.team.delete({
                 where: {
@@ -236,7 +223,7 @@ const leaveTeam = async (team: Team, id: string) => {
                 where: { id },
                 data: {
                     teamIds: user?.teamIds.filter(
-                        (teamId) => teamId != team.id,
+                        (teamId) => teamId !== team.id,
                     ),
                 },
             });
