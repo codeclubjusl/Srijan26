@@ -1,311 +1,277 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, PanInfo, useMotionValue, useTransform } from "motion/react";
-
-const DEFAULT_ITEMS = [
+const demoImages: CarouselImage[] = [
   {
-    title: "Text Animations",
-    description: "Cool text animations for your projects.",
-    id: 1,
+    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80",
+    label: "Torres del Paine",
   },
   {
-    title: "Animations",
-    description: "Smooth animations for your projects.",
-    id: 2,
+    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80",
+    label: "Swiss Alps",
   },
   {
-    title: "Components",
-    description: "Reusable components for your projects.",
-    id: 3,
+    src: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=700&q=80",
+    label: "Dolomites, Italy",
   },
   {
-    title: "Backgrounds",
-    description: "Beautiful backgrounds and patterns for your projects.",
-    id: 4,
+    src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=700&q=80",
+    label: "Starlit Peaks",
   },
   {
-    title: "Common UI",
-    description: "Common UI components are coming soon!",
-    id: 5,
+    src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=700&q=80",
+    label: "Himalayan Dawn",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1490682143684-14369e18dce8?w=700&q=80",
+    label: "Lake & Summits",
   },
 ];
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
-const DRAG_BUFFER = 0;
-const VELOCITY_THRESHOLD = 500;
-const GAP = 16;
-const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 } as const;
-
-export interface CarouselItem {
-  title: string;
-  description: string;
-  id: number;
+export interface CarouselImage {
+  src: string;
+  label: string;
 }
 
-export interface CarouselProps {
-  items?: CarouselItem[];
-  baseWidth?: number;
-  autoplay?: boolean;
-  autoplayDelay?: number;
-  pauseOnHover?: boolean;
-  loop?: boolean;
-  round?: boolean;
+interface CardStyle {
+  transform: string;
+  zIndex: number;
+  opacity: number;
+  filter: string;
+  pointerEvents: "auto" | "none";
 }
 
-interface CarouselItemProps {
-  item: CarouselItem;
-  index: number;
-  itemWidth: number;
-  round: boolean;
-  trackItemOffset: number;
-  x: any;
-  transition: any;
-}
+// All offsets are expressed as fractions of card width so they scale naturally
+function getCardStyle(pos: number, cardW: number, cardH: number): CardStyle {
+  const side = cardW * 0.34; // how far left/right the ±1 cards sit
+  const far = cardW * 0.58; // how far left/right the ±2 cards sit
+  const depth1 = cardH * 0.5;
+  const depth2 = cardH * 0.92;
+  const depth3 = cardH * 1.46;
 
-function CarouselItem({
-  item,
-  index,
-  itemWidth,
-  round,
-  trackItemOffset,
-  x,
-  transition,
-}: CarouselItemProps) {
-  const range = [
-    -(index + 1) * trackItemOffset,
-    -index * trackItemOffset,
-    -(index - 1) * trackItemOffset,
-  ];
-  const outputRange = [90, 0, -90];
-  const rotateY = useTransform(x, range, outputRange, { clamp: false });
-
-  return (
-    <motion.div
-      key={`${item?.id ?? index}-${index}`}
-      className={`relative shrink-0 flex flex-col ${
-        round
-          ? "items-center justify-center text-center bg-[#060010] border-0"
-          : "items-start justify-between bg-[#222] border border-[#222] rounded-xl"
-      } overflow-hidden cursor-grab active:cursor-grabbing`}
-      style={{
-        width: itemWidth,
-        height: round ? itemWidth : "100%",
-        rotateY: rotateY,
-        ...(round && { borderRadius: "50%" }),
-      }}
-      transition={transition}
-    >
-      <div className="p-5">
-        <div className="mb-1 font-black text-lg text-white">{item.title}</div>
-        <p className="text-sm text-white">{item.description}</p>
-      </div>
-    </motion.div>
-  );
-}
-
-export function Carousel({
-  items = DEFAULT_ITEMS,
-  baseWidth = 300,
-  autoplay = false,
-  autoplayDelay = 3000,
-  pauseOnHover = false,
-  loop = false,
-  round = false,
-}: CarouselProps) {
-  const containerPadding = 16;
-  const itemWidth = baseWidth - containerPadding * 2;
-  const trackItemOffset = itemWidth + GAP;
-  const itemsForRender = useMemo(() => {
-    if (!loop) return items;
-    if (items.length === 0) return [];
-    return [items[items.length - 1], ...items, items[0]];
-  }, [items, loop]);
-
-  const [position, setPosition] = useState(loop ? 1 : 0);
-  const x = useMotionValue(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isJumping, setIsJumping] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (pauseOnHover && containerRef.current) {
-      const container = containerRef.current;
-      const handleMouseEnter = () => setIsHovered(true);
-      const handleMouseLeave = () => setIsHovered(false);
-      container.addEventListener("mouseenter", handleMouseEnter);
-      container.addEventListener("mouseleave", handleMouseLeave);
-      return () => {
-        container.removeEventListener("mouseenter", handleMouseEnter);
-        container.removeEventListener("mouseleave", handleMouseLeave);
+  switch (pos) {
+    case 0:
+      return {
+        transform: `translateX(0px) translateZ(0px) scale(1) rotateY(0deg)`,
+        zIndex: 10,
+        opacity: 1,
+        filter: "brightness(1)",
+        pointerEvents: "none",
       };
-    }
-  }, [pauseOnHover]);
+    case 1:
+      return {
+        transform: `translateX(${side}px) translateZ(-${depth1}px) rotateY(-15deg) scale(0.88)`,
+        zIndex: 8,
+        opacity: 0.85,
+        filter: "brightness(0.75)",
+        pointerEvents: "auto",
+      };
+    case -1:
+      return {
+        transform: `translateX(-${side}px) translateZ(-${depth1}px) rotateY(15deg) scale(0.88)`,
+        zIndex: 8,
+        opacity: 0.85,
+        filter: "brightness(0.75)",
+        pointerEvents: "auto",
+      };
+    case 2:
+      return {
+        transform: `translateX(${far}px) translateZ(-${depth2}px) rotateY(-25deg) scale(0.75)`,
+        zIndex: 5,
+        opacity: 0.5,
+        filter: "brightness(0.5)",
+        pointerEvents: "auto",
+      };
+    case -2:
+      return {
+        transform: `translateX(-${far}px) translateZ(-${depth2}px) rotateY(25deg) scale(0.75)`,
+        zIndex: 5,
+        opacity: 0.5,
+        filter: "brightness(0.5)",
+        pointerEvents: "auto",
+      };
+    default:
+      return {
+        transform: `translateX(0px) translateZ(-${depth3}px) scale(0.6)`,
+        zIndex: 1,
+        opacity: 0,
+        filter: "brightness(0.3)",
+        pointerEvents: "none",
+      };
+  }
+}
 
+function getPos(index: number, current: number, total: number): number {
+  let pos = (((index - current) % total) + total) % total;
+  if (pos > total / 2) pos -= total;
+  return Math.max(-3, Math.min(3, pos));
+}
+
+interface CarouselProps {
+  images?: CarouselImage[];
+}
+
+export function Carousel({ images = demoImages }: CarouselProps) {
+  const [current, setCurrent] = useState(0);
+  const [dims, setDims] = useState({ w: 0, h: 0 });
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
+  const n = images.length;
+
+  // Measure the scene container and update on resize
   useEffect(() => {
-    if (!autoplay || itemsForRender.length <= 1) return undefined;
-    if (pauseOnHover && isHovered) return undefined;
-
-    const timer = setInterval(() => {
-      setPosition((prev) => Math.min(prev + 1, itemsForRender.length - 1));
-    }, autoplayDelay);
-
-    return () => clearInterval(timer);
-  }, [autoplay, autoplayDelay, isHovered, pauseOnHover, itemsForRender.length]);
-
-  useEffect(() => {
-    const startingPosition = loop ? 1 : 0;
-    setPosition(startingPosition);
-    x.set(-startingPosition * trackItemOffset);
-  }, [items.length, loop, trackItemOffset, x]);
-
-  useEffect(() => {
-    if (!loop && position > itemsForRender.length - 1) {
-      setPosition(Math.max(0, itemsForRender.length - 1));
-    }
-  }, [itemsForRender.length, loop, position]);
-
-  const effectiveTransition = isJumping ? { duration: 0 } : SPRING_OPTIONS;
-
-  const handleAnimationStart = () => {
-    setIsAnimating(true);
-  };
-
-  const handleAnimationComplete = () => {
-    if (!loop || itemsForRender.length <= 1) {
-      setIsAnimating(false);
-      return;
-    }
-    const lastCloneIndex = itemsForRender.length - 1;
-
-    if (position === lastCloneIndex) {
-      setIsJumping(true);
-      const target = 1;
-      setPosition(target);
-      x.set(-target * trackItemOffset);
-      requestAnimationFrame(() => {
-        setIsJumping(false);
-        setIsAnimating(false);
-      });
-      return;
-    }
-
-    if (position === 0) {
-      setIsJumping(true);
-      const target = items.length;
-      setPosition(target);
-      x.set(-target * trackItemOffset);
-      requestAnimationFrame(() => {
-        setIsJumping(false);
-        setIsAnimating(false);
-      });
-      return;
-    }
-
-    setIsAnimating(false);
-  };
-
-  const handleDragEnd = (_: MouseEvent, info: PanInfo) => {
-    const { offset, velocity } = info;
-    const direction =
-      offset.x < -DRAG_BUFFER || velocity.x < -VELOCITY_THRESHOLD
-        ? 1
-        : offset.x > DRAG_BUFFER || velocity.x > VELOCITY_THRESHOLD
-          ? -1
-          : 0;
-
-    if (direction === 0) return;
-
-    setPosition((prev) => {
-      const next = prev + direction;
-      const max = itemsForRender.length - 1;
-      return Math.max(0, Math.min(next, max));
+    const el = sceneRef.current;
+    if (!el) return;
+    const obs = new ResizeObserver(([entry]) => {
+      const w = entry.contentRect.width;
+      const h = w * (9 / 16); // maintain 16:9 ratio
+      setDims({ w, h });
     });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const navigate = useCallback(
+    (dir: number) => setCurrent((prev) => (((prev + dir) % n) + n) % n),
+    [n],
+  );
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") navigate(-1);
+      if (e.key === "ArrowRight") navigate(1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [navigate]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 40) navigate(dx < 0 ? 1 : -1);
   };
 
-  const dragProps = loop
-    ? {}
-    : {
-        dragConstraints: {
-          left: -trackItemOffset * Math.max(itemsForRender.length - 1, 0),
-          right: 0,
-        },
-      };
-
-  const activeIndex =
-    items.length === 0
-      ? 0
-      : loop
-        ? (position - 1 + items.length) % items.length
-        : Math.min(position, items.length - 1);
+  const { w: cardW, h: cardH } = dims;
 
   return (
     <div
-      ref={containerRef}
-      className={`relative overflow-hidden p-4 ${
-        round
-          ? "rounded-full border border-white"
-          : "rounded-3xl border border-[#222]"
-      }`}
-      style={{
-        width: `${baseWidth}px`,
-        ...(round && { height: `${baseWidth}px` }),
-      }}
+      className="full-bleed py-30 flex flex-col items-center justify-center px-4 sm:px-16 md:px-32 overflow-hidden"
     >
-      <motion.div
-        className="flex"
-        drag={isAnimating ? false : "x"}
-        {...dragProps}
-        style={{
-          width: itemWidth,
-          gap: `${GAP}px`,
-          perspective: 1000,
-          perspectiveOrigin: `${position * trackItemOffset + itemWidth / 2}px 50%`,
-          x,
-        }}
-        onDragEnd={handleDragEnd}
-        animate={{ x: -(position * trackItemOffset) }}
-        transition={effectiveTransition}
-        onAnimationStart={handleAnimationStart}
-        onAnimationComplete={handleAnimationComplete}
-      >
-        {itemsForRender.map((item, index) => (
-          <CarouselItem
-            key={`${item?.id ?? index}-${index}`}
-            item={item}
-            index={index}
-            itemWidth={itemWidth}
-            round={round}
-            trackItemOffset={trackItemOffset}
-            x={x}
-            transition={effectiveTransition}
-          />
-        ))}
-      </motion.div>
+      {/*
+        The scene wrapper takes up most of the viewport width (capped at a
+        comfortable max) and drives all card sizing through ResizeObserver.
+      */}
       <div
-        className={`flex w-full justify-center ${round ? "absolute z-20 bottom-12 left-1/2 -translate-x-1/2" : ""}`}
+        className="w-full"
+        style={{ maxWidth: "min(820px, 90vw)" }}
+        ref={sceneRef}
       >
-        <div className="mt-4 flex w-37.5 justify-between px-8">
-          {items.map((_, index) => (
-            <motion.div
-              key={index}
-              className={`h-2 w-2 rounded-full cursor-pointer transition-colors duration-150 ${
-                activeIndex === index
-                  ? round
-                    ? "bg-white"
-                    : "bg-[#333333]"
-                  : round
-                    ? "bg-[#555]"
-                    : "bg-[rgba(51,51,51,0.4)]"
-              }`}
-              animate={{
-                scale: activeIndex === index ? 1.2 : 1,
+        <div
+          className="relative w-full"
+          style={{
+            height: cardH || "auto",
+            aspectRatio: cardH ? undefined : "16/9",
+            perspective: cardW ? cardW * 3.5 : 1400,
+          }}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
+          <div
+            className="relative w-full h-full"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            {cardW > 0 &&
+              images.map((img, i) => {
+                const pos = getPos(i, current, n);
+                const cardStyle = getCardStyle(pos, cardW, cardH);
+
+                return (
+                  <div
+                    key={i}
+                    onClick={() => {
+                      if (pos === 1) navigate(1);
+                      else if (pos === -1) navigate(-1);
+                    }}
+                    style={{
+                      position: "absolute",
+                      width: cardW,
+                      height: cardH,
+                      borderRadius: Math.max(12, cardW * 0.025),
+                      overflow: "hidden",
+                      cursor: pos !== 0 ? "pointer" : "default",
+                      boxShadow: "0 30px 80px rgba(0,0,0,0.55)",
+                      transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
+                      backfaceVisibility: "hidden",
+                      ...cardStyle,
+                    }}
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.label}
+                      loading="lazy"
+                      className="w-full h-full object-cover block"
+                    />
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          "linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.35))",
+                      }}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      </div>
+
+      {/* Caption */}
+      <p className="mt-4 text-[10px] tracking-[0.3em] uppercase text-white/80 text-center min-h-[1em] transition-opacity duration-300">
+        {images[current]?.label}
+      </p>
+
+      {/* Controls */}
+      <div className="mt-5 flex justify-center items-center gap-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-9 h-9 flex items-center justify-center text-white/60 hover:text-white transition-all duration-200 hover:scale-110 text-xl"
+          aria-label="Previous"
+        >
+          <ArrowLeft />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              style={{
+                width: i === current ? 10 : 7,
+                height: i === current ? 10 : 7,
+                borderRadius: "50%",
+                background:
+                  i === current ? "#f0b040" : "rgba(255,255,255,0.35)",
+                boxShadow: i === current ? "0 0 8px #f0b040aa" : "none",
+                transition: "all 0.3s",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
               }}
-              onClick={() => setPosition(loop ? index + 1 : index)}
-              transition={{ duration: 0.15 }}
             />
           ))}
         </div>
+
+        <button
+          onClick={() => navigate(1)}
+          className="w-9 h-9 flex items-center justify-center text-white/60 hover:text-white transition-all duration-200 hover:scale-110 text-xl"
+          aria-label="Next"
+        >
+          <ArrowRight />
+        </button>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { PastSponsors } from "@/components/Landing/PastSponsors";
 import Timeline from "@/components/Landing/Timeline";
 import LiveEvents from "@/components/Landing/LiveEvents";
 import WavyGradient from "@/components/WavyGradient";
+import { ContactUs } from "@/components/Landing/ContactUs";
 
 export default function Home() {
   return (
@@ -23,14 +24,8 @@ export default function Home() {
       <Timeline />
       <LiveEvents />
       <PastSponsors />
-      <Carousel
-        baseWidth={320}
-        autoplay
-        autoplayDelay={2000}
-        pauseOnHover
-        loop
-        round={false}
-      />
+      <Carousel />
+      <ContactUs />
     </>
   );
 }
