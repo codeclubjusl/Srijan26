@@ -32,7 +32,7 @@ const SPEAKERS = [
 
 export const PastSpeakers = () => {
   return (
-    <MarqueeSlider name="Past Speakers" itemCount={SPEAKERS.length}>
+    <MarqueeSlider name="Past Speakers" titleAlignment="right" itemCount={SPEAKERS.length}>
       {SPEAKERS.map((speaker) => (
         // <a
         //   key={speaker.name}
