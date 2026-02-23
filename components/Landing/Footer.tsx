@@ -13,9 +13,8 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Events", href: "/events" },
   { label: "Merchandise", href: "/merchandise" },
-  { label: "Accomodation", href: "/accommodation" },
   { label: "Dashboard", href: "/dashboard" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/#contact-us" },
 ];
 
 const LEGAL_LINKS = [
