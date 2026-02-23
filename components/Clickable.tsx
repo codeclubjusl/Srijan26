@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ReactNode, ComponentPropsWithoutRef } from "react";
 
 type BaseProps = {
@@ -34,13 +35,13 @@ export const Clickable = ({
       };
 
   return as === "a" ? (
-    <a
-      {...(rest as React.ComponentPropsWithoutRef<"a">)}
+    <Link
+      {...(rest as { href: string } & Parameters<typeof Link>)}
       className={baseClassName}
       style={baseStyle}
     >
       {children}
-    </a>
+    </Link>
   ) : (
     <button
       {...(rest as React.ComponentPropsWithoutRef<"button">)}

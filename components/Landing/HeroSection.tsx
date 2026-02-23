@@ -17,7 +17,7 @@ export function HeroSection() {
           Jadavpur University
         </div>
       </h2>
-      <article className="self-end grid py-8 px-12">
+      <article className="self-end grid py-8 px-12 relative -top-5">
         <h3 className="p-2 border-t border-b text-xl text-center">
           Time Remaining
         </h3>
@@ -26,10 +26,10 @@ export function HeroSection() {
         <p className="text-2xl font-elnath p-2">9 - 12 April, 2026</p>
         <Clickable
           as="a"
-          href="/register"
+          href="/events"
           className="justify-self-center w-fit! h-12! uppercase bg-red hover:bg-red-500"
         >
-          Register Now!
+          Find events!
         </Clickable>
       </article>
     </section>
