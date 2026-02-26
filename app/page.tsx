@@ -21,13 +21,14 @@ export default function Home() {
         waveHeight={0.45}
         noiseIntensity={5}
         waveAmplitude={1}
+        className="wavy-gradient-canvas"
       />
       <HeroSection />
+      <About />
       <Timeline />
       <LiveEvents />
       <PastSponsors />
       <PastSpeakers />
-      <About />
       <Carousel />
       <ContactUs />
     </>

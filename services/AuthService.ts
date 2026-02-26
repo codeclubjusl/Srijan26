@@ -11,7 +11,16 @@ import { AuthError } from "next-auth";
 
 const getUserByEmail = async (email: string | null) => {
   if (!email) return null;
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await prisma.user.findUnique({
+    where: { email },
+    include: {
+      teams: {
+        include: {
+          event: true 
+        }
+      }
+    }
+  });
   return user;
 };
 
@@ -124,9 +133,9 @@ const checkAuthentication = async (redirectUrl = "") => {
 
   if (redirectUrl.indexOf("dashboard") !== -1) return session.user;
 
-  if(!session.user.emailVerified || !session.user.registrationComplete)
-      redirect(`/dashboard?redirect=${encodedRedirectUrl}`);
-  
+  if (!session.user.emailVerified || !session.user.registrationComplete)
+    redirect(`/dashboard?redirect=${encodedRedirectUrl}`);
+
 
   return session.user;
 };

@@ -18,8 +18,10 @@ export default function NavBar() {
     setActiveTab(pathname);
   }, [pathname]);
 
+  const isHome = pathname === "/";
+
   return (
-    <nav className="full-bleed flex justify-between items-center py-4 px-4 h-fit sticky top-0 z-40 bg-background/10 backdrop-blur-md">
+    <nav className={`full-bleed flex justify-between items-center py-4 px-4 h-fit z-50 bg-background/10 backdrop-blur-md ${isHome ? 'fixed top-0 w-full' : 'sticky top-0'}`}>
       {/* Logo */}
       <div className="flex gap-6">
         <Image

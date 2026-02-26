@@ -20,6 +20,15 @@ type User = {
     pendingTeamIds?: string[];
     wishlistedEventIds?: string[];
     workshopIds?: string[];
+    teams?: {
+        id: string;
+        name: string;
+        eventSlug: string;
+        event: {
+            name: string;
+            slug: string;
+        };
+    }[];
 }
 
 type SessionUser = {

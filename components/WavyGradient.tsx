@@ -1,6 +1,5 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
 
@@ -62,18 +61,6 @@ const WavyGradient: React.FC<WavyGradientProps> = ({
     const b = (bigint & 255) / 255;
     return [r, g, b];
   };
-
-  useGSAP(() => {
-    if (!canvasRef.current) return;
-
-    // This perfectly reverses your exit animation!
-    // It starts at opacity 0 and fades in over 0.6 seconds.
-    gsap.from(canvasRef.current, {
-      autoAlpha: 0,
-      duration: 0.6,
-      ease: "power3.inOut",
-    });
-  });
 
   useEffect(() => {
     const canvas = canvasRef.current;

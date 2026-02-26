@@ -5,7 +5,7 @@ import React from 'react';
 import Balls from '../Balls';
 import { Clickable } from "@/components/Clickable";
 import { User } from '@/types/user';
-import { redirect } from 'next/dist/server/api-utils';
+import Link from 'next/link';
 
 function Dashboard({ user }: { user: User }) {
   const handleLogout = () => {
@@ -93,27 +93,43 @@ function Dashboard({ user }: { user: User }) {
             <SectionHeader title="Activity" />
             <div className="space-y-4">
               {[
-                { label: "My Teams", data: user.teamIds, color: "from-blue-500", empty: "Not part of any teams yet" },
-                { label: "Pending Requests", data: user.pendingTeamIds, color: "from-orange", empty: "No pending invitations" },
-                { label: "Workshops", data: user.workshopIds, color: "from-green-500", empty: "No workshops registered" },
-                { label: "Wishlist", data: user.wishlistedEventIds, color: "from-red", empty: "Your wishlist is empty" }
+                { label: "My Teams", data: user.teams, color: "border-l-yellow", empty: "Not part of any teams yet", isTeam: true },
+                { label: "Pending Requests", data: user.pendingTeamIds, color: "border-l-yellow", empty: "No pending invitations", isTeam: true },
+                { label: "Workshops", data: user.workshopIds, color: "border-l-yellow", empty: "No workshops registered", isTeam: false },
+                { label: "Wishlist", data: user.wishlistedEventIds, color: "border-l-yellow", empty: "Your wishlist is empty", isTeam: false }
               ].map((item, idx) => (
-                <div key={idx} className="p-4 bg-white/5 border-l-4 border-l-yellow rounded-r-xl">
+                <div key={idx} className={`p-4 bg-white/5 border-l-4 ${item.color} rounded-r-xl`}>
                   <div className="flex items-center justify-between">
                     <span className="font-semibold uppercase tracking-wider">{item.label}</span>
                     <span className="text-2xl font-elnath text-yellow">{item.data?.length || 0}</span>
                   </div>
+
                   {(!item.data || item.data.length === 0) && (
                     <div className="mt-2 text-xs">
                       <EmptyState text={item.empty} />
                     </div>
                   )}
+
                   {item.data && item.data.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-2">
-                      {item.data.map((id: string | number) => (
-                        <span key={id} className="text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 font-mono">
-                          {id}
-                        </span>
+                      {item.data.map((entry: any) => (
+                        item.isTeam ? (
+                          <Link
+                            key={entry.id}
+                            href={`/register/${entry.event.slug}`}
+                            className="flex items-center gap-2 bg-white/10 px-3 py-2 rounded border border-white/5 hover:border-yellow/50 transition-colors"
+                          >
+                            <div className="flex flex-col">
+                              <span className="text-xs font-bold text-white uppercase">{entry.name}</span>
+                              <span className="text-[9px] text-yellow/70 uppercase tracking-tighter">{entry.event.name}</span>
+                            </div>
+                            <span className="text-[10px] ml-2 opacity-40">→</span>
+                          </Link>
+                        ) : (
+                          <span key={entry} className="text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 font-mono">
+                            {entry}
+                          </span>
+                        )
                       ))}
                     </div>
                   )}

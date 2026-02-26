@@ -50,7 +50,7 @@ export const About = () => {
       </div>
 
       {/* Srijan Section */}
-      <div className="flex flex-col gap-10 lg:gap-16 w-full max-w-[1500px] mx-auto mt-8">
+      <div className="about-srijan-wrapper flex flex-col gap-10 lg:gap-16 w-full max-w-[1500px] mx-auto mt-8">
         {/* Title: Centered across both columns */}
         <AnimatedSectionTitle
           text="ABOUT SRIJAN"
