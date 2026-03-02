@@ -421,7 +421,7 @@ const ROBOTICS_EVENTS: Event[] = [
   {
     id: "r9",
     slug: "xstream",
-    title: "XSTERAM",
+    title: "XSTREAM",
     category: "Circuits and Robotics",
     color: "#1DDBFF",
     description: "Technical design challenge to fabricate a car model optimized for aerodynamic performance. Tested inside a custom-built wind tunnel.",
