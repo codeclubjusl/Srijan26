@@ -52,6 +52,12 @@ enum Campus {
   SALT_LAKE
 }
 
+enum EventNotificationStatus {
+  NOT_POSTED
+  REGISTRATION_CLOSED
+  PRELIMS_LIVE
+}
+
 /**
  * USER & AUTH
  */
@@ -191,6 +197,7 @@ model Event {
   isVisible            Boolean   @default(true)
   registrationOpen     Boolean   @default(false)
   registrationDeadline DateTime?
+  notificationStatus   EventNotificationStatus @default(NOT_POSTED)
 
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
