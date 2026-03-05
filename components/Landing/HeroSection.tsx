@@ -225,7 +225,7 @@ export function HeroSection() {
       </div>
 
       {/* Left section: Logo and Title */}
-      <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10 w-full pt-15 lg:w-max lg:-mt-90 -mt-40">
+      <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10 w-full pt-20 lg:w-max lg:-mt-90 -mt-40">
         <Image
           src="/images/srijan-wide-icon.svg"
           alt="A wide layout logo for Srijan'26"
