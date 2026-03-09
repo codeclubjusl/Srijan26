@@ -84,7 +84,8 @@ export function usePayment(config: PaymentConfig) {
             const { orderId, paymentSessionId } = result.data;
 
             // 2. Initialize Cashfree
-            const mode = process.env.NEXT_PUBLIC_CASHFREE_ENVIRONMENT === 'PRODUCTION' ? 'production' : 'sandbox';
+            const env = process.env.NEXT_PUBLIC_CASHFREE_ENVIRONMENT || 'PRODUCTION';
+            const mode = env === 'PRODUCTION' ? 'production' : 'sandbox';
             const cashfree = window.Cashfree({ mode });
 
             // 3. Open Cashfree Checkout Modal
