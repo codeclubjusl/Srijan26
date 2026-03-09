@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,7 +12,7 @@ import SrijanBigTextSVG from "./SrijanBigTextSVG";
 gsap.registerPlugin(ScrollTrigger);
 
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
+  // { label: "Home", href: "/" },
   { label: "Events", href: "/events" },
   { label: "Merchandise", href: "/merchandise" },
   // { label: "Dashboard", href: "/dashboard" },
@@ -81,22 +81,24 @@ function FooterInner() {
         {/* Left — Logo + Description */}
         <div className="flex flex-col gap-2 lg:max-w-95 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="relative w-16 h-16 shrink-0">
-              <Image
-                src="/srijan-logo.png"
-                alt="Srijan Logo"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="relative w-40 h-20 shrink-0">
-              <Image
-                src="/srijan26-text-logo.png"
-                alt="Srijan 26"
-                fill
-                className="object-contain"
-              />
-            </div>
+            <Link href="/">
+              <div className="relative w-16 h-16 shrink-0">
+                <Image
+                  src="/srijan-logo.png"
+                  alt="Srijan Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="relative w-40 h-20 shrink-0">
+                <Image
+                  src="/srijan26-text-logo.png"
+                  alt="Srijan 26"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </Link>
           </div>
           <p className="text-white/70 text-base leading-relaxed font-euclid">
             A convergence of innovation, competition, and culture - the spirit of

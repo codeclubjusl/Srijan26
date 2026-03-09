@@ -1,3 +1,5 @@
+"use server";
+
 import { prisma } from '@/prisma/client';
 import { MerchandiseSize, MerchandiseColor, Campus, PaymentStatus } from "@prisma/client";
 // import { notificationService } from '@/lib/services/notifications'; // I'll check if this exists later or mock it
@@ -56,6 +58,19 @@ try {
     cashfreeConfig = null;
 }
 
+export async function getUserPhone(userId: string) {
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+            select: { phone: true }
+        });
+        return { success: true, phone: user?.phone || "" };
+    } catch (error) {
+        console.error("Failed to fetch user phone:", error);
+        return { error: "Failed to fetch user phone" };
+    }
+}
+
 export async function createMerchandiseOrder(paymentData: {
     amount: number;
     currency: string;
@@ -64,6 +79,7 @@ export async function createMerchandiseOrder(paymentData: {
     color: string;
     campus: string;
     customText?: string;
+    phone?: string;
     userId: string;
 }) {
     try {
@@ -71,7 +87,7 @@ export async function createMerchandiseOrder(paymentData: {
             return { error: 'Payment service not available' };
         }
 
-        const { amount, currency, size, color, campus, customText, userId } = paymentData;
+        const { amount, currency, size, color, campus, customText, phone, userId } = paymentData;
 
         const user = await prisma.user.findUnique({
             where: { id: userId }
@@ -79,6 +95,14 @@ export async function createMerchandiseOrder(paymentData: {
 
         if (!user) {
             return { error: 'User not found' };
+        }
+
+        if (phone && !user.phone) {
+            await prisma.user.update({
+                where: { id: userId },
+                data: { phone }
+            });
+            user.phone = phone;
         }
 
         // Generate unique order ID

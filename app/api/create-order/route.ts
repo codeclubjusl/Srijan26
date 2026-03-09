@@ -13,9 +13,9 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        const { size, color, campus, customText } = body;
+        const { size, color, campus, customText, phone } = body;
 
-        if (!size || !color || !campus) {
+        if (!size || !color || !campus || !phone) {
             return NextResponse.json({
                 success: false,
                 error: "Missing required fields"
@@ -33,6 +33,7 @@ export async function POST(req: Request) {
             color,
             campus,
             customText,
+            phone,
             userId: session.user.id,
         });
 

@@ -8,7 +8,7 @@ const contacts: ContactPerson[] = [
   {
     name: "Ahnik Purkait",
     position: "Jadavpur Campus",
-    phone: "+91 8770 98463",
+    phone: "+91 87770 98463",
   },
   {
     name: "Rahul Sk.",
