@@ -26,6 +26,12 @@ function Dashboard({ user }: { user: User }) {
     <p className="text-white/30 italic text-sm">{text}</p>
   );
 
+  const completedItems = user.merchandise?.filter((item: any) => item.status === "completed") ?? [];
+  const pendingItems = user.merchandise?.filter((item: any) => item.status === "pending") ?? [];
+  const lastPendingItem = pendingItems.at(-1);
+
+  const displayItems = completedItems.length > 0 ? completedItems : (lastPendingItem ? [lastPendingItem] : []);
+
   return (
     <div className="relative isolate flex flex-col items-center justify-center gap-10 p-6 md:p-12 min-h-[80vh] h-fit text-white">
       <div className="fixed inset-0 -z-50 pointer-events-none">
@@ -163,7 +169,7 @@ function Dashboard({ user }: { user: User }) {
           <div className="p-6 bg-white/5 border border-yellow/20 rounded-2xl">
             <h3 className="text-yellow font-elnath mb-4 uppercase tracking-widest">Merchandise</h3>
 
-            {(!user.merchandise || user.merchandise.length === 0) ? (
+            { displayItems.length === 0 ? (
               <div className="flex flex-col gap-3">
                 <p className="text-white/40 italic text-xs">You haven't ordered yet.</p>
                 <Link href="/merchandise">
@@ -174,7 +180,7 @@ function Dashboard({ user }: { user: User }) {
               </div>
             ) : (
               <div className="space-y-3">
-                {user.merchandise.map((item: any) => (
+                {displayItems.map((item: any) => (
                   <div key={item.id} className="border border-white/10 rounded-xl overflow-hidden bg-white/5">
                     <img
                       src={item.color === "BLACK" ? "/shirt0.png" : "/shirt2.png"}
