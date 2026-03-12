@@ -593,7 +593,36 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Aryan Singh", contact: "7644030018" },
       { name: "MD Tajuddin", contact: "8768589099" }
     ]
-  }
+  },
+
+  {
+    id: "r18", 
+    slug: "lord-of-the-ring",
+    title: "Lord of the Ring",
+    category: "Circuits and Robotics",
+    color: "#1DDBFF",
+    description: "The pinnacle of robotic competition where engineering brilliance meets tactical mastery in the exhilarating Robo Sumo arena! Navigate through wired and wireless categories in electrifying elimination rounds.",
+    format: "Offline",
+    teamSize: "3-5",
+    rules: ["Team Size: 3 - 5 members per team.",
+      "Categories: Wired and Wireless (Distinct rewards for each).",
+      "Format: Elimination rounds. Losing means leaving.",
+      "Match Duration: 3 rounds, 1 minute each.",
+      "Victory: The first robot to win 2 rounds wins the match. Winners are determined based on strategic moves.",
+      "Judges: Decisions regarding task completion, movement precision, and strategic execution rest with club judges."],
+    lastDate: "April 10, 2026", 
+    prizePool: "₹ 12,000", 
+    link: "/register/lord-of-the-ring",
+    driveLink: "", 
+    image: "/images/posters/lord-of-the-ring.webp",
+    tags: ["Robo Sumo", "Combat", "Mechatronics"],
+    status: "Open",
+    coordinators: [
+      { name: "Tuhin Roy", contact: "7980143323" },
+      { name: "Soham Saha", contact: "8918140410" },
+      { name: "Arnab Karmakar", contact: "9883415630" }]
+  }
+
 
 ];
 
