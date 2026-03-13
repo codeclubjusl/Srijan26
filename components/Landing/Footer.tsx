@@ -81,7 +81,7 @@ function FooterInner() {
         {/* Left — Logo + Description */}
         <div className="flex flex-col gap-2 lg:max-w-95 shrink-0">
           <div className="flex items-center gap-3">
-            <Link href="/">
+            <Link href="/" className="flex items-center gap-3">
               <div className="relative w-16 h-16 shrink-0">
                 <Image
                   src="/srijan-logo.png"
