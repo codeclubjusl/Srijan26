@@ -794,7 +794,7 @@ const BUSINESS_EVENTS: Event[] = [
     format: "Hybrid",
     teamSize: "2-4",
     rules: ["PPT submission", "Stock analysis", "Presentation"],
-    lastDate: "12th April",
+    lastDate: "28th March",
     prizePool: "₹ 8,000",
     link: "/register/capital-clash",
     driveLink: "https://srijanju.in/events/capital-clash-details",
