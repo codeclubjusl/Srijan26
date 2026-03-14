@@ -1,3 +1,5 @@
+"use server";
+
 import { prisma } from '@/prisma/client';
 import { MerchandiseSize, MerchandiseColor, Campus, PaymentStatus } from "@prisma/client";
 // import { notificationService } from '@/lib/services/notifications'; // I'll check if this exists later or mock it
@@ -36,9 +38,9 @@ let cashfreeConfig: {
 } | null = null;
 
 try {
-    const clientId = process.env.CASHFREE_APP_ID; // Changed from reference to match .env
-    const clientSecret = process.env.CASHFREE_SECRET_KEY; // Changed from reference to match .env
-    const environment = process.env.CASHFREE_ENVIRONMENT || 'SANDBOX';
+    const clientId = process.env.CASHFREE_APP_ID;
+    const clientSecret = process.env.CASHFREE_SECRET_KEY;
+    const environment = process.env.CASHFREE_ENVIRONMENT || 'PRODUCTION';
 
     if (!clientId || !clientSecret) {
         throw new Error('Missing Cashfree credentials');
@@ -56,6 +58,19 @@ try {
     cashfreeConfig = null;
 }
 
+export async function getUserPhone(userId: string) {
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+            select: { phone: true }
+        });
+        return { success: true, phone: user?.phone || "" };
+    } catch (error) {
+        console.error("Failed to fetch user phone:", error);
+        return { error: "Failed to fetch user phone" };
+    }
+}
+
 export async function createMerchandiseOrder(paymentData: {
     amount: number;
     currency: string;
@@ -64,6 +79,7 @@ export async function createMerchandiseOrder(paymentData: {
     color: string;
     campus: string;
     customText?: string;
+    phone?: string;
     userId: string;
 }) {
     try {
@@ -71,7 +87,7 @@ export async function createMerchandiseOrder(paymentData: {
             return { error: 'Payment service not available' };
         }
 
-        const { amount, currency, size, color, campus, customText, userId } = paymentData;
+        const { amount, currency, size, color, campus, customText, phone, userId } = paymentData;
 
         const user = await prisma.user.findUnique({
             where: { id: userId }
@@ -79,6 +95,14 @@ export async function createMerchandiseOrder(paymentData: {
 
         if (!user) {
             return { error: 'User not found' };
+        }
+
+        if (phone && !user.phone) {
+            await prisma.user.update({
+                where: { id: userId },
+                data: { phone }
+            });
+            user.phone = phone;
         }
 
         // Generate unique order ID
@@ -96,8 +120,8 @@ export async function createMerchandiseOrder(paymentData: {
                 customer_email: user.email || "customer@example.com"
             },
             order_meta: {
-                return_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/merchandise?order_id={order_id}`,
-                notify_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/cashfree-webhook`
+                return_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://srijanju.in'}/merchandise?order_id={order_id}`,
+                notify_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://srijanju.in'}/api/cashfree-webhook`
             },
             order_note: `SHIRT - Size: ${size}, Color: ${color}, Campus: ${campus}`
         };
@@ -120,6 +144,10 @@ export async function createMerchandiseOrder(paymentData: {
 
         if (!response.ok) {
             const errorText = await response.text();
+            console.error(`Cashfree API Error ${response.status}:`, errorText);
+            if (errorText.toLowerCase().includes("customer_phone")) {
+                return { error: "Invalid or non-Indian phone number found. Phone number should be valid and contain no spaces in between (e.g. 987xxxxx10)." };
+            }
             throw new Error(`API Error ${response.status}: ${errorText}`);
         }
 

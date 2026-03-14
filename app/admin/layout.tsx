@@ -8,12 +8,7 @@ export default async function AdminLayout({
 }) {
   const session = await auth();
 
-  if (!session || !session.user) {
-    notFound();
-  }
-
-  const role = session.user.role;
-  if (role !== "ADMIN" && role !== "SUPERADMIN") {
+  if (!session || !session.user || (session.user.role !== "ADMIN" && session.user.role !== "SUPERADMIN")) {
     notFound();
   }
 

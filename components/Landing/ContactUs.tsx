@@ -2,24 +2,22 @@ import { AnimatedSectionTitle } from "./AnimatedSectionTitle";
 
 type ContactPerson = {
   name: string;
-  position: string;
+  // position: string;
   phone: string;
 };
 
 const contacts: ContactPerson[] = [
-  {
-    name: "Ankush Agarwala",
-    position: "Event Team",
-    phone: "+91 96356 09058",
-  },
+  // {
+  //   name: "Ankush Agarwala",
+  //   position: "Event Team",
+  //   phone: "+91 96356 09058",
+  // },
   {
     name: "Saumili Ray",
-    position: "Design Team",
     phone: "+91 73188 09736",
   },
   {
     name: "Shrawtrik Bhattacharjee",
-    position: "Invitation Team",
     phone: "+91 82407 93529",
   }
 ];
@@ -43,7 +41,7 @@ export const ContactUs = () => {
               <p className="text-lg font-semibold tracking-wide">
                 {person.name}
               </p>
-              <p className="text-sm text-neutral-400">{person.position}</p>
+              {/* <p className="text-sm text-neutral-400">{person.position}</p> */}
             </div>
 
             <a

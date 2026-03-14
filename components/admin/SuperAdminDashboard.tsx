@@ -110,6 +110,7 @@ export function SuperAdminDashboard({ user }: SuperAdminDashboardProps) {
     const [loadingLiveEvents, setLoadingLiveEvents] = useState(false);
     const [newEventSlug, setNewEventSlug] = useState("");
     const [newEventRound, setNewEventRound] = useState("");
+    const [manualEventName, setManualEventName] = useState("");
     const [newEventLocation, setNewEventLocation] = useState("");
     const [editingEventId, setEditingEventId] = useState<string | null>(null);
 
@@ -205,24 +206,37 @@ export function SuperAdminDashboard({ user }: SuperAdminDashboardProps) {
     }
 
     async function handleLiveEventSubmit() {
-        if (!newEventSlug || !newEventRound || !newEventLocation) return;
-        const selectedEvent = EVENTS_DATA.find(e => e.slug === newEventSlug);
-        if (!selectedEvent) return;
+        if (!newEventRound || !newEventLocation) return;
+        
+        let eventName = "";
+        let eventSlug = newEventSlug;
+
+        if (newEventRound === "Workshop") {
+            if (!manualEventName) return;
+            eventName = manualEventName;
+            // Generate a temporary slug for workshops if not already set (e.g. during edit)
+            eventSlug = eventSlug || `workshop-${Date.now()}`;
+        } else {
+            if (!newEventSlug) return;
+            const selectedEvent = EVENTS_DATA.find(e => e.slug === newEventSlug);
+            if (!selectedEvent) return;
+            eventName = selectedEvent.title;
+        }
 
         if (editingEventId) {
-            await updateLiveEvent(selectedEvent.title);
+            await updateLiveEvent(eventName, eventSlug);
         } else {
-            await addLiveEvent(selectedEvent.title);
+            await addLiveEvent(eventName, eventSlug);
         }
     }
 
-    async function addLiveEvent(eventName: string) {
+    async function addLiveEvent(eventName: string, eventSlug: string) {
         try {
             const res = await fetch("/api/live-events", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    slug: newEventSlug,
+                    slug: eventSlug,
                     name: eventName,
                     round: newEventRound,
                     location: newEventLocation
@@ -238,7 +252,7 @@ export function SuperAdminDashboard({ user }: SuperAdminDashboardProps) {
         }
     }
 
-    async function updateLiveEvent(eventName: string) {
+    async function updateLiveEvent(eventName: string, eventSlug: string) {
         if (!editingEventId) return;
         try {
             const res = await fetch("/api/live-events", {
@@ -246,7 +260,7 @@ export function SuperAdminDashboard({ user }: SuperAdminDashboardProps) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     id: editingEventId,
-                    slug: newEventSlug,
+                    slug: eventSlug,
                     name: eventName,
                     round: newEventRound,
                     location: newEventLocation
@@ -282,11 +296,15 @@ export function SuperAdminDashboard({ user }: SuperAdminDashboardProps) {
         setNewEventSlug(event.slug);
         setNewEventRound(event.round);
         setNewEventLocation(event.location);
+        if (event.round === "Workshop") {
+            setManualEventName(event.name);
+        }
     }
 
     function resetLiveEventForm() {
         setEditingEventId(null);
         setNewEventSlug("");
+        setManualEventName("");
         setNewEventRound("");
         setNewEventLocation("");
     }
@@ -678,52 +696,61 @@ export function SuperAdminDashboard({ user }: SuperAdminDashboardProps) {
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end bg-slate-50 p-4 rounded-lg border border-slate-200">
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium">Select Event</label>
-                                        <Popover open={liveEventSearchOpen} onOpenChange={setLiveEventSearchOpen}>
-                                            <PopoverTrigger asChild>
-                                                <Button
-                                                    variant="outline"
-                                                    role="combobox"
-                                                    className="w-full justify-between bg-white text-slate-900 border-slate-200 hover:bg-slate-50"
-                                                >
-                                                    {newEventSlug
-                                                        ? EVENTS_DATA.find((e) => e.slug === newEventSlug)?.title
-                                                        : "Choose Event..."}
-                                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                </Button>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="w-full p-0 bg-white border-slate-200">
-                                                <Command className="bg-white">
-                                                    <CommandInput placeholder="Search event..." className="border-none focus:ring-0" />
-                                                    <CommandList>
-                                                        <CommandEmpty>No event found.</CommandEmpty>
-                                                        <CommandGroup className="max-h-60 overflow-y-auto">
-                                                            {EVENTS_DATA.map((e) => {
-                                                                const slug = e.slug;
-                                                                return (
-                                                                    <CommandItem
-                                                                        key={slug}
-                                                                        value={`${e.title} ${slug}`}
-                                                                        onSelect={() => {
-                                                                            setNewEventSlug(slug);
-                                                                            setLiveEventSearchOpen(false);
-                                                                        }}
-                                                                        className="text-slate-900 hover:bg-slate-100 cursor-pointer"
-                                                                    >
-                                                                        <Check
-                                                                            className={cn(
-                                                                                "mr-2 h-4 w-4",
-                                                                                newEventSlug === slug ? "opacity-100" : "opacity-0"
-                                                                            )}
-                                                                        />
-                                                                        {e.title}
-                                                                    </CommandItem>
-                                                                );
-                                                            })}
-                                                        </CommandGroup>
-                                                    </CommandList>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
+                                        {newEventRound === "Workshop" ? (
+                                            <Input
+                                                placeholder="Enter Workshop Name"
+                                                value={manualEventName}
+                                                onChange={(e) => setManualEventName(e.target.value)}
+                                                className="bg-white text-slate-900 border-slate-200 placeholder:text-slate-400"
+                                            />
+                                        ) : (
+                                            <Popover open={liveEventSearchOpen} onOpenChange={setLiveEventSearchOpen}>
+                                                <PopoverTrigger asChild>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className="w-full justify-between bg-white text-slate-900 border-slate-200 hover:bg-slate-50"
+                                                    >
+                                                        {newEventSlug
+                                                            ? EVENTS_DATA.find((e) => e.slug === newEventSlug)?.title
+                                                            : "Choose Event..."}
+                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-full p-0 bg-white border-slate-200">
+                                                    <Command className="bg-white">
+                                                        <CommandInput placeholder="Search event..." className="border-none focus:ring-0" />
+                                                        <CommandList>
+                                                            <CommandEmpty>No event found.</CommandEmpty>
+                                                            <CommandGroup className="max-h-60 overflow-y-auto">
+                                                                {EVENTS_DATA.map((e) => {
+                                                                    const slug = e.slug;
+                                                                    return (
+                                                                        <CommandItem
+                                                                            key={slug}
+                                                                            value={`${e.title} ${slug}`}
+                                                                            onSelect={() => {
+                                                                                setNewEventSlug(slug);
+                                                                                setLiveEventSearchOpen(false);
+                                                                            }}
+                                                                            className="text-slate-900 hover:bg-slate-100 cursor-pointer"
+                                                                        >
+                                                                            <Check
+                                                                                className={cn(
+                                                                                    "mr-2 h-4 w-4",
+                                                                                    newEventSlug === slug ? "opacity-100" : "opacity-0"
+                                                                                )}
+                                                                            />
+                                                                            {e.title}
+                                                                        </CommandItem>
+                                                                    );
+                                                                })}
+                                                            </CommandGroup>
+                                                        </CommandList>
+                                                    </Command>
+                                                </PopoverContent>
+                                            </Popover>
+                                        )}
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium">Round</label>
@@ -734,6 +761,7 @@ export function SuperAdminDashboard({ user }: SuperAdminDashboardProps) {
                                             <SelectContent className="bg-white border-slate-200 text-slate-900">
                                                 <SelectItem value="Prelims" className="text-slate-900 focus:bg-slate-100 focus:text-slate-900">Prelims</SelectItem>
                                                 <SelectItem value="Finals" className="text-slate-900 focus:bg-slate-100 focus:text-slate-900">Finals</SelectItem>
+                                                <SelectItem value="Workshop" className="text-slate-900 focus:bg-slate-100 focus:text-slate-900">Workshop</SelectItem>
                                                 <SelectItem value="Medal Ceremony" className="text-slate-900 focus:bg-slate-100 focus:text-slate-900">Medal Ceremony</SelectItem>
                                             </SelectContent>
                                         </Select>
@@ -749,7 +777,7 @@ export function SuperAdminDashboard({ user }: SuperAdminDashboardProps) {
                                     </div>
                                     <Button
                                         onClick={handleLiveEventSubmit}
-                                        disabled={!newEventSlug || !newEventRound || !newEventLocation}
+                                        disabled={(!newEventSlug && newEventRound !== "Workshop") || (newEventRound === "Workshop" && !manualEventName) || !newEventRound || !newEventLocation}
                                         className="bg-slate-900 hover:bg-slate-800 text-white min-w-[120px]"
                                     >
                                         <Radio className="mr-2 h-4 w-4" />

@@ -30,6 +30,17 @@ type User = {
             slug: string;
         };
     }[];
+    merchandise?: {
+        id: string;
+        size: string | null;
+        color: string | null;
+        status: string | null;
+        preferredCampus: string;
+        customText: string | null;
+        amount: number | null;
+        orderId: string | null;
+        createdAt: Date;
+    }[];
 }
 
 type SessionUser = {

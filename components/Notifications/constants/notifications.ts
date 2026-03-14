@@ -1,7 +1,34 @@
-import { Event } from "@/components/events/types/events";
+export interface EventCoordinator {
+  name: string;
+  contact: string;
+}
 
-const CODING_EVENTS: Event[] = [
-  /*
+export interface NotificationData {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  color: string;
+  description: string;
+  format: string;
+  teamSize: string;
+  rules: string[];
+  lastDate: string;
+  prizePool: string;
+  link: string;
+  driveLink: string;
+  image: string;
+  tags: string[];
+  status: string;
+  coordinators: EventCoordinator[];
+  
+  // Kept these two so your NotificationCard doesn't break!
+  createdAt: string;
+  isNew?: boolean;
+}
+
+export const CODING_EVENTS: NotificationData[] = [
+   /*
   {
     id: "e1",
     slug: "epoch",
@@ -104,7 +131,7 @@ const CODING_EVENTS: Event[] = [
   },
   */
 
-
+  
   {
     id: "e5",
     slug: "ss3",
@@ -126,9 +153,12 @@ const CODING_EVENTS: Event[] = [
       { name: "Ayan Ghosh", contact: "8167002490" },
       { name: "Swapnaneel Ray", contact: "7980515334" },
       { name: "Anuska Nath", contact: "9330129467" }
-    ]
+    ],
+    // ADDED THESE TWO FOR UI TESTING:
+    createdAt: "2026-03-01T10:00:00Z",
+    isNew: false,
   },
-
+  
 
   /*
   {
@@ -182,7 +212,7 @@ const CODING_EVENTS: Event[] = [
   },
   */
 
-
+  
   {
     id: "e8",
     slug: "h4g",
@@ -195,7 +225,7 @@ const CODING_EVENTS: Event[] = [
     rules: ["Hackathon", "Innovation", "Project building"],
     lastDate: "TBA",
     prizePool: "₹ 10,000",
-    link: "/register/h4g",
+    link: "/register/hackforge",
     driveLink: "https://docs.google.com/document/d/1hU4U0AAEY1ZECqtupltfj_OuLTto-oRVjA-vmrLVn14/edit?usp=sharing",
     image: "/images/posters/hackforge.webp",
     tags: ["Hackathon", "Dev"],
@@ -204,9 +234,12 @@ const CODING_EVENTS: Event[] = [
       { name: "Aritra Mondal", contact: "7365911452" },
       { name: "Dipan Mondal", contact: "8250821406" },
       { name: "Vivek Haldar", contact: "9875495117" }
-    ]
+    ],
+    // ADDED THESE TWO FOR UI TESTING:
+    createdAt: "2026-03-02T14:30:00Z",
+    isNew: false,
   },
-
+  
 
   /*
   {
@@ -287,8 +320,8 @@ const CODING_EVENTS: Event[] = [
   */
 ];
 
-const ROBOTICS_EVENTS: Event[] = [
-
+const ROBOTICS_EVENTS: NotificationData[] = [
+  
   {
     id: "r4",
     slug: "traffiq",
@@ -309,11 +342,13 @@ const ROBOTICS_EVENTS: Event[] = [
     coordinators: [
       { name: "Rhitambhar Choudhury", contact: "6289848840" },
       { name: "Aayush Konar", contact: "9972095077" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
+  
 
-
-
+  
   {
     id: "r5",
     slug: "death-race",
@@ -326,7 +361,7 @@ const ROBOTICS_EVENTS: Event[] = [
     rules: ["Racing bot", "Obstacle course", "Speed and Control"],
     lastDate: "TBA",
     prizePool: "₹ 35,000",
-    link: "/register/death_race",
+    link: "/register/death-race",
     driveLink: "https://drive.google.com/file/d/1aYHvLPbTDPQ-kPY46HQuVXCj6PHR_hF-/view?usp=sharing",
     image: "/images/posters/death-race.webp",
     tags: ["Racing", "Combat"],
@@ -335,9 +370,11 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Subhabrata Nath", contact: "7001506536" },
       { name: "Debaditya Chaudhuri", contact: "9051977751" },
       { name: "Ruchir Saha", contact: "7047505834" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
-
+  
 
   /*
   {
@@ -417,8 +454,35 @@ const ROBOTICS_EVENTS: Event[] = [
   },
   */
 
+  
+  {
+    id: "r9",
+    slug: "xstream",
+    title: "XSTREAM",
+    category: "Circuits and Robotics",
+    color: "#1DDBFF",
+    description: "Technical design challenge to fabricate a car model optimized for aerodynamic performance. Tested inside a custom-built wind tunnel.",
+    format: "Offline",
+    teamSize: "1-4",
+    rules: ["Aerodynamic design", "Car model", "Wind tunnel test"],
+    lastDate: "TBA",
+    prizePool: "₹ 10,000",
+    link: "/register/xstream",
+    driveLink: "https://drive.google.com/file/d/1IREzcdYRhvOZxxT50c1YUvedJxFkGdUB/view?usp=drivesdk",
+    image: "/images/posters/xstream.webp",
+    tags: ["Aerodynamics", "Design"],
+    status: "Open",
+    coordinators: [
+      { name: "Soham Bhattacharya", contact: "7439542892" },
+      { name: "Hiranmoy Mahato", contact: "7501767765" },
+      { name: "Saikat Dutta", contact: "9733225497" }
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
+  },
+  
 
-
+  
   {
     id: "r11",
     slug: "thunderbolts",
@@ -431,7 +495,7 @@ const ROBOTICS_EVENTS: Event[] = [
     rules: ["Electronics", "Instinct", "Adaptability"],
     lastDate: "TBA",
     prizePool: "₹ 6,000",
-    link: "/register/thunderbolts_voltedged",
+    link: "/register/thunderbolts",
     driveLink: "https://drive.google.com/file/d/1BIF35JH9Syj4HA664kCs3n41LKcWcTyc/view?usp=sharing",
     image: "/images/posters/voltedged.webp",
     tags: ["Power", "Electronics"],
@@ -440,11 +504,13 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Asmita Rakshit", contact: "8240132920" },
       { name: "Debarpan Ghosh", contact: "7003120954" },
       { name: "Niladri Saha", contact: "7439160736" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
+  
 
-
-
+  
   {
     id: "r12",
     slug: "skysprint",
@@ -457,7 +523,7 @@ const ROBOTICS_EVENTS: Event[] = [
     rules: ["Glider building", "Hand-launched", "Precision landing"],
     lastDate: "TBA",
     prizePool: "₹ 6,000",
-    link: "/register/sks",
+    link: "/register/skysprint",
     driveLink: "https://drive.google.com/drive/folders/1E6wrjSiNy5Eo7_AGc3ZiLNiUPVaO5kKq?usp=sharing",
     image: "/images/posters/skysprint.webp",
     tags: ["Aerospace", "Gliders"],
@@ -465,9 +531,11 @@ const ROBOTICS_EVENTS: Event[] = [
     coordinators: [
       { name: "Priyanshu Kumar", contact: "6297445609" },
       { name: "Subhojit Roy", contact: "7003312027" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
-
+  
 
   /*
   {
@@ -570,7 +638,7 @@ const ROBOTICS_EVENTS: Event[] = [
   },
   */
 
-
+  
   {
     id: "r17",
     slug: "iotbw",
@@ -583,7 +651,7 @@ const ROBOTICS_EVENTS: Event[] = [
     rules: ["IoT", "Circuit making", "Auction"],
     lastDate: "TBA",
     prizePool: "₹ 15,000",
-    link: "/register/iotbw",
+    link: "/register/iotbidwars",
     driveLink: "https://drive.google.com/file/d/1HUvVMDuUvPMb7iKrsSEi11_nErO7P1Qv/view?usp=sharing",
     image: "/images/posters/iot-bidwars.webp",
     tags: ["IoT", "Electronics"],
@@ -592,42 +660,15 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Tuhin Roy", contact: "7980143323" },
       { name: "Aryan Singh", contact: "7644030018" },
       { name: "MD Tajuddin", contact: "8768589099" }
-    ]
-  },
-
-  {
-    id: "r18", 
-    slug: "lord-of-the-ring",
-    title: "Lord of the Ring",
-    category: "Circuits and Robotics",
-    color: "#1DDBFF",
-    description: "The pinnacle of robotic competition where engineering brilliance meets tactical mastery in the exhilarating Robo Sumo arena! Navigate through wired and wireless categories in electrifying elimination rounds.",
-    format: "Offline",
-    teamSize: "3-5",
-    rules: ["Team Size: 3 - 5 members per team.",
-      "Categories: Wired and Wireless (Distinct rewards for each).",
-      "Format: Elimination rounds. Losing means leaving.",
-      "Match Duration: 3 rounds, 1 minute each.",
-      "Victory: The first robot to win 2 rounds wins the match. Winners are determined based on strategic moves.",
-      "Judges: Decisions regarding task completion, movement precision, and strategic execution rest with club judges."],
-    lastDate: "April 10, 2026", 
-    prizePool: "₹ 12,000", 
-    link: "/register/lotr",
-    driveLink: "https://drive.google.com/file/d/1dLb_yYxSeimMhUlxXUcjTMDxmqVxTHC-/view?usp=sharing", 
-    image: "/images/posters/lord-of-the-ring.webp",
-    tags: ["Robo Sumo", "Combat", "Mechatronics"],
-    status: "Open",
-    coordinators: [
-      { name: "Tuhin Roy", contact: "7980143323" },
-      { name: "Soham Saha", contact: "8918140410" },
-      { name: "Arnab Karmakar", contact: "9883415630" }]
-  }
-
-
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
+  }
+  
 ];
 
-const BUSINESS_EVENTS: Event[] = [
-
+const BUSINESS_EVENTS: NotificationData[] = [
+  
   {
     id: "b1",
     slug: "indx",
@@ -640,7 +681,7 @@ const BUSINESS_EVENTS: Event[] = [
     rules: ["Startup simulation", "Supply chain management", "Auction round"],
     lastDate: "TBA",
     prizePool: "₹ 12,000",
-    link: "/register/indx",
+    link: "/register/industrix",
     driveLink: "https://drive.google.com/file/d/18BNV4vZCQkevl9Jy7sPsW4GQgwU3xTFA/view?usp=sharing",
     image: "/images/posters/industrix.webp",
     tags: ["Manufacturing", "Startup", "Economics"],
@@ -649,9 +690,11 @@ const BUSINESS_EVENTS: Event[] = [
       { name: "Prathiman Mandal", contact: "7477333883" },
       { name: "Ratul Ray", contact: "6376143364" },
       { name: "Sarbajit Mukherjee", contact: "8478045750" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
-
+  
 
   /*
   {
@@ -679,7 +722,7 @@ const BUSINESS_EVENTS: Event[] = [
   },
   */
 
-
+  
   {
     id: "b3",
     slug: "ace-the-case",
@@ -701,11 +744,13 @@ const BUSINESS_EVENTS: Event[] = [
       { name: "Neelavra Das", contact: "8100027187" },
       { name: "Debraj Chakraborty", contact: "6291580386" },
       { name: "Dipayan Sardar", contact: "9733817692" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
+  
 
-
-
+  
   {
     id: "b4",
     slug: "biznez-plan",
@@ -727,11 +772,13 @@ const BUSINESS_EVENTS: Event[] = [
       { name: "Pranjal Deb", contact: "6290622851" },
       { name: "Anshika Dutta", contact: "8617317676" },
       { name: "Adrija Das", contact: "7980466251" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
+  
 
-
-
+  
   {
     id: "b5",
     slug: "stratedgex",
@@ -753,9 +800,11 @@ const BUSINESS_EVENTS: Event[] = [
       { name: "Avik Kapri", contact: "8293553705" },
       { name: "Souranil Sen", contact: "8768492610" },
       { name: "Md Arsh Ansari", contact: "7003184131" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
-
+  
 
   /*
   {
@@ -783,7 +832,7 @@ const BUSINESS_EVENTS: Event[] = [
   },
   */
 
-
+  
   {
     id: "b7",
     slug: "capital-clash",
@@ -792,9 +841,9 @@ const BUSINESS_EVENTS: Event[] = [
     color: "#FBEC1D",
     description: "Stock market case study challenge. Conduct fundamental and technical analysis of selected stocks and present your investment reasoning.",
     format: "Hybrid",
-    teamSize: "2-4",
+    teamSize: "3",
     rules: ["PPT submission", "Stock analysis", "Presentation"],
-    lastDate: "28th March",
+    lastDate: "10th April",
     prizePool: "₹ 8,000",
     link: "/register/capital-clash",
     driveLink: "https://srijanju.in/events/capital-clash-details",
@@ -805,9 +854,11 @@ const BUSINESS_EVENTS: Event[] = [
       { name: "Ujjwal kumar", contact: "9110985538" },
       { name: "Riya Gupta", contact: "6291133504" },
       { name: "Shubham sharma", contact: "9560134006" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
-
+  
 
 
   {
@@ -830,12 +881,14 @@ const BUSINESS_EVENTS: Event[] = [
     coordinators: [
       { name: "Vedant Murarka", contact: "8240600570" },
       { name: "Dabita Biswas", contact: "9432161974" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   }
 
 ];
 
-const BRAINSTORMING_EVENTS: Event[] = [
+const BRAINSTORMING_EVENTS: NotificationData[] = [
   /*
   {
     id: "br1",
@@ -885,32 +938,9 @@ const BRAINSTORMING_EVENTS: Event[] = [
     ]
   }
   */
-  {
-    id: "br3",
-    slug: "xstream",
-    title: "XSTREAM",
-    category: "Brainstorming",
-    color: "#1DDBFF",
-    description: "Technical design challenge to fabricate a car model optimized for aerodynamic performance. Tested inside a custom-built wind tunnel.",
-    format: "Offline",
-    teamSize: "1-4",
-    rules: ["Aerodynamic design", "Car model", "Wind tunnel test"],
-    lastDate: "TBA",
-    prizePool: "₹ 10,000",
-    link: "/register/XSTREAM",
-    driveLink: "https://drive.google.com/file/d/1IREzcdYRhvOZxxT50c1YUvedJxFkGdUB/view?usp=drivesdk",
-    image: "/images/posters/xstream.webp",
-    tags: ["Aerodynamics", "Design"],
-    status: "Open",
-    coordinators: [
-      { name: "Soham Bhattacharya", contact: "7439542892" },
-      { name: "Hiranmoy Mahato", contact: "7501767765" },
-      { name: "Saikat Dutta", contact: "9733225497" }
-    ]
-  },
 ];
 
-const ESPORTS_EVENTS: Event[] = [
+const ESPORTS_EVENTS: NotificationData[] = [
   /*
   {
     id: "e-sp1",
@@ -986,7 +1016,7 @@ const ESPORTS_EVENTS: Event[] = [
   },
   */
 
-
+  
   {
     id: "e-sp4",
     slug: "clash-royale",
@@ -999,7 +1029,7 @@ const ESPORTS_EVENTS: Event[] = [
     rules: ["Real-time strategy", "Deck building", "Tactical mastery"],
     lastDate: "TBA",
     prizePool: "₹ 6,000",
-    link: "/register/cr",
+    link: "/register/clash-royale",
     driveLink: "https://drive.google.com/file/d/1Bwvj0wWAJ_LLiWdlMcbEp2w0S-AT8NiI/view?usp=sharing",
     image: "/images/posters/clash-royale.webp",
     tags: ["Mobile", "Strategy"],
@@ -1007,9 +1037,11 @@ const ESPORTS_EVENTS: Event[] = [
     coordinators: [
       { name: "RANIT GORAI", contact: "7866069561" },
       { name: "ANSH KUMAR SINGH", contact: "9775756073" }
-    ]
+    ],
+    createdAt: "2026-03-02T10:00:00Z",
+    isNew: false,
   },
-
+  
 
   /*
   {
@@ -1137,7 +1169,7 @@ const ESPORTS_EVENTS: Event[] = [
   */
 ];
 
-const MISC_EVENTS: Event[] = [
+const MISC_EVENTS: NotificationData[] = [
   /*
   {
     id: "m1",
@@ -1344,7 +1376,9 @@ const MISC_EVENTS: Event[] = [
   */
 ];
 
-export const EVENTS_DATA: Event[] = [
+
+export const NOTIFICATIONS_DATA: NotificationData[] = [
+  
   ...CODING_EVENTS,
   ...ROBOTICS_EVENTS,
   ...BUSINESS_EVENTS,

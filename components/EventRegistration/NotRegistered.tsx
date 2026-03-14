@@ -15,13 +15,35 @@ function NotRegistered({ user, event }: { user: SessionUser; event: Event }) {
     const [teamCode, setTeamCode] = useState("");
     const [loading, setLoading] = useState(false);
 
+    // NEW: Function to create and save the notification to localStorage
+    const createSuccessNotification = (action: "created" | "joined") => {
+        const newNotification = {
+            id: `reg-${Date.now()}`,
+            // Assuming your Event type has a slug. If not, remove the slug line.
+            slug: (event as any).slug || "", 
+            title: "Registration Successful! 🎉",
+            category: "System",
+            color: "#4ade80", // Success green
+            description: `You have successfully ${action} a team for ${event.name}. Best of luck!`,
+            createdAt: new Date().toISOString(),
+            isNew: true,
+            link: "", // Empty so it hides the "Register" button
+        };
+
+        // Grab existing local notifications, add the new one to the front, and save it back
+        const existingNotes = JSON.parse(localStorage.getItem("local_notifications") || "[]");
+        localStorage.setItem("local_notifications", JSON.stringify([newNotification, ...existingNotes]));
+    };
+
     const handleCreateTeam = (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         createTeam(event, user, teamName)
             .then((res) => {
-                if (res.ok) router.refresh();
-                else toast.error(res.message);
+                if (res.ok) {
+                    createSuccessNotification("created"); // <-- Fires on success!
+                    router.refresh();
+                } else toast.error(res.message);
             })
             .finally(() => {
                 setLoading(false);
@@ -33,8 +55,10 @@ function NotRegistered({ user, event }: { user: SessionUser; event: Event }) {
         setLoading(true);
         joinTeam(event, user, teamCode)
             .then((res) => {
-                if (res.ok) router.refresh();
-                else toast.error(res.message);
+                if (res.ok) {
+                    createSuccessNotification("joined"); // <-- Fires on success!
+                    router.refresh();
+                } else toast.error(res.message);
             })
             .finally(() => {
                 setLoading(false);

@@ -26,6 +26,12 @@ function Dashboard({ user }: { user: User }) {
     <p className="text-white/30 italic text-sm">{text}</p>
   );
 
+  const completedItems = user.merchandise?.filter((item: any) => item.status === "completed") ?? [];
+  const pendingItems = user.merchandise?.filter((item: any) => item.status === "pending") ?? [];
+  const lastPendingItem = pendingItems.at(-1);
+
+  const displayItems = completedItems.length > 0 ? completedItems : (lastPendingItem ? [lastPendingItem] : []);
+
   return (
     <div className="relative isolate flex flex-col items-center justify-center gap-10 p-6 md:p-12 min-h-[80vh] h-fit text-white">
       <div className="fixed inset-0 -z-50 pointer-events-none">
@@ -159,16 +165,70 @@ function Dashboard({ user }: { user: User }) {
             </Link>
           </div>
 
-          {/* <div className="p-6 bg-linear-to-br from-red/20 to-orange/20 border border-red/30 rounded-2xl text-center">
-            <p className="text-xs uppercase text-white/60 mb-2">Member Since</p>
-            <p className="text-sm">
-              {user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', {
-                day: '2-digit',
-                month: 'short',
-                year: 'numeric'
-              }) : "Date Unknown"}
-            </p>
-          </div> */}
+          {/* For the merch */}
+          <div className="p-6 bg-white/5 border border-yellow/20 rounded-2xl">
+            <h3 className="text-yellow font-elnath mb-4 uppercase tracking-widest">Merchandise</h3>
+
+            { displayItems.length === 0 ? (
+              <div className="flex flex-col gap-3">
+                <p className="text-white/40 italic text-xs">You haven't ordered yet.</p>
+                <Link href="/merchandise">
+                  <button className="w-full py-2 border border-yellow/50 text-yellow text-xs uppercase hover:bg-yellow hover:text-black transition-all cursor-pointer">
+                    Buy Now
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {displayItems.map((item: any) => (
+                  <div key={item.id} className="border border-white/10 rounded-xl overflow-hidden bg-white/5">
+                    <img
+                      src={item.color === "BLACK" ? "/shirt0.png" : "/shirt2.png"}
+                      alt={`${item.color} shirt`}
+                      className="w-full object-contain"
+                    />
+                    <div className="p-4 space-y-4"> 
+                      <span className={`
+                          inline-block px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest
+                          ${item.status === "completed" ? "bg-green-500/20 text-green-400 border border-green-500/30" : ""}
+                          ${item.status === "pending" ? "bg-yellow/20 text-yellow border border-yellow/30" : ""}
+                          ${item.status === "failed" ? "bg-red-500/20 text-red-400 border border-red-500/30" : ""}
+                        `}>
+                        {item.status}
+                      </span>
+                      <div className="bg-white/5 border border-yellow/20 rounded-lg px-3 py-2">
+                        <p className="text-[9px] text-white/40 uppercase mb-1">Order ID</p>
+                        <p className="text-md text-yellow break-all">{item.orderId || "—"}</p>
+                      </div>
+ 
+                      <div className="flex gap-3">
+                        <div className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2">
+                          <p className="text-[9px] text-white/40 uppercase mb-1">Color</p>
+                          <p className="text-sm font-semibold capitalize">{item.color?.toLowerCase()}</p>
+                        </div>
+                        <div className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2">
+                          <p className="text-[9px] text-white/40 uppercase mb-1">Size</p>
+                          <p className="text-sm font-semibold">{item.size}</p>
+                        </div>
+                        <div className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2">
+                          <p className="text-[9px] text-white/40 uppercase mb-1">Amount</p>
+                          <p className="text-sm font-semibold">₹{item.amount}</p>
+                        </div>
+                      </div>
+ 
+                      <div className="bg-white/5 border border-white/10 rounded-lg px-3 py-2">
+                        <p className="text-[9px] text-white/40 uppercase mb-1">Preferred Campus</p>
+                        <p className="text-sm font-semibold">{item.preferredCampus === "SALT_LAKE" ? "Salt Lake Campus" : "Jadavpur Campus"}</p>
+                      </div>
+ 
+
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
         </aside>
       </div>
 

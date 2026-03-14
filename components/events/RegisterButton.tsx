@@ -1,7 +1,11 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { CircleCheckBig, CircleOff } from "lucide-react";
 import { CLIP_PATH } from "./constants/events";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface RegisterButtonProps {
   status: string;
@@ -10,7 +14,16 @@ interface RegisterButtonProps {
 }
 
 const RegisterButton: React.FC<RegisterButtonProps> = ({ status, link, isCard }) => {
+  const { data: session } = useSession();
+  const router = useRouter();
   const desktopClipStyle = { "--desktop-clip": CLIP_PATH } as React.CSSProperties;
+
+  const handleRegisterClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!session) {
+      e.preventDefault();
+      router.push(`/login?redirect=${encodeURIComponent(link)}`);
+    }
+  };
 
   if (status === "Closed") {
     return (
@@ -30,8 +43,8 @@ const RegisterButton: React.FC<RegisterButtonProps> = ({ status, link, isCard })
   return (
     <Link
       href={link}
+      onClick={handleRegisterClick}
       style={desktopClipStyle}
-      // ADDED: active:scale-[0.98] active:bg-red-800
       className={`text-white font-euclid uppercase font-bold tracking-wider transition-all duration-150 flex items-center justify-center gap-2 bg-red hover:bg-red-700 active:bg-red-800
         ${isCard
           ? "py-2 w-full text-xs [clip-path:var(--desktop-clip)]"

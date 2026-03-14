@@ -13,14 +13,16 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        const { amount, size, color, campus, customText } = body;
+        const { size, color, campus, customText, phone } = body;
 
-        if (!amount || !size || !color || !campus) {
+        if (!size || !color || !campus || !phone) {
             return NextResponse.json({
                 success: false,
                 error: "Missing required fields"
             }, { status: 400 });
         }
+
+        const amount = 349; // Securely set price on the server
 
         // Call the server action to create Cashfree order
         const result = await createMerchandiseOrder({
@@ -31,6 +33,7 @@ export async function POST(req: Request) {
             color,
             campus,
             customText,
+            phone,
             userId: session.user.id,
         });
 
