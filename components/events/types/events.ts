@@ -40,7 +40,7 @@ export interface Event {
   finalsDate?: string;
 
   // --- Prizes ---
-  prizePool: string;
+  prizePool?: string;
   winnerPrize?: string;
   runnersUpPrize?: string;
   secondRunnersUpPrize?: string;
