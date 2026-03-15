@@ -153,12 +153,21 @@ export function ChatMessages({ messages, isLoading, onQuickReply }: ChatMessages
                     style={{
                       marginTop: 10, borderRadius: 10, overflow: "hidden",
                       border: "1px solid rgba(235,216,125,0.15)",
+                      background: "rgba(0,0,0,0.2)", 
+                      display: "flex", justifyContent: "center"
                     }}
                   >
                     <img
                       src={`${POSTER_BASE_URL}${msg.poster}`}
                       alt="Event poster"
-                      style={{ width: "100%", height: "auto", maxHeight: 180, objectFit: "cover", display: "block" }}
+                      style={{ 
+                        width: "100%", 
+                        maxWidth: 350, 
+                        height: "auto", 
+                        maxHeight: 300, 
+                        objectFit: "contain", 
+                        display: "block" 
+                      }}
                       onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                     />
                   </div>
