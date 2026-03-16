@@ -12,6 +12,7 @@ interface MobileFilterProps {
   statuses: string[];
   activeStatus: string;
   setActiveStatus: (status: string) => void;
+  totalEvents: number; // NEW: Added to props
 }
 
 type DropdownSection = "categories" | "status" | null;
@@ -23,8 +24,8 @@ const MobileFilter: React.FC<MobileFilterProps> = ({
   statuses,
   activeStatus,
   setActiveStatus,
+  totalEvents,
 }) => {
-  // Keeping it null by default saves vertical space on mobile initially
   const [openSection, setOpenSection] = useState<DropdownSection>(null);
 
   const isCategoriesOpen = openSection === "categories";
@@ -37,7 +38,6 @@ const MobileFilter: React.FC<MobileFilterProps> = ({
   const categoriesRef = useRef<HTMLDivElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
 
-  // Animate Categories Dropdown
   useEffect(() => {
     const el = categoriesRef.current;
     if (!el) return;
@@ -59,7 +59,6 @@ const MobileFilter: React.FC<MobileFilterProps> = ({
     }
   }, [isCategoriesOpen]);
 
-  // Animate Status Dropdown
   useEffect(() => {
     const el = statusRef.current;
     if (!el) return;
@@ -82,9 +81,17 @@ const MobileFilter: React.FC<MobileFilterProps> = ({
   }, [isStatusOpen]);
 
   return (
-    <div className="lg:hidden flex flex-col gap-4 pb-4 w-full">
+    <div className="lg:hidden flex flex-col gap-2 pb-4 w-full">
+      
+      {/* NEW: Total Events Indicator */}
+      <div className="px-2 mb-2">
+        <div className="font-euclid text-sm text-center text-gray-300">
+          Showing <span className="text-white">{totalEvents}</span> {totalEvents === 1 ? "event" : "events"}
+        </div>
+      </div>
+
       {/* Categories Dropdown */}
-      <div className="px-2 py-3">
+      <div className="px-2 py-2">
         <button
           onClick={() => toggleSection("categories")}
           className="w-full font-euclid text-lg flex items-center justify-between text-white transition-colors"
@@ -126,7 +133,7 @@ const MobileFilter: React.FC<MobileFilterProps> = ({
       </div>
 
       {/* Status Dropdown */}
-      <div className="px-2 py-1">
+      <div className="px-2 py-2">
         <button
           onClick={() => toggleSection("status")}
           className="w-full font-euclid text-lg flex items-center justify-between text-white transition-colors"

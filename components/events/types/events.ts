@@ -9,7 +9,7 @@ export type Category =
   | "Special Attractions"
   | "Misc";
 
-export type EventStatus = "All" | "Open" | "Closed" ;
+export type EventStatus = "All" | "Open" | "Closed";
 
 export interface Coordinator {
   name: string;
@@ -31,6 +31,8 @@ export interface Event {
   format: string;
   teamSize: string;
   rules: string[];
+  scoring?: string[];
+  eventFormat?: string[];
 
   // --- Schedule & Dates ---
   lastDate: string;
@@ -38,10 +40,12 @@ export interface Event {
   finalsDate?: string;
 
   // --- Prizes ---
-  prizePool: string;
+  prizePool?: string;
   winnerPrize?: string;
   runnersUpPrize?: string;
   secondRunnersUpPrize?: string;
+  andMore?: boolean;
+  prizeDetails?: string[];
 
   // --- Links & Contacts ---
   link: string;

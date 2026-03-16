@@ -15,8 +15,11 @@ import EventTitleBlock from "./EventTitleBlock";
 import EventDetailsBox from "./EventDetailsBox";
 import EventPrizePool from "./EventPrizePool";
 import EventRules from "./EventRules";
+import EventScoring from "./EventScoring"; // <-- Imported EventScoring here
 import EventContact from "./EventContact";
 import FloatingActionBar from "./FloatingActionBar";
+import EventPrizeDetails from "./EventPrizeDetails";
+import EventFormat from "./EventFormat";
 
 interface Props {
   event: Event;
@@ -104,10 +107,25 @@ export default function EventDetailsClient({ event }: Props) {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-12">
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-12 items-end">
+          {/* Rules and Scoring side-by-side vertically */}
           <div className="lg:col-span-2 space-y-12">
-            <EventRules rules={event.rules} color={event.color} />
+            {/* Conditional renders added just in case an event doesn't have rules or scoring */}
+            {event.rules && event.rules.length > 0 && (
+              <EventRules rules={event.rules} color={event.color} />
+            )}
+            
+            {event.scoring && event.scoring.length > 0 && (
+              <EventScoring scoring={event.scoring} color={event.color} />
+            )}
+            {event.eventFormat && event.eventFormat.length > 0 && (
+              <EventFormat format={event.eventFormat} color={event.color} />
+            )}
+            {event.prizeDetails && event.prizeDetails.length > 0 && (
+              <EventPrizeDetails prizeDetails={event.prizeDetails} color={event.color} />
+            )}
           </div>
+          
           <EventContact coordinators={event.coordinators} color={event.color} />
         </section>
       </div>

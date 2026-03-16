@@ -1,4 +1,3 @@
-import React from "react";
 import { Award } from "lucide-react";
 import { Event } from "@/components/events/types/events";
 import SwipeReveal from "./SwipeReveal";
@@ -60,6 +59,14 @@ export default function EventPrizePool({ event, className }: Props) {
                   <span className="font-bold text-white tracking-wider">
                     {event.secondRunnersUpPrize}
                   </span>
+                </p>
+              </div>
+            )}
+            {/* AND MORE CONDITIONAL RENDERING */}
+            {event.andMore && (
+              <div className="flex items-center gap-2 text-sm">
+                <p style={{ color: event.color }} className="font-medium">
+                  Check below for more prizes
                 </p>
               </div>
             )}

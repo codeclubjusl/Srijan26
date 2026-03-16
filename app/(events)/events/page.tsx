@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ReactLenis } from "lenis/react";  // add this
+import { ReactLenis } from "lenis/react";
 import WavyGradient from "@/components/WavyGradient";
 import Header from "@/components/events/Header";
 import Sidebar from "@/components/events/Sidebar";
@@ -30,7 +30,7 @@ export default function EventsPage() {
   });
 
   return (
-    <ReactLenis root> 
+    <ReactLenis root>
       <div className="relative min-h-screen text-white font-sans selection:bg-orange-400 selection:text-white">
         <WavyGradient
           color1="#F09400"
@@ -53,7 +53,9 @@ export default function EventsPage() {
             statuses={STATUSES}
             activeStatus={activeStatus}
             setActiveStatus={setActiveStatus}
+            totalEvents={filteredEvents.length} // NEW: Passing total events
           />
+          
           <MobileFilter
             categories={CATEGORIES}
             activeCategory={activeCategory}
@@ -61,12 +63,14 @@ export default function EventsPage() {
             statuses={STATUSES}
             activeStatus={activeStatus}
             setActiveStatus={setActiveStatus}
+            totalEvents={filteredEvents.length} // NEW: Passing total events
           />
+
           <div className="flex-1 min-w-0">
             <EventGrid filteredEvents={filteredEvents} />
           </div>
         </main>
       </div>
-    </ReactLenis>  
+    </ReactLenis>
   );
 }

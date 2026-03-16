@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ searchQuery, setSearchQuery }) => {
   const desktopClipStyle = { "--desktop-clip": CLIP_PATH } as React.CSSProperties;
 
   return (
-    <header className="sticky top-0 z-30 border-b border-white/10 px-6 py-4 backdrop-blur-sm">
+    <header className="sticky top-5 md:top-0 z-30 border-b border-white/10 px-6 py-4 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <h1 className="font-elnath text-4xl font-bold tracking-wide">
           EVENTS

@@ -15,6 +15,7 @@ interface SidebarProps {
   statuses: string[];
   activeStatus: string;
   setActiveStatus: (status: string) => void;
+  totalEvents: number; // NEW: Added to props
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -24,16 +25,14 @@ const Sidebar: React.FC<SidebarProps> = ({
   statuses,
   activeStatus,
   setActiveStatus,
+  totalEvents,
 }) => {
   const lenis = useLenis();
-  // Independent states for each dropdown
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
   const [isStatusOpen, setIsStatusOpen] = useState(true);
 
-  // Refs for GSAP animations
   const statusRef = useRef<HTMLDivElement>(null);
 
-  // Animate Categories Dropdown
   useEffect(() => {
     const el = ".categoriesClass";
     if (!el) return;
@@ -55,7 +54,6 @@ const Sidebar: React.FC<SidebarProps> = ({
     }
   }, [isCategoriesOpen]);
 
-  // Animate Status Dropdown
   useEffect(() => {
     const el = statusRef.current;
     if (!el) return;
@@ -82,7 +80,13 @@ const Sidebar: React.FC<SidebarProps> = ({
       className="hidden lg:block w-75 shrink-0 sticky top-24 self-start h-[calc(100vh-12rem)] overflow-hidden"
       onWheel={(e) => e.stopPropagation()}
     >
-      <div className="space-y-4 h-full overflow-y-auto overscroll-y-contain pr-2">
+      <div className="space-y-6 h-full overflow-y-auto overscroll-y-contain pr-2">
+        
+        {/* NEW: Total Events Indicator */}
+        <div className="font-euclid text-sm text-gray-300">
+          Showing <span className="text-white">{totalEvents}</span> {totalEvents === 1 ? "event" : "events"}
+        </div>
+
         {/* Categories Section */}
         <div>
           <button
