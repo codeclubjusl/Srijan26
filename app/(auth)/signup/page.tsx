@@ -32,7 +32,6 @@ const UserSchema = z
                 "Weak Password",
             ),
         confirmPassword: z.string(),
-        referralCode: z.string().optional(),
     })
     .refine((data) => data.password === data.confirmPassword, {
         message: "Passwords don't match",
@@ -45,14 +44,12 @@ function SignUpForm() {
         email: "",
         password: "",
         confirmPassword: "",
-        referralCode: "",
     });
     const [errors, setErrors] = useState({
         name: "",
         email: "",
         password: "",
         confirmPassword: "",
-        referralCode: "",
     });
     const [loading, setLoading] = useState<boolean>();
     const { executeInstance } = useHCaptcha();
@@ -65,7 +62,7 @@ function SignUpForm() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        setErrors({ name: "", email: "", password: "", confirmPassword: "", referralCode: "" });
+        setErrors({ name: "", email: "", password: "", confirmPassword: "" });
         const isValid = UserSchema.safeParse(data);
 
         if (!isValid.success) {
@@ -90,7 +87,6 @@ function SignUpForm() {
                         name: data.name,
                         email: data.email,
                         password: data.password,
-                        referralCode: data.referralCode,
                         registrationComplete: false,
                         emailVerified: null,
                         image: null,
@@ -193,25 +189,7 @@ function SignUpForm() {
                         {errors.confirmPassword}
                     </p>
                 </div>
-                <div className="flex flex-col items-center gap-2 relative w-full sm:w-1/3 2xl:w-1/4">
-                    <div className="absolute -right-8 top-1/2 -translate-y-1/2">
-                        <Tooltip message="This is an optional field, in case you have a code given by a Campus Ambassador.">
-                            <p className="text-xs py-1 px-2.5 rounded-full bg-gray-300/40">
-                                i
-                            </p>
-                        </Tooltip>
-                    </div>
-                    <input
-                        type="text"
-                        name="referralCode"
-                        placeholder="Referral Code (Optional)"
-                        value={data.referralCode}
-                        onChange={(e) =>
-                            handleUpdate(e.target.value, "referralCode")
-                        }
-                        className="px-5 py-3 border border-yellow/70 rounded-full outline-none w-full"
-                    />
-                </div>
+
                 <Clickable
                     as="button"
                     type="submit"

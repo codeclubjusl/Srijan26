@@ -24,6 +24,7 @@ const RegistrationSchema = z.object({
     college: z.string().min(1, "College is required"),
     year: z.string().min(1, "Year of Study is required"),
     department: z.string().min(1, "Department is required"),
+    referralCode: z.string().optional(),
 });
 
 function CompleteRegistration({ id }: { id: string }) {
@@ -40,13 +41,16 @@ function RegistrationForm({ id }: { id: string }) {
         college: "",
         year: "",
         department: "",
+        referralCode: "",
     });
     const [errors, setErrors] = useState({
         phone: "",
         college: "",
         year: "",
         department: "",
+        referralCode: "",
     });
+    const [showReferral, setShowReferral] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -76,6 +80,7 @@ function RegistrationForm({ id }: { id: string }) {
             college: "",
             department: "",
             year: "",
+            referralCode: "",
         });
         const isValid = RegistrationSchema.safeParse(data);
         if (!isValid.success) {
@@ -182,6 +187,36 @@ function RegistrationForm({ id }: { id: string }) {
                 )}
             </div>
 
+            <div className="flex flex-col items-center gap-2 w-full sm:w-1/3 2xl:w-1/4">
+                <button
+                    type="button"
+                    onClick={() => setShowReferral((prev) => !prev)}
+                    className="text-sm text-yellow/80 hover:text-yellow underline underline-offset-2 transition-colors"
+                >
+                    {showReferral ? "Hide referral code" : "Have a referral code?"}
+                </button>
+                {showReferral && (
+                    <div className="flex flex-col items-center gap-2 relative w-full">
+                        <div className="absolute -right-8 top-1/2 -translate-y-1/2">
+                            <Tooltip message="This is an optional field, in case you have a code given by a Campus Ambassador.">
+                                <p className="text-xs py-1 px-2.5 rounded-full bg-gray-300/40">
+                                    i
+                                </p>
+                            </Tooltip>
+                        </div>
+                        <input
+                            type="text"
+                            name="referralCode"
+                            placeholder="Referral Code (Optional)"
+                            value={data.referralCode}
+                            onChange={(e) =>
+                                handleChange("referralCode", e.target.value)
+                            }
+                            className="px-5 py-3 border border-yellow/70 rounded-full outline-none w-full"
+                        />
+                    </div>
+                )}
+            </div>
             <Clickable
                 as="button"
                 type="submit"
