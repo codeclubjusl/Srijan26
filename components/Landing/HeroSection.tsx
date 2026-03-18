@@ -232,7 +232,7 @@ export function HeroSection() {
           height={200}
           width={460}
           className="hero-logo max-w-[85vw] lg:max-w-full lg:w-[500px] h-auto -ml-2 lg:ml-0"
-          priority
+          fetchPriority="high"
         />
 
         <h2 className="py-2 text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-1 font-light tracking-wide lg:ml-2 flex flex-col items-center lg:items-start">
