@@ -1571,7 +1571,6 @@ const MISC_EVENTS: Event[] = [
     ],
   },
 
-  /*
   {
     id: "m6",
     slug: "djk",
@@ -1581,12 +1580,23 @@ const MISC_EVENTS: Event[] = [
     description: "No Mercy, Only Memes! A two-round meme war with Online Prelims and an Offline Grand Finale. Transform random images into the funniest memes live.",
     format: "Offline",
     teamSize: "Individual",
-    rules: ["Meme making", "Originality", "Humor"],
+    rules: [
+  "Submit 3 original memes within 48 hours",
+  "Only allowed themes must be followed",
+  "Strictly no sexual, political, religious, or offensive content",
+  "No plagiarism (leads to immediate disqualification)",
+  "Top entries selected based on engagement + judges",
+  "Finalists must create a meme from a given image",
+  "Limited time will be provided in finals",
+  "Memes will be presented live",
+  "Final results based on judges + audience voting",
+  "Participants must follow all event guidelines"
+],
     lastDate: "TBA",
     prizePool: "Prizes worth ₹3,000",
-    link: "/register/dank-junk",
+    link: "/register/djk",
     driveLink: "https://drive.google.com/file/d/1LFNCMn4ZJzvML1f0N-yHJ4QOLrv8JHBT/view?usp=drivesdk",
-    image: "/images/posters/misc-default.webp",
+    image: "/images/posters/djk.webp",
     tags: ["Memes", "Creativity", "Humor"],
     status: "Open",
     coordinators: [
@@ -1595,7 +1605,6 @@ const MISC_EVENTS: Event[] = [
       { name: "Satadru Das", contact: "8240064430" }
     ]
   },
-  */
 
   {
     id: "m7",
