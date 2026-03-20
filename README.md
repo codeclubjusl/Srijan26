@@ -1,6 +1,12 @@
-# Srijan '26
+# Jadavpur University's F.E.T.S.U. presents Srijan '26 Official Website Github Repository
 
-## Running Locally
+## Contributors
+
+<a href="https://github.com/codeclubjusl/Srijan26/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=codeclubjusl/Srijan26" />
+</a>
+
+## To Run Locally
 
 To get the project running on your local machine, follow these barebone steps:
 
@@ -39,16 +45,19 @@ To get the project running on your local machine, follow these barebone steps:
 
 ## Technical Architecture & Scaling Optimizations
 
-This codebase is specifically tuned for high traffic and optimal UX. Here's a summary of what's working under the hood:
+This codebase is tuned for medium to high traffic and optimal UX. Here's a summary of what's working under the hood:
 
 ### ⚡ Edge Requests Optimization
-To dramatically prevent unnecessary edge function execution limits being hit from high traffic, we dynamically deferred `prefetch` on deep navbar links, event listing cards, and dashboard routes. This means Next.js won't spam edge servers predicting where a hovering cursor *might* click, saving costs and server strain.
+To prevent unnecessary edge function execution limits from high traffic, we dynamically deferred `prefetch` on deep navbar links, event listing cards, and dashboard routes. This means Next.js won't spam edge servers predicting where a hovering cursor *might* click, saving costs and server strain.
 
-### 🌐 CDN Asset Serving (Vercel Blob)
-Large aesthetic assets—such as the massive background `webm` hero videos—are deployed remotely into Vercel Blob (CDN) rather than bulking the source code or main server memory, achieving lightning-fast progressive streaming universally.
+### 🌐 CDN Asset Serving (Cloudflare Caching)
+Large aesthetic assets—such as the massive background `webm` hero videos—are deployed remotely into Cloudflare Caching (large bandwidth) (CDN) rather than bulking the source code or main server memory, achieving lightning-fast progressive streaming universally.
 
 ### 🖼️ Image / Media Caching
 All images utilize the framework's native `next/image` pipelines. Coupled with strict `Cache-Control` headers for API/event listings (that reload only via explicit Superadmin UI invalidation), repeat visitors load almost everything directly from instantaneous cache.
+
+### Multiple Server Image Deployments
+This has been done to prevent any unforeseen conditions of downtime in website, three vercel deployments of our code were maintained and configured via cloudflare to manage proper distribution, availability of backups in case of multiple downtime/space completion.
 
 ### 🚀 Event Dynamic SEO (Next.js SSG)
 Event pages located at `/events/[slug]` maintain highly customized OpenGraph and Twitter SEO tags. However, instead of executing Server-Side Rendering (SSR) uniquely on every visit, the engine pre-builds all exact event pages at build time using `generateStaticParams()`. This results in perfectly generated HTML documents capable of scoring a 100 on Lighthouse instantaneously.
