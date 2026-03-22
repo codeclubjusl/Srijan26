@@ -819,7 +819,7 @@ const BUSINESS_EVENTS: Event[] = [
     description:
       "Lead a manufacturing startup in a real-time simulation, balancing supply chains and marketing to dominate a live market. Negotiate and bid for components in the Auction Round.",
     format: "Offline",
-    teamSize: "4",
+    teamSize: "1-4",
     rules: ["Startup simulation", "Supply chain management", "Auction round"],
     lastDate: "TBA",
     prizePool: "₹ 9,000",
