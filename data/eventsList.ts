@@ -1288,10 +1288,17 @@ const ESPORTS_EVENTS: Event[] = [
       "Electrifying Clash Royale action in an intense tournament. Deploy strategies, counter decks, and execute perfect plays in real time.",
     format: "Offline",
     teamSize: "Individual",
-    rules: ["Real-time strategy", "Deck building", "Tactical mastery"],
-    lastDate: "TBA",
+    rules: [
+    "Prelims on 10th April 2026. Complete knockout tournament of all players. Mega Draft 1v1 battles.",
+    "Only 1 round per matchup for the prelims.",
+    "Top 16 players will qualify for Finals which is on 11th April 2026.",
+    "Finals format - There will be knockout matchups, with each matchup having 3 rounds each. ROUND 1 will be Triple Draft, ROUND 2 will be Mirror Battle and ROUND 3 will be Classic 1v1 with personal decks. One who wins 2 rounds wins the matchup and advances to top 8 and then top 4 and so on.",
+    "Only the Final match of the top 2 players will have 5 rounds - ROUND 1: Triple Draft, ROUND 2: Mirror Battle, ROUND 3, 4, 5: Classic 1v1 battles with no repeated cards in the decks. You can use cards used in previous matchup but cannot reuse cards already used in another classic 1v1 match of the same matchup. One who wins 3 rounds wins the tournament.",
+    "Can use other's Clash Royale account, but cannot change accounts in the tournament. You have to play with the same account."
+  ],
+    lastDate: "April 10, 2026",
     prizePool: "TBA",
-    link: "/register/cr",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSfomYpnp__btQSDbwzFtufI969vr6H67RjyZH6SVyX8eui4Gw/viewform?usp=publish-editor",
     driveLink:
       "https://drive.google.com/file/d/1Bwvj0wWAJ_LLiWdlMcbEp2w0S-AT8NiI/view?usp=sharing",
     image: "/images/posters/clash-royale.webp",
