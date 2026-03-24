@@ -25,6 +25,16 @@ jobs:
             
             npm ci
             npx prisma generate
-            npm run build
             
-            pm2 reload srijan26
+            cp -a .next .next_backup || true
+            
+            if npm run build; then
+              echo "Build passed! Deploying..."
+              pm2 reload srijan26
+              rm -rf .next_backup
+            else
+              echo "Build failed! Restoring previous working version..."
+              rm -rf .next
+              mv .next_backup .next
+              exit 1
+            fi
