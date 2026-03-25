@@ -278,7 +278,7 @@ const CODING_EVENTS: Event[] = [
       "Total contest duration: **2 hours**",
     ],
     lastDate: "TBA",
-    prizePool: "TBD",
+    prizePool: "₹ 6,000",
     link: "/register/ptb",
     driveLink:
       "https://docs.google.com/document/d/1jPDI7aU0oLEpA4f6MfH-RSeWmv8yjYDPhM0FFSNEfDk/edit?usp=sharing",
@@ -635,9 +635,9 @@ const ROBOTICS_EVENTS: Event[] = [
     tags: ["Mechatronics", "Innovation"],
     status: "Open",
     coordinators: [
-      { name: "Md Touhid Alam", contact: "7431086857" },
-      { name: "Mainak Dawn", contact: "7004201761" },
-      { name: "Oum Pradhan", contact: "7595877944" }
+      { name: "Shreyash Ray", contact: "6291516600" },
+      { name: "Rasoshree Ghosh", contact: "7439059081" },
+      { name: "Indrajit Bardhan", contact: "8583078019" }
     ]
   },
 
