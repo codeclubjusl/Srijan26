@@ -6,6 +6,7 @@ import WavyGradient from "@/components/WavyGradient";
 import { ContactUs } from "@/components/Landing/ContactUs";
 import { PastSpeakers } from "@/components/Landing/PastSpeakers";
 import { About } from "@/components/Landing/About";
+import LiveEvents from "@/components/Landing/LiveEvents";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         className="wavy-gradient-canvas"
       />
       <HeroSection />
+      <LiveEvents />
       <About />
       <Timeline />
       <PastSponsors />
