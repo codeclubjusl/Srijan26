@@ -2,7 +2,6 @@ import { HeroSection } from "@/components/Landing/HeroSection";
 import { Carousel } from "@/components/Landing/ImageCarousel";
 import { PastSponsors } from "@/components/Landing/PastSponsors";
 import Timeline from "@/components/Landing/Timeline";
-import LiveEvents from "@/components/Landing/LiveEvents";
 import WavyGradient from "@/components/WavyGradient";
 import { ContactUs } from "@/components/Landing/ContactUs";
 import { PastSpeakers } from "@/components/Landing/PastSpeakers";
@@ -26,7 +25,6 @@ export default function Home() {
       <HeroSection />
       <About />
       <Timeline />
-      <LiveEvents />
       <PastSponsors />
       <PastSpeakers />
       <Carousel />
