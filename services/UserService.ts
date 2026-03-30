@@ -2,7 +2,6 @@
 import "server-only";
 import { prisma } from "@/prisma/client";
 import { getUserByEmail } from "./AuthService";
-import ShortUniqueId from "short-unique-id";
 import { sendPasswordResetEmail, sendVerificationEmail } from "./EmailService";
 import bcrypt from "bcryptjs";
 import { SERVER_URL } from "@/utils/constants";
@@ -90,7 +89,7 @@ const matchVerificationCode = withAuth(async (sessionUserId: string, email: stri
 
 const verifyEmail = withAuth(async (sessionUserId: string, email: string) => {
     try {
-        const token = new ShortUniqueId({ length: 8 }).rnd();
+        const token = crypto.randomUUID();
         await prisma.user.update({
             where: { id: sessionUserId, email, emailVerified: null },
             data: { verificationToken: token },
@@ -111,7 +110,7 @@ const handleForgotPassword = async (email: string) => {
         const existingUser = await getUserByEmail(email);
         if (!existingUser) return false;
 
-        const token = new ShortUniqueId({ length: 20 }).rnd();
+        const token = crypto.randomUUID();
         const tokenExpiry = new Date(Date.now() + 60 * 60 * 1000);
         await prisma.resetPasswordToken.create({
             data: {
