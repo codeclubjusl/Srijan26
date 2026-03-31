@@ -1839,8 +1839,8 @@ const MISC_EVENTS: Event[] = [
 
   {
     id: "m12",
-    slug: "rap-competition",
-    title: "Rap Competition",
+    slug: "rpb",
+    title: "Rap Battle",
     category: "Misc",
     color: "#D21C2D",
     description:
