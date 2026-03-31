@@ -1948,7 +1948,7 @@ const MISC_EVENTS: Event[] = [
       "# Additional Rewards",
       "**Certificates and medals will be awarded to winners**",
     ],
-    link: "/register/bbx",
+    link: "/register/bbxc",
     driveLink:
       "https://drive.google.com/drive/folders/19Z-MMw5bNZM5tmsyuplqXk3u2sKRg_dr",
     coordinators: [
