@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from '@/prisma/client';
+import { withAuth } from '@/utils/withAuth';
 import { MerchandiseSize, MerchandiseColor, Campus, PaymentStatus } from "@prisma/client";
 // import { notificationService } from '@/lib/services/notifications'; // I'll check if this exists later or mock it
 
@@ -13,23 +14,6 @@ interface CashfreePayment {
     payment_completion_time?: string;
     payment_method?: string;
 }
-
-interface ErrorWithResponse {
-    response?: {
-        data?: {
-            message?: string;
-        };
-    };
-    message?: string;
-}
-
-const isErrorWithResponse = (error: unknown): error is ErrorWithResponse => {
-    return typeof error === 'object' && error !== null && 'response' in error;
-};
-
-const isErrorWithMessage = (error: unknown): error is { message: string } => {
-    return typeof error === 'object' && error !== null && 'message' in error && typeof (error as any).message === 'string';
-};
 
 let cashfreeConfig: {
     clientId: string;
@@ -58,8 +42,9 @@ try {
     cashfreeConfig = null;
 }
 
-export async function getUserPhone(userId: string) {
+export const getUserPhone = withAuth(async (sessionUserId: string, userId: string) => {
     try {
+        if(sessionUserId !== userId) return {success: false, phone: "", error: "Provided userId does not match session"};
         const user = await prisma.user.findUnique({
             where: { id: userId },
             select: { phone: true }
@@ -69,7 +54,7 @@ export async function getUserPhone(userId: string) {
         console.error("Failed to fetch user phone:", error);
         return { error: "Failed to fetch user phone" };
     }
-}
+});
 
 export async function createMerchandiseOrder(paymentData: {
     amount: number;
@@ -184,7 +169,7 @@ export async function createMerchandiseOrder(paymentData: {
     } catch (error: unknown) {
         console.error('💥 Error creating order:', error);
         let errorMessage = 'Failed to create order';
-        if (isErrorWithMessage(error)) {
+        if (error instanceof Error) {
             errorMessage = error.message;
         }
         return { error: errorMessage };
@@ -269,7 +254,7 @@ export async function verifyMerchandisePayment(verificationData: {
                 where: { orderId: order_id }
             });
 
-            if (order) {
+            if (order && order.userId === userId) {
                 await prisma.merchandise.update({
                     where: { orderId: order_id },
                     data: { status: 'failed' as PaymentStatus },
@@ -281,7 +266,7 @@ export async function verifyMerchandisePayment(verificationData: {
     } catch (error: unknown) {
         console.error('Error verifying payment:', error);
         let errorMessage = 'Internal server error while verifying payment';
-        if (isErrorWithMessage(error)) {
+        if (error instanceof Error) {
             errorMessage = error.message;
         }
         return { error: errorMessage };
@@ -344,7 +329,7 @@ export async function checkOrderStatus(orderId: string, userId: string) {
     } catch (error: unknown) {
         console.error('Error checking order status:', error);
         let errorMessage = 'Failed to check order status';
-        if (isErrorWithMessage(error)) {
+        if (error instanceof Error) {
             errorMessage = error.message;
         }
         return { error: errorMessage };
