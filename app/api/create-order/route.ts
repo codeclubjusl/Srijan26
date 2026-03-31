@@ -26,9 +26,7 @@ export async function POST(req: Request) {
 
         // Call the server action to create Cashfree order
         const result = await createMerchandiseOrder({
-            amount,
             currency: "INR",
-            merchandise: "SHIRT",
             size,
             color,
             campus,

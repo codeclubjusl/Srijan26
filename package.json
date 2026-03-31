@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npx prisma generate && next build",
+    "prestart": "node scripts/clear-cache.js",
     "start": "next start",
     "seed": "tsx prisma/seed.ts",
     "seed-events": "tsx prisma/seed-events.ts",

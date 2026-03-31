@@ -33,13 +33,15 @@ const _getAdminEvents = async (
     } },
   });
 
-  return assignments.map((a) => ({
-    id: a.event.id,
-    name: a.event.name,
-    slug: a.event.slug,
-    isVisible: a.event.isVisible,
-    registrationOpen: a.event.registrationOpen,
-  }));
+  return assignments
+    .filter((a) => a.event != null)
+    .map((a) => ({
+      id: a.event.id,
+      name: a.event.name,
+      slug: a.event.slug,
+      isVisible: a.event.isVisible,
+      registrationOpen: a.event.registrationOpen,
+    }));
 };
 
 const getAdminEvents = async (userId: string, role: string) => {
@@ -169,7 +171,7 @@ const _getAllMerchandise = async () => {
       id: "desc", // implicitly ordered by creation if id is auto-generated in a way that respects time, but ObjectId contains timestamp.
     },
   });
-  return merchandise;
+  return merchandise.filter((m) => m.user != null);
 };
 
 export const getAllMerchandise = async () => {

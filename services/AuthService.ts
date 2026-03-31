@@ -10,6 +10,10 @@ import { CONST } from "@/utils/constants";
 import { AuthError } from "next-auth";
 import { revalidateTag } from "next/cache";
 
+const isRedirectError = (error: any) => {
+  return typeof error === "object" && error !== null && "digest" in error && typeof error.digest === "string" && error.digest.startsWith("NEXT_REDIRECT");
+};
+
 const getUserByEmail = async (email: string | null) => {
   if (!email) return null;
   const user = await prisma.user.findUnique({ where: { email } });
@@ -83,6 +87,7 @@ const handleSignin = async (email: string, password: string) => {
     });
     return { ok: true, message: "Login successful" };
   } catch (err) {
+    if (isRedirectError(err)) throw err;
     console.error(err);
     if (err instanceof AuthError && err.type === "CredentialsSignin")
       return { ok: false, message: "Invalid credentials" };
@@ -126,7 +131,7 @@ const signup = async (user: User, hCaptchaToken: string | null) => {
     if (existingUser)
       return { ok: false, message: "Email already in use" };
 
-    const hashedPassword = await bcrypt.hash(user.password, 12);
+    const hashedPassword = await bcrypt.hash(user.password, 10);
     // Destructure referralCode to exclude it from the database write
     const { referralCode, ...userData } = user;
     const dbUser = {
@@ -156,11 +161,13 @@ const signup = async (user: User, hCaptchaToken: string | null) => {
         redirect: false
       });
     } catch (err) {
+      if (isRedirectError(err)) throw err;
       console.error(err);
       return { ok: false, message: "Error in login after signup, please login manually" };
     }
     return { ok: true, message: "Signup successful" };
   } catch (err) {
+    if (isRedirectError(err)) throw err;
     console.error(err);
     return { ok: false, message: "Error in signup" };
   }

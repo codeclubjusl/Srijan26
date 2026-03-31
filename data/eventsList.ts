@@ -36,7 +36,7 @@ const CODING_EVENTS: Event[] = [
     link: "/register/epoch",
     driveLink:
       "https://drive.google.com/file/d/1z0xX5WVTDhK1wkC3i5FxChVbZXf2TRUC/view?usp=sharing",
-      whatsappLink: "https://chat.whatsapp.com/FfdrEV9n1aOECGJrj5QazV",
+    whatsappLink: "https://chat.whatsapp.com/FfdrEV9n1aOECGJrj5QazV",
     coordinators: [
       { name: "Atmik Goswami", contact: "8910425255" },
       { name: "Asmit Deb", contact: "6290050401" },
@@ -1859,7 +1859,7 @@ const MISC_EVENTS: Event[] = [
       "The decision of the judges will be final and binding",
     ],
     scoring: [
-      " Judging Criteria,
+      "Judging Criteria",
       "Originality & Creativity",
       "Lyricism & Content",
       "Flow & Delivery",
@@ -1868,11 +1868,11 @@ const MISC_EVENTS: Event[] = [
     ],
     eventFormat: [
       "Round 1: Showcase Round",
-      "Each participant gets 90–120 seconds to perform",
+      "Each participant gets 90-120 seconds to perform",
       "Perform a single original piece showcasing style and skill",
-      "Top 3–5 participants qualify for the final round",
+      "Top 3-5 participants qualify for the final round",
       "Round 2: Final Round",
-      "Finalists get 2–2.5 minutes to perform",
+      "Finalists get 2-2.5 minutes to perform",
       "Participants may present a new piece or continuation of their style",
       "Final results are based on combined performance across both rounds",
     ],

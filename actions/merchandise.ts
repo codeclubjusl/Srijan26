@@ -57,9 +57,7 @@ export const getUserPhone = withAuth(async (sessionUserId: string, userId: strin
 });
 
 export async function createMerchandiseOrder(paymentData: {
-    amount: number;
     currency: string;
-    merchandise: 'SHIRT';
     size: string;
     color: string;
     campus: string;
@@ -72,7 +70,9 @@ export async function createMerchandiseOrder(paymentData: {
             return { error: 'Payment service not available' };
         }
 
-        const { amount, currency, size, color, campus, customText, phone, userId } = paymentData;
+        const { currency, size, color, campus, customText, phone, userId } = paymentData;
+        const amount = 349;
+        const merchandise = 'SHIRT';
 
         const user = await prisma.user.findUnique({
             where: { id: userId }
@@ -229,6 +229,11 @@ export async function verifyMerchandisePayment(verificationData: {
 
             if (order.userId !== userId) {
                 return { error: 'Unauthorized: Order does not belong to this user' };
+            }
+
+            // Verify the paid amount exactly matches what we expect
+            if (successfulPayment.payment_amount !== 349) {
+                return { error: `Partial or invalid payment detected. Expected 349, got ${successfulPayment.payment_amount}` };
             }
 
             await prisma.merchandise.update({
