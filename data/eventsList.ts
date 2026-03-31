@@ -289,7 +289,7 @@ const CODING_EVENTS: Event[] = [
       "Total contest duration: **2 hours**",
     ],
     lastDate: "TBA",
-    prizePool: "₹ 6,000",
+    prizePool: "₹ 10,000",
     link: "/register/ptb",
     driveLink:
       "https://docs.google.com/document/d/1jPDI7aU0oLEpA4f6MfH-RSeWmv8yjYDPhM0FFSNEfDk/edit?usp=sharing",
@@ -330,10 +330,10 @@ const CODING_EVENTS: Event[] = [
       "Teams develop their projects and **present their solutions to the judges**",
       "Evaluation is based on **innovation, implementation, and presentation quality**",
     ],
-    lastDate: "TBA",
-    prizePool: "₹ 8,500",
-    winnerPrize: "₹4,000",
-    runnersUpPrize: "₹2,500",
+    lastDate: "30-March-2026",
+    prizePool: "₹ 10,000",
+    winnerPrize: "₹5,000",
+    runnersUpPrize: "₹3,000",
     secondRunnersUpPrize: "₹2,000",
     link: "https://unstop.com/hackathons/hackforge-srijan-2026-jadavpur-university-kolkata-1649998",
     driveLink:
@@ -343,7 +343,7 @@ const CODING_EVENTS: Event[] = [
       { name: "Dipan Mondal", contact: "8250821406" },
       { name: "Vivek Haldar", contact: "9875495117" },
     ],
-    status: "Open",
+    status: "Closed",
   },
   {
     id: "e9",
@@ -573,7 +573,7 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Ruchir Saha", contact: "7047505834" },
     ],
   },
-
+/*
   {
     id: "r6",
     slug: "control-craft",
@@ -610,7 +610,8 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Shreyas Ray", contact: "6291516600" },
     ],
   },
-
+*/
+/*
   {
     id: "r7",
     slug: "rope-runner",
@@ -655,6 +656,7 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Indrajit Bardhan", contact: "8583078019" },
     ],
   },
+*/
 
   {
     id: "r11",
