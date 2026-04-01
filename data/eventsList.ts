@@ -431,7 +431,7 @@ const CODING_EVENTS: Event[] = [
       { name: "Arjeesh Palai", contact: "7044122399" },
       { name: "Sombrata Biswas", contact: "9051468777" },
     ],
-    status: "Closed",
+    status: "Open",
   },
   {
     id: "e11",
