@@ -12,7 +12,7 @@ import { checkAdminAuthorization } from "@/services/AuthService";
 export async function GET(req: NextRequest) {
     try {
         const user = await checkAdminAuthorization();
-        if (user.role !== "SUPERADMIN") {
+        if (!user || user.role !== "SUPERADMIN") {
             return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
         }
 
@@ -38,15 +38,18 @@ export async function GET(req: NextRequest) {
         }
 
         return NextResponse.json({ error: "Invalid action" }, { status: 400 });
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (err) {
+        console.error("GET /api/superadmin/admins : ", err);
+        let errorMessage = "Internal Server Error";
+        if(err instanceof Error) errorMessage = err.message;
+        return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 }
 
 export async function POST(req: NextRequest) {
     try {
         const user = await checkAdminAuthorization();
-        if (user.role !== "SUPERADMIN") {
+        if (!user || user.role !== "SUPERADMIN") {
             return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
         }
 
@@ -59,15 +62,18 @@ export async function POST(req: NextRequest) {
         revalidateTag("event-admins", {});
         revalidateTag("superadmin-users", {});
         return NextResponse.json({ success: true });
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (err) {
+        console.error("POST /api/superadmin/admins : ", err);
+        let errorMessage = "Internal Server Error";
+        if(err instanceof Error) errorMessage = err.message;
+        return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 }
 
 export async function DELETE(req: NextRequest) {
     try {
         const user = await checkAdminAuthorization();
-        if (user.role !== "SUPERADMIN") {
+        if (!user || user.role !== "SUPERADMIN") {
             return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
         }
 
@@ -83,7 +89,10 @@ export async function DELETE(req: NextRequest) {
         revalidateTag("event-admins", {});
         revalidateTag("superadmin-users", {});
         return NextResponse.json({ success: true });
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (err) {
+        console.error("DELETE /api/superadmin/admins : ", err);
+        let errorMessage = "Internal Server Error";
+        if(err instanceof Error) errorMessage = err.message;
+        return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 }

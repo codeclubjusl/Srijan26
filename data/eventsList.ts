@@ -289,7 +289,7 @@ const CODING_EVENTS: Event[] = [
       "Total contest duration: **2 hours**",
     ],
     lastDate: "TBA",
-    prizePool: "₹ 6,000",
+    prizePool: "₹ 10,000",
     link: "/register/ptb",
     driveLink:
       "https://docs.google.com/document/d/1jPDI7aU0oLEpA4f6MfH-RSeWmv8yjYDPhM0FFSNEfDk/edit?usp=sharing",
@@ -330,10 +330,10 @@ const CODING_EVENTS: Event[] = [
       "Teams develop their projects and **present their solutions to the judges**",
       "Evaluation is based on **innovation, implementation, and presentation quality**",
     ],
-    lastDate: "TBA",
-    prizePool: "₹ 8,500",
-    winnerPrize: "₹4,000",
-    runnersUpPrize: "₹2,500",
+    lastDate: "30-March-2026",
+    prizePool: "₹ 10,000",
+    winnerPrize: "₹5,000",
+    runnersUpPrize: "₹3,000",
     secondRunnersUpPrize: "₹2,000",
     link: "https://unstop.com/hackathons/hackforge-srijan-2026-jadavpur-university-kolkata-1649998",
     driveLink:
@@ -343,7 +343,7 @@ const CODING_EVENTS: Event[] = [
       { name: "Dipan Mondal", contact: "8250821406" },
       { name: "Vivek Haldar", contact: "9875495117" },
     ],
-    status: "Open",
+    status: "Closed",
   },
   {
     id: "e9",
@@ -527,14 +527,14 @@ const ROBOTICS_EVENTS: Event[] = [
       "Challenges may include **L-turns, dynamic elements, and variable lighting conditions**",
     ],
     lastDate: "TBA",
-    prizePool: "₹ 6,500",
-    winnerPrize: "₹3,000",
-    runnersUpPrize: "₹2,000",
-    secondRunnersUpPrize: "₹1,000",
+    prizePool: "Exciting Prizes",
+    // winnerPrize: "₹3,000",
+    // runnersUpPrize: "₹2,000",
+    // secondRunnersUpPrize: "₹1,000",
     andMore: true,
     prizeDetails: [
-      "# Additional Rewards",
-      "**Innovation Prize — ₹500**",
+      "# Rewards",
+      // "**Innovation Prize — ₹500**",
       "**Certificates of Merit for finalists**",
       "**Participation e-certificates for all teams**",
     ],
@@ -573,7 +573,7 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Ruchir Saha", contact: "7047505834" },
     ],
   },
-
+/*
   {
     id: "r6",
     slug: "control-craft",
@@ -610,7 +610,8 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Shreyas Ray", contact: "6291516600" },
     ],
   },
-
+*/
+/*
   {
     id: "r7",
     slug: "rope-runner",
@@ -655,6 +656,7 @@ const ROBOTICS_EVENTS: Event[] = [
       { name: "Indrajit Bardhan", contact: "8583078019" },
     ],
   },
+*/
 
   {
     id: "r11",
@@ -942,7 +944,7 @@ const BUSINESS_EVENTS: Event[] = [
       "https://drive.google.com/file/d/1AKKhlGl-UrkmMKUisxbnghnFW9oET98d/view?usp=sharing",
     image: "/images/posters/biznez-plan.webp",
     tags: ["Startup", "Pitching"],
-    status: "Open",
+    status: "Closed",
     coordinators: [
       { name: "Pranjal Deb", contact: "6290622851" },
       { name: "Anshika Dutta", contact: "8617317676" },
@@ -1770,7 +1772,7 @@ const MISC_EVENTS: Event[] = [
     prizePool: "₹ 6,000",
     link: "/register/jal",
     driveLink:
-      "https://drive.google.com/file/d/1qGnSBS5eID0jT-z9-1FuVTlkj0hkj2Ug/view?usp=drivesdk",
+      "https://drive.google.com/drive/folders/1YPE3mZ7nHZPSk-zcHDuifP0CHiRfX7yP?usp=drive_link",
     image: "/images/posters/jal.webp",
     tags: ["Aerospace", "Rockets"],
     status: "Open",
@@ -1839,24 +1841,24 @@ const MISC_EVENTS: Event[] = [
 
   {
     id: "m12",
-    slug: "rap-competition",
-    title: "Rap Competition",
+    slug: "rpb",
+    title: "Rap Battle",
     category: "Misc",
     color: "#D21C2D",
     description:
-      "An intense rap battle competition where emcees showcase their lyrical prowess, flow, and stage presence through original performances. Participants must deliver creative bars, strong delivery, and crowd engagement to stand out and claim the spotlight.",
-    image: "",
+      "An intense **rap battle competition** where emcees showcase their lyrical prowess, flow, and stage presence through original performances. Participants must deliver **creative bars, strong delivery, and crowd engagement** to stand out and claim the spotlight.",
+    image: "/images/posters/rapb.webp",
     tags: ["Rap", "Showcase"],
     format: "Offline",
     teamSize: "1",
     rules: [
-      "Participants must perform original compositions only",
-      "Plagiarism is strictly prohibited and will lead to disqualification",
-      "Use of abusive or offensive language is not allowed",
-      "Participants must adhere to time limits for each round",
-      "Participants must maintain respectful conduct towards judges and competitors",
-      "Any misconduct or rule violation may result in disqualification",
-      "The decision of the judges will be final and binding",
+      "Participants must perform **original compositions only**",
+      "**Plagiarism is strictly prohibited** and will lead to disqualification",
+      "Use of **abusive or offensive language is not allowed**",
+      "Participants must **adhere to time limits for each round**",
+      "Participants must maintain **respectful conduct towards judges and competitors**",
+      "Any misconduct or rule violation may result in **disqualification**",
+      "The **decision of the judges will be final and binding**",
     ],
     scoring: [
       "Judging Criteria",
@@ -1888,6 +1890,67 @@ const MISC_EVENTS: Event[] = [
       "**Certificates and medals will be awarded to winners**",
     ],
     link: "/register/rpb",
+    driveLink:
+      "https://drive.google.com/drive/folders/19Z-MMw5bNZM5tmsyuplqXk3u2sKRg_dr",
+    coordinators: [
+      { name: "Biswadeep Nath", contact: "6033298814" },
+      { name: "Shreyansh Dutta", contact: "74882 29698" },
+    ],
+    status: "Open",
+  },
+
+  {
+    id: "m13",
+    slug: "bbxc",
+    title: "Beatbox Competition",
+    category: "Misc",
+    color: "#D21C2D",
+    description:
+      "Step up to the mic and unleash the power of **raw vocal percussion** in this high-energy beatbox showdown. With no instruments and no backing tracks, it’s all about **rhythm, control, creativity, and stage presence** as participants battle head-to-head to dominate the stage.",
+    image: "/images/posters/bbxc.webp",
+    tags: ["Beatbox", "Live"],
+    format: "Offline",
+    teamSize: "1",
+    rules: [
+      "Participants must perform using **only vocal sounds (no instruments or backing tracks)**",
+      "**Original patterns and routines are encouraged**",
+      "Each performance must **adhere to time limits**",
+      "Participants must maintain **respectful conduct towards judges and competitors**",
+      "Any **damage to equipment (e.g., microphones)** may lead to penalties",
+      "Use of **offensive or inappropriate content is prohibited**",
+      "The **decision of judges will be final and binding**",
+    ],
+    scoring: [
+      "# Judging Criteria",
+      "**Musicality & Rhythm**",
+      "**Technical Skills & Control**",
+      "**Routine Complexity**",
+      "**Crowd Engagement**",
+      "**Stage Presence**",
+    ],
+    eventFormat: [
+      "# Round 1: Solo Showcase",
+      "Each participant gets **90 seconds** to perform",
+      "Only **live beatboxing (no backing tracks)** is allowed",
+      "Top **4 participants** qualify for the finals",
+      "# Final Round: 1v1 Battles",
+      "Qualified participants compete in **knockout-style battles**",
+      "Each battle consists of **2 rounds of 90 seconds per participant**",
+      "Finalists battle to determine **1st and 2nd place**",
+      "A separate battle determines the **3rd place winner**",
+    ],
+    lastDate: "TBA",
+    prelimsDate: "10 April 2026",
+    prizePool: "₹ 6,000",
+    winnerPrize: "₹3,000",
+    runnersUpPrize: "₹2,000",
+    secondRunnersUpPrize: "₹1,000",
+    andMore: true,
+    prizeDetails: [
+      "# Additional Rewards",
+      "**Certificates and medals will be awarded to winners**",
+    ],
+    link: "/register/bbxc",
     driveLink:
       "https://drive.google.com/drive/folders/19Z-MMw5bNZM5tmsyuplqXk3u2sKRg_dr",
     coordinators: [
