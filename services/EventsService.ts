@@ -7,6 +7,7 @@ import ShortUniqueId from "short-unique-id";
 import { withAuth } from "@/utils/withAuth";
 import { signOut } from "@/auth";
 import { unstable_cache } from "next/cache";
+import { getBackendSlug } from "@/data/eventsList";
 
 const getRegistrationStatus = withAuth(
     async (sessionUserId: string, userId: string, eventSlug: string) => {
@@ -118,9 +119,10 @@ const getEventFromSlug = async (slug: string) =>
    const getEventRegistrationStatus = async (slug: string) => 
     unstable_cache(
         async () => {
+            const eventSlug = getBackendSlug(slug);
             const event = await prisma.event.findUnique({
                 where: {
-                    slug,
+                    slug: eventSlug,
                 },
                 select: {
                     registrationOpen: true,
@@ -598,6 +600,29 @@ const editTeamName = withAuth(
     },
 );
 
+const isUserRegistered = async (userId: string, slug: string) => {
+    try{
+        const eventSlug = getBackendSlug(slug);
+        if (!userId) return false; 
+        const existingTeam = await prisma.team.findFirst({
+            where: {
+                eventSlug,
+                OR: [
+                    { memberIds: { has: userId } },
+                    { pendingMemberIds: { has: userId } },
+                ],
+            },
+            select: {
+                name: true,
+            },
+        });
+        return existingTeam ? true : false;
+    }catch(err){
+        console.error(err);
+        return false;
+    }
+};
+
 export {
     getRegistrationStatus,
     getEventFromSlug,
@@ -611,5 +636,6 @@ export {
     acceptPendingMember,
     rejectPendingMember,
     editTeamName,
-    getEventRegistrationStatus
+    getEventRegistrationStatus,
+    isUserRegistered
 };

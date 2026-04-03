@@ -272,6 +272,7 @@ const EventCardTouch: React.FC<EventCardTouchProps> = memo(({ event }) => {
                 status={event.status}
                 link={event.link}
                 isCard={true}
+                slug={event.slug}
               />
 
               <Link

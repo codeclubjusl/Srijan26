@@ -267,6 +267,7 @@ const EventCard: React.FC<EventCardProps> = memo(({ event }) => {
                 status={event.status}
                 link={event.link}
                 isCard={true}
+                slug={event.slug}
               />
 
               <Link

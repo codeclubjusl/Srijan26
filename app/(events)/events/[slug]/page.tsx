@@ -1,8 +1,7 @@
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
-import { EVENTS_DATA, getBackendSlug } from "@/data/eventsList";
+import { EVENTS_DATA } from "@/data/eventsList";
 import EventDetailsClient from "@/components/events/EventDetailsClient";
-import { getEventRegistrationStatus } from "@/services/EventsService";
 
 export async function generateStaticParams() {
   return EVENTS_DATA.map((event) => ({
@@ -71,9 +70,7 @@ export default async function EventDetailsPage({ params }: Props) {
 
   const exactEvent = EVENTS_DATA.find((e) => e.slug === slug);
   if (exactEvent) {
-    const backendSlug = getBackendSlug(slug);
-    const registrationOpen = await getEventRegistrationStatus(backendSlug);
-    return <EventDetailsClient event={exactEvent} registrationOpen={registrationOpen} />;
+    return <EventDetailsClient event={exactEvent} />;
   }
 
   const caseInsensitiveEvent = EVENTS_DATA.find(

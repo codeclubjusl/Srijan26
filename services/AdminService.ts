@@ -328,7 +328,7 @@ const closeEventRegistrations = async (slug: string) => {
     }
     
     await prisma.event.update({where: {slug}, data: {registrationOpen: false}});
-    revalidateTag(slug, "max");
+    revalidateTag(slug, {});
     
     return {ok: true, message: "Closed registrations"};
   }catch(err){
@@ -353,7 +353,7 @@ const openEventRegistrations = async (slug: string) => {
     }
     
     await prisma.event.update({where: {slug}, data: {registrationOpen: true}});
-    revalidateTag(slug, "max");
+    revalidateTag(slug, {});
     
     return {ok: true, message: "Opened registrations"};
   }catch(err){

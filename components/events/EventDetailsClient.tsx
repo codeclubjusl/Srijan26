@@ -23,10 +23,9 @@ import EventFormat from "./EventFormat";
 
 interface Props {
   event: Event;
-  registrationOpen: boolean;
 }
 
-export default function EventDetailsClient({ event, registrationOpen }: Props) {
+export default function EventDetailsClient({ event }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -131,7 +130,7 @@ export default function EventDetailsClient({ event, registrationOpen }: Props) {
         </section>
       </div>
 
-      <FloatingActionBar event={event} registrationOpen={registrationOpen} />
+      <FloatingActionBar event={event} />
     </main>
   );
 }

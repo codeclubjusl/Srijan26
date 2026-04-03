@@ -6,28 +6,32 @@ import { CircleCheckBig, CircleOff } from "lucide-react";
 import { CLIP_PATH } from "./constants/events";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { getRegistrationStatus } from "@/services/EventsService";
-import { RegistrationStatus } from "@/types/events";
+import { getEventRegistrationStatus, isUserRegistered } from "@/services/EventsService";
 
 interface RegisterButtonProps {
   status?: string;
   link: string;
   isCard?: boolean;
-  registrationOpen: boolean;
   slug: string;
 }
 
-const RegisterButton: React.FC<RegisterButtonProps> = ({ link, isCard, registrationOpen, slug }) => {
+const RegisterButton: React.FC<RegisterButtonProps> = ({ link, isCard, slug }) => {
   const { data: session } = useSession();
   const [registered, setRegistered] = useState(false);
+  const [registrationOpen, setRegistrationOpen] = useState(true);
   const router = useRouter();
   const desktopClipStyle = { "--desktop-clip": CLIP_PATH } as React.CSSProperties;
   const isExternal = link.startsWith("http");
 
   useEffect(() => {
-    getRegistrationStatus(session?.user.id ?? "", slug)
-    .then(res => {
-      if(res.status === RegistrationStatus.NOT_REGISTERED) setRegistered(false);
+    getEventRegistrationStatus(slug)
+    .then(isOpen => setRegistrationOpen(isOpen))
+  },[slug]);
+
+  useEffect(() => {
+    isUserRegistered(session?.user.id ?? "", slug)
+    .then(isUserRegistered => {
+      if(!isUserRegistered) setRegistered(false);
       else setRegistered(true);
     })
   },[session?.user.id, slug])
@@ -41,13 +45,13 @@ const RegisterButton: React.FC<RegisterButtonProps> = ({ link, isCard, registrat
 
   if (!registrationOpen && !registered) {
       return (
-              <p
+              <button type="button" disabled
                   style={desktopClipStyle}
                   className={`bg-gray-800 text-gray-500 font-euclid uppercase tracking-wider cursor-not-allowed flex items-center justify-center gap-2
                 ${ isCard ? "py-2 w-full text-xs font-bold [clip-path:var(--desktop-clip)]"
                   : "flex-1 sm:flex-none px-6 py-2 md:pl-10 md:pr-16 md:py-2 lg:text-sm text-xs rounded-full md:rounded-none md:[clip-path:var(--desktop-clip)]"}`}>
                   Closed <CircleOff size={isCard ? 16 : 18} />
-              </p>
+              </button>
       );
   }
 
