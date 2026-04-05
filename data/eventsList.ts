@@ -1442,7 +1442,7 @@ const ESPORTS_EVENTS: Event[] = [
     rules: ["Qualifiers", "LAN Finals spot", "Standard map pool"],
     lastDate: "TBA",
     prizePool: "TBA",
-    link: "/register/uec-valorant",
+    link: "https://forms.gle/WfSgVoPBSH1AHVMz6",
     driveLink:
       "https://drive.google.com/file/d/1nFyvGOG25KzeVSQ-f-SzyO-DfxeGLPIw/view?usp=sharing",
     image: "/images/posters/UECSrijan2026.webp",
@@ -1467,7 +1467,7 @@ const ESPORTS_EVENTS: Event[] = [
     rules: ["Qualifiers", "Chicken Dinner", "Strategy"],
     lastDate: "TBA",
     prizePool: "TBA",
-    link: "/register/uec-bgmi",
+    link: "https://forms.gle/oV3diUXEspYBA4Jr6",
     driveLink:
       "https://drive.google.com/file/d/1IFOvV7hOMr1weXoOdkBEeIgcZOXIYrJV/view?usp=sharing",
     image: "/images/posters/UECSrijan2026.webp",
