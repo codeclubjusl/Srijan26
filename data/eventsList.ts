@@ -1999,7 +1999,7 @@ const MISC_EVENTS: Event[] = [
   },
   {
     id: "m14",
-    slug: "th",
+    slug: "treasure-hunt",
     title: "Treasure Hunt",
     category: "Misc",
     color: "#D21C2D",
@@ -2027,7 +2027,7 @@ const MISC_EVENTS: Event[] = [
     winnerPrize: "₹3,000",
     runnersUpPrize: "₹2,000",
     secondRunnersUpPrize: "₹1,000",
-    link: "/register/th",
+    link: "/register/treasure-hunt",
     driveLink:
       "https://drive.google.com/file/d/185-KUtYUhOg-SaRIcbPkYxiVDFnEt6BG/view?usp=sharing",
     coordinators: [
