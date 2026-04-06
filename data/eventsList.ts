@@ -306,7 +306,7 @@ const CODING_EVENTS: Event[] = [
     ],
     eventFormat: [
       "# Round 1: Online Prelims",
-      "A **2-hour ICPC-style programming contest**",
+      "A **2hr 30mins ICPC-style programming contest**",
       "Contest will consist of **6–8 algorithmic problems**",
       "Top **15–20 teams qualify for the final round**",
       "Online Proctoring is going to be used via OBS in the preliminary round. Please find more details [here](https://drive.google.com/file/d/1k-wdhO2w0z5TjsBSMFLKjZFGewbcaJw0/view?usp=sharing).",
@@ -1467,7 +1467,7 @@ const ESPORTS_EVENTS: Event[] = [
     rules: ["Qualifiers", "Chicken Dinner", "Strategy"],
     lastDate: "TBA",
     prizePool: "TBA",
-    link: "https://forms.gle/oV3diUXEspYBA4Jr6",
+    link: "https://docs.google.com/forms/d/1LrrS73sB2btOmex5b_0Ql9W96tEU2E2S9dSn7kzNHVI/edit?chromeless=1",
     driveLink:
       "https://drive.google.com/file/d/1IFOvV7hOMr1weXoOdkBEeIgcZOXIYrJV/view?usp=sharing",
     image: "/images/posters/UECSrijan2026.webp",
@@ -2023,10 +2023,7 @@ const MISC_EVENTS: Event[] = [
       "Decode the map, chase the clues, and outrun time to claim the final treasure",
     ],
     lastDate: "TBA",
-    prizePool: "₹ 6,000",
-    winnerPrize: "₹3,000",
-    runnersUpPrize: "₹2,000",
-    secondRunnersUpPrize: "₹1,000",
+    prizePool: "Exciting Prizes",
     link: "/register/treasure-hunt",
     driveLink:
       "https://drive.google.com/file/d/185-KUtYUhOg-SaRIcbPkYxiVDFnEt6BG/view?usp=sharing",
