@@ -146,91 +146,91 @@ const CODING_EVENTS: Event[] = [
     status: "Open",
   },
   {
-  id: "e5",
-  slug: "ss3",
-  title: "Snap Syntax 3.0",
-  category: "Coding",
-  color: "#FF3429",
-  description:
-    "A **memory-based web development challenge** where teams must recreate a given website design using **HTML, CSS, and optionally React**. Participants get only brief glimpses of the original layout and must rely on **memory, design intuition, and coding efficiency** to build the closest possible replica.",
-  image: "/images/posters/snap-syntax.webp",
-  tags: ["Web Dev", "Design"],
-  format: "Offline",
-  teamSize: "2-4",
+    id: "e5",
+    slug: "ss3",
+    title: "Snap Syntax 3.0",
+    category: "Coding",
+    color: "#FF3429",
+    description:
+      "A **memory-based web development challenge** where teams must recreate a given website design using **HTML, CSS, and optionally React**. Participants get only brief glimpses of the original layout and must rely on **memory, design intuition, and coding efficiency** to build the closest possible replica.",
+    image: "/images/posters/snap-syntax.webp",
+    tags: ["Web Dev", "Design"],
+    format: "Offline",
+    teamSize: "2-4",
 
-  rules: [
-    "Each team member may use **only one laptop**",
-    "**External help, ready-made templates, or copying designs is not allowed**",
-    "Participants may **refer to documentation for syntax only**",
-    "Taking **photos of the design is strictly prohibited** — sketching on paper is allowed",
-    "**Inter-college and inter-specialization teams are allowed**",
-    "Any violation of rules will lead to **disqualification**",
-    "The decision of the organizers will be **final and binding**",
-  ],
+    rules: [
+      "Each team member may use **only one laptop**",
+      "**External help, ready-made templates, or copying designs is not allowed**",
+      "Participants may **refer to documentation for syntax only**",
+      "Taking **photos of the design is strictly prohibited** — sketching on paper is allowed",
+      "**Inter-college and inter-specialization teams are allowed**",
+      "Any violation of rules will lead to **disqualification**",
+      "The decision of the organizers will be **final and binding**",
+    ],
 
-  scoring: [
-    "# Evaluation Criteria",
-    "**Accuracy (25%)** — Similarity with the original design",
-    "**Creativity (25%)** — Innovative design approach",
-    "**Efficiency (25%)** — Time management and completion",
-    "**Code Quality (25%)** — Clean and structured code",
-  ],
+    scoring: [
+      "# Evaluation Criteria",
+      "**Accuracy (25%)** — Similarity with the original design",
+      "**Creativity (25%)** — Innovative design approach",
+      "**Efficiency (25%)** — Time management and completion",
+      "**Code Quality (25%)** — Clean and structured code",
+    ],
 
-  eventFormat: [
-    "# Round 1 — Prelims (Online)",
-    "**Registration Deadline:** 6 April",
-    "Teams must submit **two of their best website designs in a single PDF** containing:",
-    "Team name, team size, member names, and **deployed website links** (Netlify / Vercel / GitHub Pages)",
-    "Top **20 teams** will qualify for the final round",
-    "**Results will be announced on 8 April**",
-    "# Round 2 — Finals (Offline)",
-    "**Date:** 10 April | **Venue:** Jadavpur University Salt Lake Campus",
-    "Participants will be shown the **website design for 1 minute**",
-    "Teams must **recreate the design within 2 hours** using HTML/CSS (React optional)",
-    "Short glimpses of the original design **will be provided during the challenge**",
-  ],
+    eventFormat: [
+      "# Round 1 — Prelims (Online)",
+      "**Registration Deadline:** 6 April",
+      "Teams must submit **two of their best website designs in a single PDF** containing:",
+      "Team name, team size, member names, and **deployed website links** (Netlify / Vercel / GitHub Pages)",
+      "Top **20 teams** will qualify for the final round",
+      "**Results will be announced on 8 April**",
+      "# Round 2 — Finals (Offline)",
+      "**Date:** 10 April | **Venue:** Jadavpur University Salt Lake Campus",
+      "Participants will be shown the **website design for 1 minute**",
+      "Teams must **recreate the design within 2 hours** using HTML/CSS (React optional)",
+      "Short glimpses of the original design **will be provided during the challenge**",
+    ],
 
-  lastDate: "6 Apr 2026",
-  prelimsDate: "Until 6 Apr 2026",
-  finalsDate: "10 Apr 2026",
+    lastDate: "6 Apr 2026",
+    prelimsDate: "Until 6 Apr 2026",
+    finalsDate: "10 Apr 2026",
 
-  prizePool: "₹ 10,000",
-  winnerPrize: "₹5,000",
-  runnersUpPrize: "₹3,000",
-  secondRunnersUpPrize: "₹2,000",
+    prizePool: "₹ 10,000",
+    winnerPrize: "₹5,000",
+    runnersUpPrize: "₹3,000",
+    secondRunnersUpPrize: "₹2,000",
 
-  link: "/register/ss3",
+    link: "/register/ss3",
 
-  eventLinks: [
-    {
-      label: "Problem Statement & Guidelines",
-      url: "https://drive.google.com/file/d/1Py4J3qnGrU0SfUNiyPmlf8bXmlRw89vh/view?usp=drive_link",
-      icon: "drive",
-    },
-    {
-      label: "Register on Unstop",
-      url: "https://unstop.com/competitions/snap-syntax-30-srijan-2026-jadavpur-university-kolkata-1658149",
-      icon: "unstop",
-    },
-  ],
+    eventLinks: [
+      {
+        label: "Problem Statement & Guidelines",
+        url: "https://drive.google.com/file/d/1Py4J3qnGrU0SfUNiyPmlf8bXmlRw89vh/view?usp=drive_link",
+        icon: "drive",
+      },
+      {
+        label: "Register on Unstop",
+        url: "https://unstop.com/competitions/snap-syntax-30-srijan-2026-jadavpur-university-kolkata-1658149",
+        icon: "unstop",
+      },
+    ],
 
-  submissionNote:
-    "Push your code to a **public GitHub repository** named `Srijan26_SnapSyntax_TeamName` and submit both the **GitHub repository link** and the **deployed website link** via the Google Form below. Submission must be completed before the deadline.",
-  submissionLinks: [
-    {
-      label: "Submit Prelims Entry",
-      url: "https://forms.gle/CC6BYJTTkvwy4mx69",
-    },
-  ],
+    submissionNote:
+      "Push your code to a **public GitHub repository** named `Srijan26_SnapSyntax_TeamName` and submit both the **GitHub repository link** and the **deployed website link** via the Google Form below. Submission must be completed before the deadline.",
+    submissionLinks: [
+      {
+        label: "Submit Prelims Entry",
+        url: "https://forms.gle/CC6BYJTTkvwy4mx69",
+      },
+    ],
 
-  coordinators: [
-    { name: "Ayan Ghosh", contact: "8167002490" },
-    { name: "Swapnaneel Ray", contact: "7980515334" },
-    { name: "Anuska Nath", contact: "9330129467" },
-  ],
+    coordinators: [
+      { name: "Ayan Ghosh", contact: "8167002490" },
+      { name: "Swapnaneel Ray", contact: "7980515334" },
+      { name: "Anuska Nath", contact: "9330129467" },
+    ],
 
-  status: "Open",
-},
+    status: "Open",
+  },
 
   {
     id: "e6",
@@ -1994,6 +1994,46 @@ const MISC_EVENTS: Event[] = [
     coordinators: [
       { name: "Biswadeep Nath", contact: "6033298814" },
       { name: "Shreyansh Dutta", contact: "74882 29698" },
+    ],
+    status: "Open",
+  },
+  {
+    id: "m14",
+    slug: "treasure-hunt",
+    title: "Treasure Hunt",
+    category: "Misc",
+    color: "#D21C2D",
+    description:
+      "Step into a pulse-racing quest where logic meets adrenaline and every second counts. The Treasure Hunt at Srijan’26 isn’t just a game, it’s a battle of wit, speed, and unbreakable teamwork. Cryptic clues await your mind, puzzles test your limits, and the campus transforms into a labyrinth of secrets waiting to be uncovered. Every corner hides a challenge. Every answer leads you deeper. Only those who think faster, move smarter, and trust their team will rise above the chaos and claim the ultimate treasure. Are you ready to chase the unknown?",
+    image: "/images/posters/treasure-hunt.webp",
+    tags: ["Treasure Hunt", "Puzzle", "Adventure", "Teamwork"],
+    format: "Offline",
+    teamSize: "4",
+    rules: [
+      "Each team must consist of exactly **4 members**",
+      "Use of **unfair means or external help leads to disqualification**",
+      "Follow **all campus rules** during the hunt",
+      "**Judges' decision is final and binding**",
+    ],
+    eventFormat: [
+      "# Round 1: Aptitude Test",
+      "Teams compete in a written test evaluating **logical reasoning, problem solving ability, and quick thinking**.",
+      "**Top 8 teams** from Round 1 advance to the final treasure hunt round.",
+      "# Round 2: Treasure Hunt",
+      "Decode the map, chase the clues, and outrun time to claim the final treasure",
+    ],
+    lastDate: "TBA",
+    prizePool: "₹ 6,000",
+    winnerPrize: "₹3,000",
+    runnersUpPrize: "₹2,000",
+    secondRunnersUpPrize: "₹1,000",
+    link: "/register/treasure-hunt",
+    driveLink:
+      "https://drive.google.com/file/d/185-KUtYUhOg-SaRIcbPkYxiVDFnEt6BG/view?usp=sharing",
+    coordinators: [
+      { name: "Roni Barman", contact: "9002158533" },
+      { name: "Piyush Bose", contact: "9875333028" },
+      { name: "Dhrubojyoti Ghosh", contact: "8101158770" },
     ],
     status: "Open",
   },
