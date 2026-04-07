@@ -41,7 +41,7 @@ const CODING_EVENTS: Event[] = [
       { name: "Atmik Goswami", contact: "8910425255" },
       { name: "Asmit Deb", contact: "6290050401" },
     ],
-    status: "Open",
+    status: "Closed",
   },
   {
     id: "e2",
@@ -91,7 +91,7 @@ const CODING_EVENTS: Event[] = [
       { name: "Daniyal Anis", contact: "9748850137" },
       { name: "Sayantan Biswas", contact: "9062334673" },
     ],
-    status: "Open",
+    status: "Closed",
   },
   {
     id: "e3",
@@ -331,7 +331,7 @@ const CODING_EVENTS: Event[] = [
       { name: "Neelim Goswami", contact: "6290329309" },
       { name: "Sayan Dutta", contact: "8584922334" },
     ],
-    status: "Open",
+    status: "Closed",
   },
   {
     id: "e8",
@@ -464,7 +464,7 @@ const CODING_EVENTS: Event[] = [
       { name: "Arjeesh Palai", contact: "7044122399" },
       { name: "Sombrata Biswas", contact: "9051468777" },
     ],
-    status: "Open",
+    status: "Closed",
   },
   {
     id: "e11",
@@ -507,7 +507,7 @@ const CODING_EVENTS: Event[] = [
       { name: "Rajdip Mukherjee", contact: "8420092801" },
       { name: "Arunabha Das", contact: "7595093099" },
     ],
-    status: "Open",
+    status: "Closed",
   },
 ];
 
@@ -600,7 +600,7 @@ const ROBOTICS_EVENTS: Event[] = [
       "https://drive.google.com/file/d/1aYHvLPbTDPQ-kPY46HQuVXCj6PHR_hF-/view?usp=sharing",
     image: "/images/posters/death-race.webp",
     tags: ["Racing", "Combat"],
-    status: "Open",
+    status: "Closed",
     coordinators: [
       { name: "Subhabrata Nath", contact: "7001506536" },
       { name: "Debaditya Chaudhuri", contact: "9051977751" },
@@ -954,7 +954,7 @@ const BUSINESS_EVENTS: Event[] = [
       "https://drive.google.com/drive/folders/1IrQNz5vWwU1kHmqnHVfl6U_eWELPX_xP",
     image: "/images/posters/ace-the-case.webp",
     tags: ["Entrepreneurship", "Case Study"],
-    status: "Open",
+    status: "Closed",
     coordinators: [
       { name: "Neelavra Das", contact: "8100027187" },
       { name: "Debraj Chakraborty", contact: "6291580386" },
@@ -980,7 +980,7 @@ const BUSINESS_EVENTS: Event[] = [
       "https://drive.google.com/file/d/1AKKhlGl-UrkmMKUisxbnghnFW9oET98d/view?usp=sharing",
     image: "/images/posters/biznez-plan.webp",
     tags: ["Startup", "Pitching"],
-    status: "Open",
+    status: "Closed",
     coordinators: [
       { name: "Pranjal Deb", contact: "6290622851" },
       { name: "Anshika Dutta", contact: "8617317676" },
@@ -1006,7 +1006,7 @@ const BUSINESS_EVENTS: Event[] = [
       "https://drive.google.com/file/d/1-oQYdX5PlPLPbLLoKvMThOEyWw9jbolg/view?usp=drive_link",
     image: "/images/posters/stratedgex.webp",
     tags: ["Strategy", "Marketing"],
-    status: "Open",
+    status: "Closed",
     coordinators: [
       { name: "Avik Kapri", contact: "8293553705" },
       { name: "Souranil Sen", contact: "8768492610" },
@@ -1040,7 +1040,7 @@ const BUSINESS_EVENTS: Event[] = [
       "https://drive.google.com/drive/folders/1cge9VZWypqascsE9O4D7F1WweLiz-Wzd",
     image: "/images/posters/pack-o-vation.webp",
     tags: ["Packaging", "Innovation", "Sustainability"],
-    status: "Open",
+    status: "Closed",
     coordinators: [
       { name: "Soham Ghosh", contact: "6294619087" },
       { name: "Anshika Dutta", contact: "8617317676" },
@@ -1091,7 +1091,7 @@ const BUSINESS_EVENTS: Event[] = [
       "https://drive.google.com/drive/folders/1PFqp6rzenivpK_zRG07pAwSNhpta6F6V?usp=sharing",
     image: "/images/posters/beat-the-market.webp",
     tags: ["Trading", "Finance"],
-    status: "Open",
+    status: "Closed",
     coordinators: [
       { name: "Vedant Murarka", contact: "8240600570" },
       { name: "Dabita Biswas", contact: "9432161974" },
@@ -1252,7 +1252,7 @@ const BRAINSTORMING_EVENTS: Event[] = [
       "https://drive.google.com/file/d/1_EFqhGgYisUJrN2F0D58jHJtK7j9tPGD/view?usp=drivesdk",
     image: "/images/posters/btg26.webp",
     tags: ["Civil", "Structure", "Miniature"],
-    status: "Open",
+    status: "Closed",
     coordinators: [
       { name: "Dittam Barick", contact: "7501073872" },
       { name: "Anirban Nandi", contact: "89725 60762" },

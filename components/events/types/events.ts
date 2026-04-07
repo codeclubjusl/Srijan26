@@ -4,9 +4,7 @@ export type Category =
   | "Circuits and Robotics"
   | "Business"
   | "Brainstorming"
-  | "Gaming"
   | "Esports"
-  | "Special Attractions"
   | "Misc";
 
 export type EventStatus = "All" | "Open" | "Closed";
