@@ -1475,7 +1475,7 @@ const BRAINSTORMING_EVENTS: Event[] = [
         title: "Finals",
         date: "11th April",
         timeSlots: [
-          { time: "10:00 am - 2:00 pm", venues: ["Amenity Centre, Big Hall & 2 Small Rooms, 1st Floor"] }
+          { time: "10:00 am - 2:00 pm", venues: ["Amenity Centre, Big Hall, 1st Floor", "Amenity Centre, 2 Small Room, 1st Floor"] }
         ]
       }
     ],
@@ -1617,7 +1617,7 @@ const ESPORTS_EVENTS: Event[] = [
         title: "Tournament",
         date: "10th, 11th & 12th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall/3rd Yr Class, SMCC 2nd Floor", "2nd Year Classroom, SMCC 3rd Floor"] }
         ]
       }
     ],
@@ -1671,7 +1671,7 @@ const ESPORTS_EVENTS: Event[] = [
         title: "Tournament",
         date: "10th, 11th & 12th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall/3rd Yr Class, SMCC 2nd Floor", "2nd Year Classroom, SMCC 3rd Floor"] }
         ]
       }
     ],
@@ -1703,7 +1703,7 @@ const ESPORTS_EVENTS: Event[] = [
         title: "Tournament",
         date: "10th, 11th & 12th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall/3rd Yr Class, SMCC 2nd Floor", "2nd Year Classroom, SMCC 3rd Floor"] }
         ]
       }
     ],
@@ -1744,7 +1744,7 @@ const ESPORTS_EVENTS: Event[] = [
         title: "Tournament",
         date: "10th, 11th & 12th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall/3rd Yr Class, SMCC 2nd Floor", "2nd Year Classroom, SMCC 3rd Floor"] }
         ]
       }
     ],
@@ -1798,7 +1798,7 @@ const ESPORTS_EVENTS: Event[] = [
         title: "Tournament",
         date: "10th, 11th & 12th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall/3rd Yr Class, SMCC 2nd Floor", "2nd Year Classroom, SMCC 3rd Floor"] }
         ]
       }
     ],
@@ -1830,7 +1830,7 @@ const ESPORTS_EVENTS: Event[] = [
         title: "Tournament",
         date: "10th, 11th & 12th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall/3rd Yr Class, SMCC 2nd Floor", "2nd Year Classroom, SMCC 3rd Floor"] }
         ]
       }
     ],
@@ -1864,7 +1864,7 @@ const ESPORTS_EVENTS: Event[] = [
         title: "Tournament",
         date: "10th, 11th & 12th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall/3rd Yr Class, SMCC 2nd Floor", "2nd Year Classroom, SMCC 3rd Floor"] }
         ]
       }
     ],
@@ -1898,7 +1898,7 @@ const ESPORTS_EVENTS: Event[] = [
         title: "Tournament",
         date: "10th, 11th & 12th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall/3rd Yr Class, SMCC 2nd Floor", "2nd Year Classroom, SMCC 3rd Floor"] }
         ]
       }
     ],
@@ -1932,7 +1932,7 @@ const ESPORTS_EVENTS: Event[] = [
         title: "Tournament",
         date: "10th, 11th & 12th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall/3rd Yr Class, SMCC 2nd Floor", "2nd Year Classroom, SMCC 3rd Floor"] }
         ]
       }
     ],
@@ -2002,10 +2002,17 @@ const MISC_EVENTS: Event[] = [
     lastDate: "TBA",
     schedule: [
       {
+        title: "Prelims",
+        date: "10th April",
+        timeSlots: [
+          { time: "10:00 am - 2:00 pm", venues: ["Seminar Hall, Power 2nd Floor", "2nd Year Classroom, Power 2nd Floor"] }
+        ]
+      },
+      {
         title: "Finals",
         date: "12th April",
         timeSlots: [
-          { time: "2:00 pm - 5:00 pm", venues: ["3rd & 4th Year Classrooms, Physics 1st Floor"] }
+          { time: "10:00 am - 4:00 pm", venues: ["3rd Year Classroom, Construction 2nd Floor"] }
         ]
       }
     ],
@@ -2103,16 +2110,16 @@ const MISC_EVENTS: Event[] = [
     schedule: [
       {
         title: "Prelims",
-        date: "11th April",
+        date: "10th April",
         timeSlots: [
-          { time: "2:00 pm - 5:00 pm", venues: ["Main Bldg - Audio Visual Room"] }
+          { time: "10:00 am - 2:00 pm", venues: ["2nd Year Classroom, Construction 2nd Floor", "1st Year Classroom, Construction 2nd Floor"] }
         ]
       },
       {
-        title: "Finals",
+        title: "Finale",
         date: "12th April",
         timeSlots: [
-          { time: "10:00 am - 12:00 pm", venues: ["Main Bldg - Audio Visual Room"] }
+          { time: "10:00 am - 1:00 pm", venues: ["2nd Year Classroom, Construction 2nd Floor"] }
         ]
       }
     ],
@@ -2157,7 +2164,7 @@ const MISC_EVENTS: Event[] = [
         title: "Finals",
         date: "11th April",
         timeSlots: [
-          { time: "3:00 pm - 5:00 pm", venues: ["Seminar Hall, Construction 1st Floor"] }
+          { time: "3:00 pm - 4:00 pm", venues: ["Stage"] }
         ]
       }
     ],
@@ -2188,6 +2195,14 @@ const MISC_EVENTS: Event[] = [
     rules: ["Photography", "Creativity", "Visual Storytelling"],
     lastDate: "TBA",
     prizePool: "NIL",
+    schedule: [
+      {
+        title: "Main Event",
+        timeSlots: [
+          { time: "11:00 am", venues: ["Around the campus (online event)"] }
+        ]
+      }
+    ],
     link: "/register/pixellense",
     driveLink:
       "https://drive.google.com/file/d/1MNxhmYoRsTENWJwPbv7MB-bBVr7e6SH4/view?usp=drivesdk",
@@ -2211,7 +2226,15 @@ const MISC_EVENTS: Event[] = [
     format: "Online",
     teamSize: "2-4",
     rules: ["Reel making", "Storytelling", "Cinematography"],
-    lastDate: "TBA",
+    lastDate: "11th April",
+    schedule: [
+      {
+        title: "Main Event",
+        timeSlots: [
+          { time: "11:00 am", venues: ["Around the campus (online event)"] }
+        ]
+      }
+    ],
     prizePool: "NIL",
     link: "/register/rat",
     driveLink:
@@ -2239,10 +2262,17 @@ const MISC_EVENTS: Event[] = [
     lastDate: "10th April 2026",
     schedule: [
       {
-        title: "Finals",
+        title: "Finale Day 1",
+        date: "10th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["CAB Ground"] }
+        ]
+      },
+      {
+        title: "Finale Day 2",
         date: "11th April",
         timeSlots: [
-          { time: "10:00 am - 2:00 pm", venues: ["Open Air Theatre (OAT) Ground"] }
+          { time: "10:00 am - 5:00 pm", venues: ["CAB Ground"] }
         ]
       }
     ],
@@ -2272,10 +2302,17 @@ const MISC_EVENTS: Event[] = [
     lastDate: "TBA",
     schedule: [
       {
-        title: "Finals",
-        date: "12th April",
+        title: "Finale Day 1",
+        date: "10th April",
         timeSlots: [
-          { time: "10:00 am - 2:00 pm", venues: ["Open Air Theatre (OAT) Ground"] }
+          { time: "10:00 am - 5:00 pm", venues: ["CAB Ground"] }
+        ]
+      },
+      {
+        title: "Finale Day 2",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["CAB Ground"] }
         ]
       }
     ],
@@ -2306,16 +2343,16 @@ const MISC_EVENTS: Event[] = [
     schedule: [
       {
         title: "Prelims",
-        date: "10th April",
+        date: "11th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["TEQIP Building"] }
+          { time: "12:00 pm - 1:00 pm", venues: ["Quad Stage"] }
         ]
       },
       {
-        title: "Finals",
+        title: "Finale",
         date: "11th April",
         timeSlots: [
-          { time: "10:00 am - 5:00 pm", venues: ["TEQIP Building"] }
+          { time: "1:00 pm - 3:00 pm", venues: ["Quad Stage"] }
         ]
       }
     ],
@@ -2352,6 +2389,15 @@ const MISC_EVENTS: Event[] = [
       "The final decision in case of any discrepancies will rest with the event coordinators and organizing team.",
     ],
     lastDate: "10th April 2026",
+    schedule: [
+      {
+        title: "Main Event",
+        date: "10th April",
+        timeSlots: [
+          { time: "6:00 pm - 9:00 pm", venues: ["CAB Ground"] }
+        ]
+      }
+    ],
     link: "/register/celestia",
     driveLink:
       "https://drive.google.com/file/d/1IlS2eaZ4Mk57LwA2IcNg23qz2gIkP3yo/view?usp=sharing",
@@ -2406,6 +2452,15 @@ const MISC_EVENTS: Event[] = [
     ],
     lastDate: "TBA",
     prelimsDate: "10 April 2026",
+    schedule: [
+      {
+        title: "Finals",
+        date: "10th April",
+        timeSlots: [
+          { time: "4:30 pm - 6:00 pm", venues: ["Stage"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     winnerPrize: "₹3,000",
     runnersUpPrize: "₹2,000",
@@ -2512,6 +2567,15 @@ const MISC_EVENTS: Event[] = [
     ],
     lastDate: "TBA",
     prizePool: "Exciting Prizes",
+    schedule: [
+      {
+        title: "Main Event",
+        date: "12th April",
+        timeSlots: [
+          { time: "11:00 am", venues: ["Around the campus (online event)"] }
+        ]
+      }
+    ],
     link: "/register/treasure-hunt",
     driveLink:
       "https://drive.google.com/file/d/185-KUtYUhOg-SaRIcbPkYxiVDFnEt6BG/view?usp=sharing",
