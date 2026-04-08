@@ -31,7 +31,15 @@ const CODING_EVENTS: Event[] = [
     ],
     lastDate: "1st April",
     prelimsDate: "2nd April - 8th April",
-    finalsDate: "11th April",
+    schedule: [
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "10:00 am - 12:00 pm", venues: ["Smart Classroom, SMCC 3rd Floor"] }
+        ]
+      }
+    ],
     prizePool: "10,000",
     link: "/register/epoch",
     driveLink:
@@ -81,7 +89,15 @@ const CODING_EVENTS: Event[] = [
     ],
     lastDate: "5th April",
     prelimsDate: "6th April",
-    finalsDate: "12th April",
+    schedule: [
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "1:00 pm - 4:00 pm", venues: ["Computer Centre, SMCC 4th Floor"] }
+        ]
+      }
+    ],
     prizePool: "10,000",
     link: "/register/h42",
     driveLink:
@@ -132,7 +148,15 @@ const CODING_EVENTS: Event[] = [
     ],
     lastDate: "6th April",
     prelimsDate: "8th April",
-    finalsDate: "11th April",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 12:00 pm", venues: ["Computer Centre, SMCC 4th Floor"] }
+        ]
+      }
+    ],
     prizePool: "10,000",
     link: "/register/sherlocked",
     driveLink:
@@ -192,7 +216,15 @@ const CODING_EVENTS: Event[] = [
 
     lastDate: "6 Apr 2026",
     prelimsDate: "Until 6 Apr 2026",
-    finalsDate: "10 Apr 2026",
+    schedule: [
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "10:00 am - 2:00 pm", venues: ["1st Yr Classroom, SMCC 3rd Floor", "Seminar Hall 2, SMCC 1st Floor"] }
+        ]
+      }
+    ],
 
     prizePool: "₹ 10,000",
     winnerPrize: "₹5,000",
@@ -264,6 +296,15 @@ const CODING_EVENTS: Event[] = [
       "Teams must identify vulnerabilities and **capture the final championship flag**",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "3:00 pm - 5:00 pm", venues: ["Computer Centre, SMCC 4th Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     winnerPrize: "₹3,000",
     runnersUpPrize: "₹2,000",
@@ -321,7 +362,15 @@ const CODING_EVENTS: Event[] = [
     ],
     lastDate: "6th April",
     prelimsDate: "7th April",
-    finalsDate: "11th April",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "12:30 pm - 2:30 pm", venues: ["Computer Centre, SMCC 4th Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 10,000",
     link: "/register/ptb",
     driveLink:
@@ -409,6 +458,15 @@ const CODING_EVENTS: Event[] = [
       "Performance in this round will **determine the final winners**",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "10:00 am - 12:00 pm", venues: ["Computer Centre, SMCC 4th Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     winnerPrize: "₹3,000",
     runnersUpPrize: "₹2,000",
@@ -452,6 +510,15 @@ const CODING_EVENTS: Event[] = [
       "Final rankings determine the winners",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 2:00 pm", venues: ["1st Yr Classroom, SMCC 3rd Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 10,000",
     winnerPrize: "₹5,000",
     runnersUpPrize: "₹3,000",
@@ -495,6 +562,15 @@ const CODING_EVENTS: Event[] = [
       "Solutions should propose **technologically advanced strategies to improve flow efficiency and reduce emissions**",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["3rd Year Classroom, Construction 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     winnerPrize: "₹3,000",
     runnersUpPrize: "₹2,000",
@@ -560,6 +636,15 @@ const ROBOTICS_EVENTS: Event[] = [
       "Challenges may include **L-turns, dynamic elements, and variable lighting conditions**",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 2:00 pm", venues: ["Amenity Centre, 1 Small Room, 1st Floor"] }
+        ]
+      }
+    ],
     prizePool: "Exciting Prizes",
     // winnerPrize: "₹3,000",
     // runnersUpPrize: "₹2,000",
@@ -594,6 +679,22 @@ const ROBOTICS_EVENTS: Event[] = [
     teamSize: "1-4",
     rules: ["Racing bot", "Obstacle course", "Speed and Control"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "10th & 11th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Power Parking Lot"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Power Parking Lot"] }
+        ]
+      }
+    ],
     prizePool: "₹ 35,000",
     link: "/register/death_race",
     driveLink:
@@ -705,6 +806,22 @@ const ROBOTICS_EVENTS: Event[] = [
     teamSize: "3-4",
     rules: ["Electronics", "Instinct", "Adaptability"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 2:00 pm", venues: ["Seminar Hall, Power 2nd Floor"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "2:00 pm - 4:00 pm", venues: ["Seminar Hall, Power 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/thunderbolts_voltedged",
     driveLink:
@@ -730,6 +847,22 @@ const ROBOTICS_EVENTS: Event[] = [
     teamSize: "4-5",
     rules: ["Line follower", "Maze solving", "Fastest bot"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "12th April",
+        timeSlots: [
+          { time: "10:00 am - 2:00 pm", venues: ["Common Room"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "2:00 pm - 5:00 pm", venues: ["Common Room"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/hcg",
     driveLink:
@@ -764,6 +897,22 @@ const ROBOTICS_EVENTS: Event[] = [
       "Organizers may modify rules or schedule.",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "10th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Quad Area"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Quad Area"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/rbs",
     driveLink:
@@ -790,6 +939,22 @@ const ROBOTICS_EVENTS: Event[] = [
     teamSize: "3-5",
     rules: ["All-terrain bot", "Speed", "Resilience"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Quad Area"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Quad Area"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/h2h",
     driveLink:
@@ -815,6 +980,15 @@ const ROBOTICS_EVENTS: Event[] = [
     teamSize: "2-3",
     rules: ["IoT", "Circuit making", "Auction"],
     lastDate: "5th April",
+    schedule: [
+      {
+        title: "Finals",
+        date: "10th April",
+        timeSlots: [
+          { time: "10:00 am - 4:00 pm", venues: ["3rd Year Classroom, IEE 4th Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 15,000",
     link: "/register/iotbw",
     driveLink:
@@ -849,6 +1023,22 @@ const ROBOTICS_EVENTS: Event[] = [
       "Judges: Decisions regarding task completion, movement precision, and strategic execution rest with club judges.",
     ],
     lastDate: "April 10, 2026",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "10th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Common Room"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Common Room"] }
+        ]
+      }
+    ],
     prizePool: "₹ 12,000",
     link: "/register/lotr",
     driveLink:
@@ -877,6 +1067,22 @@ const BUSINESS_EVENTS: Event[] = [
     teamSize: "1-4",
     rules: ["Startup simulation", "Supply chain management", "Auction round"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "10th April",
+        timeSlots: [
+          { time: "10:00 am - 4:00 pm", venues: ["3rd & 4th Year Classrooms, Power 4th Floor"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "2:00 pm - 4:00 pm", venues: ["3rd & 4th Year Classrooms, Power 4th Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 9,000",
     winnerPrize: "₹4,000",
     runnersUpPrize: "₹3,000",
@@ -922,6 +1128,15 @@ const BUSINESS_EVENTS: Event[] = [
       "The decision of the organizing committee and judging panel will be final and binding.",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Seminar Hall, Construction 1st Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "https://unstop.com/competitions/case-o-mania-srijan-2026-jadavpur-university-kolkata-1658419",
     driveLink:
@@ -948,6 +1163,15 @@ const BUSINESS_EVENTS: Event[] = [
     teamSize: "2-4",
     rules: ["Problem solving", "Analytical thinking", "Strategy"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "10th April",
+        timeSlots: [
+          { time: "2:00 pm - 5:00 pm", venues: ["Seminar Hall, Power 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/ace-the-case",
     driveLink:
@@ -974,6 +1198,15 @@ const BUSINESS_EVENTS: Event[] = [
     teamSize: "2-4",
     rules: ["Business plan", "Pitching", "Innovation"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "11:00 am - 3:00 pm", venues: ["Seminar Hall, Power 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/biznez-plan",
     driveLink:
@@ -1000,6 +1233,15 @@ const BUSINESS_EVENTS: Event[] = [
     teamSize: "1-4",
     rules: ["Product optimization", "Analysis", "Presentation"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "11:00 am - 3:00 pm", venues: ["3rd & 4th Year Classrooms, Power 4th Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/stratedgex",
     driveLink:
@@ -1033,7 +1275,15 @@ const BUSINESS_EVENTS: Event[] = [
     ],
     lastDate: "April 2, 2026",
     prelimsDate: "April 4, 2026",
-    finalsDate: "April 10, 2026",
+    schedule: [
+      {
+        title: "Finals",
+        date: "10th April",
+        timeSlots: [
+          { time: "10:00 am - 4:00 pm", venues: ["1st & 2nd Year Classrooms, Printing 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 7,000",
     link: "/register/pkv",
     driveLink:
@@ -1060,6 +1310,15 @@ const BUSINESS_EVENTS: Event[] = [
     teamSize: "2-4",
     rules: ["PPT submission", "Stock analysis", "Presentation"],
     lastDate: "28th March",
+    schedule: [
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "12:00 pm - 3:00 pm", venues: ["2nd Year Classroom, Power 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 8,000",
     link: "/register/capital-clash",
     driveLink: "https://srijanju.in/events/capital-clash-details",
@@ -1112,6 +1371,23 @@ const BRAINSTORMING_EVENTS: Event[] = [
     teamSize: "3-4",
     rules: ["Puzzle solving", "Matrix challenge", "Teamwork"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Smart Classroom, SMCC 3rd Floor", "Seminar Hall 2, SMCC 1st Floor"] },
+          { time: "2:00 pm - 5:00 pm", venues: ["1st Yr Classroom, SMCC 3rd Floor"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "2:00 pm - 5:00 pm", venues: ["2nd Year Classroom, Construction 2nd Floor", "1st Year Classroom, Construction 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "Prizes worth ₹3,000",
     link: "/register/er",
     driveLink:
@@ -1153,6 +1429,22 @@ const BRAINSTORMING_EVENTS: Event[] = [
       "Participants are responsible for keeping track of any updates or changes in the event schedule.",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "10th April",
+        timeSlots: [
+          { time: "11:00 am - 5:00 pm", venues: ["Amenity Centre, Big Hall, 1st Floor"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "10:00 am - 12:00 pm", venues: ["Amenity Centre, 1 Small Room, 1st Floor"] }
+        ]
+      }
+    ],
     prizePool: "Prizes worth ₹3,000",
     link: "/register/cc",
     driveLink:
@@ -1178,6 +1470,15 @@ const BRAINSTORMING_EVENTS: Event[] = [
     teamSize: "1-4",
     rules: ["Aerodynamic design", "Car model", "Wind tunnel test"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 2:00 pm", venues: ["Amenity Centre, Big Hall & 2 Small Rooms, 1st Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 10,000",
     link: "/register/XSTREAM",
     driveLink:
@@ -1206,6 +1507,34 @@ const BRAINSTORMING_EVENTS: Event[] = [
       "Finals: A more intense and challenging quiz session, designed to push participants further and test their mastery of the concepts learned.",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "10th April",
+        timeSlots: [
+          {
+            time: "12-5pm",
+            venues: [
+              "Smart Classroom, SMCC 3rd Floor",
+              "1st Year Classroom, SMCC 3rd Floor",
+              "Seminar Hall 2, SMCC 1st Floor",
+            ]
+          }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          {
+            time: "2-5pm",
+            venues: [
+              "Seminar Hall 2, SMCC 1st Floor"
+            ]
+          }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/cypher3331",
     driveLink:
@@ -1246,6 +1575,15 @@ const BRAINSTORMING_EVENTS: Event[] = [
       "All other required construction materials will be provided by the organizers.",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "10th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["3rd Year Classroom, Construction 2nd Floor", "Seminar Hall, Construction 1st Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/btg26",
     driveLink:
@@ -1274,6 +1612,15 @@ const ESPORTS_EVENTS: Event[] = [
     teamSize: "5",
     rules: ["5v5 LAN", "Tactical shooter", "Precision and Strategy"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Tournament",
+        date: "10th, 11th & 12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "TBA",
     link: "https://docs.google.com/forms/d/1mnjisrXTUlrEvgEAzaT17IdD576CX31KNwDlOvNfp3c/edit",
     driveLink:
@@ -1319,6 +1666,15 @@ const ESPORTS_EVENTS: Event[] = [
       "The final match determines the **ultimate EAFC champion of the arena**",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Tournament",
+        date: "10th, 11th & 12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "TBA",
     link: "https://docs.google.com/forms/d/e/1FAIpQLSdzGOL9YG6rEkw1GuuztRVfHOWkKtBshzXl9KhTUbj75Zjyfg/viewform?usp=dialog",
     driveLink:
@@ -1342,6 +1698,15 @@ const ESPORTS_EVENTS: Event[] = [
     teamSize: "4",
     rules: ["Squad battle", "LAN stage", "Survival"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Tournament",
+        date: "10th, 11th & 12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "TBA",
     link: "https://docs.google.com/forms/d/e/1FAIpQLSe5-0qh8AWe6MEIJTbkQ9yOwSXekQ9rpb-3uuhhs1BYaQUjfQ/viewform?usp=publish-editor",
     driveLink:
@@ -1374,6 +1739,15 @@ const ESPORTS_EVENTS: Event[] = [
       "Can use other's Clash Royale account, but cannot change accounts in the tournament. You have to play with the same account.",
     ],
     lastDate: "April 10, 2026",
+    schedule: [
+      {
+        title: "Tournament",
+        date: "10th, 11th & 12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "https://docs.google.com/forms/d/e/1FAIpQLSfomYpnp__btQSDbwzFtufI969vr6H67RjyZH6SVyX8eui4Gw/viewform?usp=publish-editor",
     driveLink:
@@ -1419,6 +1793,15 @@ const ESPORTS_EVENTS: Event[] = [
       "The final match determines the **ultimate EFOOTBALL champion**",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Tournament",
+        date: "10th, 11th & 12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "TBA",
     link: "https://docs.google.com/forms/d/e/1FAIpQLSePM5dLm5o_wwGaa2wTsqrtVwyXKKFNc_h5bkHRCcG5ZuFwfg/viewform?usp=publish-editor",
     driveLink:
@@ -1442,6 +1825,15 @@ const ESPORTS_EVENTS: Event[] = [
     teamSize: "5",
     rules: ["Qualifiers", "LAN Finals spot", "Standard map pool"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Tournament",
+        date: "10th, 11th & 12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "TBA",
     link: "https://forms.gle/WfSgVoPBSH1AHVMz6",
     driveLink:
@@ -1467,6 +1859,15 @@ const ESPORTS_EVENTS: Event[] = [
     teamSize: "4",
     rules: ["Qualifiers", "Chicken Dinner", "Strategy"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Tournament",
+        date: "10th, 11th & 12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "TBA",
     link: "https://docs.google.com/forms/d/1LrrS73sB2btOmex5b_0Ql9W96tEU2E2S9dSn7kzNHVI/edit?chromeless=1",
     driveLink:
@@ -1492,6 +1893,15 @@ const ESPORTS_EVENTS: Event[] = [
     teamSize: "Individual",
     rules: ["1v1 Qualifiers", "Football tactics", "One champion"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Tournament",
+        date: "10th, 11th & 12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "TBA",
     link: "https://docs.google.com/forms/d/e/1FAIpQLSetbC2bC5nPNuDaK6mGO1yXj8TwMQ5ae9ZpK6PzIt2BFB6QvA/viewform?usp=dialog",
     driveLink:
@@ -1517,6 +1927,15 @@ const ESPORTS_EVENTS: Event[] = [
     teamSize: "Individual",
     rules: ["VR Tennis", "Leaderboard based", "Technique and Accuracy"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Tournament",
+        date: "10th, 11th & 12th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["Final Year Classroom, SMCC 2nd Floor", "Exam Hall / 3rd Yr Class, SMCC 2nd Floor"] }
+        ]
+      }
+    ],
     prizePool: "TBA",
     link: "https://docs.google.com/forms/d/e/1FAIpQLSfmsGYS92pkL7TeyOpvmOYh0QFSmzSodgg__HxLvSJPuA5foA/viewform?usp=dialog",
     driveLink:
@@ -1581,6 +2000,15 @@ const MISC_EVENTS: Event[] = [
       "Duration: **30 minutes per team**",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "2:00 pm - 5:00 pm", venues: ["3rd & 4th Year Classrooms, Physics 1st Floor"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     // winnerPrize: "₹2,000",
     // runnersUpPrize: "₹1,500",
@@ -1672,6 +2100,22 @@ const MISC_EVENTS: Event[] = [
     teamSize: "Individual",
     rules: ["Oxford style", "Trilingual", "2 Rounds"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "11th April",
+        timeSlots: [
+          { time: "2:00 pm - 5:00 pm", venues: ["Main Bldg - Audio Visual Room"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "10:00 am - 12:00 pm", venues: ["Main Bldg - Audio Visual Room"] }
+        ]
+      }
+    ],
     prizePool: "Exciting Prizes",
     link: "/register/justdefy",
     driveLink:
@@ -1708,6 +2152,15 @@ const MISC_EVENTS: Event[] = [
       "Participants must follow all event guidelines",
     ],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "3:00 pm - 5:00 pm", venues: ["Seminar Hall, Construction 1st Floor"] }
+        ]
+      }
+    ],
     prizePool: "Prizes worth ₹3,000",
     link: "/register/djk",
     driveLink:
@@ -1784,6 +2237,15 @@ const MISC_EVENTS: Event[] = [
     teamSize: "2-3",
     rules: ["Glider building", "Hand-launched", "Precision landing"],
     lastDate: "10th April 2026",
+    schedule: [
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 2:00 pm", venues: ["Open Air Theatre (OAT) Ground"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/sks",
     driveLink:
@@ -1808,6 +2270,15 @@ const MISC_EVENTS: Event[] = [
     teamSize: "2-3",
     rules: ["Water rocket", "Range", "Stability"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Finals",
+        date: "12th April",
+        timeSlots: [
+          { time: "10:00 am - 2:00 pm", venues: ["Open Air Theatre (OAT) Ground"] }
+        ]
+      }
+    ],
     prizePool: "₹ 6,000",
     link: "/register/jal",
     driveLink:
@@ -1832,6 +2303,22 @@ const MISC_EVENTS: Event[] = [
     teamSize: "3",
     rules: ["Prelims and Finals", "Pounce-bounce", "3 members per team"],
     lastDate: "TBA",
+    schedule: [
+      {
+        title: "Prelims",
+        date: "10th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["TEQIP Building"] }
+        ]
+      },
+      {
+        title: "Finals",
+        date: "11th April",
+        timeSlots: [
+          { time: "10:00 am - 5:00 pm", venues: ["TEQIP Building"] }
+        ]
+      }
+    ],
     prizePool: "TBA",
     link: "/register/qtp",
     driveLink:

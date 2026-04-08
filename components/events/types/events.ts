@@ -35,6 +35,17 @@ export interface EventLink {
   icon?: EventLinkIcon;
 }
 
+export interface EventTimeSlot {
+  time: string;
+  venues: string[];
+}
+
+export interface EventSchedule {
+  title?: string;
+  date?: string;
+  timeSlots?: EventTimeSlot[];
+}
+
 export interface Event {
   // --- Core Metadata ---
   id: string;
@@ -57,6 +68,7 @@ export interface Event {
   lastDate: string;
   prelimsDate?: string;
   finalsDate?: string;
+  schedule?: EventSchedule[];
 
   // --- Prizes ---
   prizePool?: string;
