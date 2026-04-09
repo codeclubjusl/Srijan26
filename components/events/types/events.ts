@@ -24,10 +24,10 @@ export interface Coordinator {
   contact: string;
 }
 
-export interface SubmissionLink {
-  label: string;
-  url: string;
-}
+// export interface SubmissionLink {
+//   label: string;
+//   url: string;
+// }
 
 export interface EventLink {
   label: string;
@@ -86,8 +86,8 @@ export interface Event {
   eventLinks?: EventLink[];
 
   // Structured submission section
-  submissionNote?: string;
-  submissionLinks?: SubmissionLink[];
+  // submissionNote?: string;
+  // submissionLinks?: SubmissionLink[];
 
   /** @deprecated use eventLinks with icon: "drive" */
   driveLink?: string;
@@ -100,6 +100,9 @@ export interface Event {
 
   // --- State ---
   status: EventStatus;
+
+  // --- Event Update Notifications ---
+  updates?: string[];
 
   // For Events where the slug is different in DB
   backendSlug?: string;
