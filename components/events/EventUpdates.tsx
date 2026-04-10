@@ -101,7 +101,7 @@ export default function EventUpdates({ updates, color, className }: Props) {
         <div className="space-y-2">
           <h2
             // Added flex, items-center, and gap-4 to align the icon and text
-            className="font-elnath text-2xl uppercase border-b pb-2 mb-10 flex items-center gap-4"
+            className="font-elnath text-3xl uppercase border-b pb-2 mb-10 flex items-center gap-4"
             style={{ color }}
           >
             {/* Alert Triangle SVG */}
