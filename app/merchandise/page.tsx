@@ -448,7 +448,7 @@ export default function MerchandisePage() {
 
             <Clickable
               type="submit"
-              disabled={isLoading}
+              disabled={true}
               className="w-full cursor-pointer disabled:cursor-not-allowed group relative overflow-hidden uppercase bg-red hover:bg-red-500 hover:scale-[1.02] active:scale-95 transition-all duration-300 ease-out font-bold tracking-widest text-base lg:text-lg h-12 flex justify-center items-center disabled:opacity-50"
             >
               <span className="absolute inset-0 w-full h-full -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
