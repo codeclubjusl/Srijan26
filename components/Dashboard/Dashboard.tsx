@@ -15,7 +15,7 @@ const SectionHeader = ({ title }: { title: string }) => (
 );
 
 const EmptyState = ({ text }: { text: string }) => (
-  <p className="text-white/30 italic text-sm">{text}</p>
+  <span className="text-white/30 italic text-sm">{text}</span>
 );
 
 function Dashboard({ user }: { user: User }) {

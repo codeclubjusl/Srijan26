@@ -11,9 +11,7 @@ export const CATEGORIES: Category[] = [
   "Circuits and Robotics",
   "Business",
   "Brainstorming",
-  "Gaming",
   "Esports",
-  "Special Attractions",
   "Misc",
 ];
 

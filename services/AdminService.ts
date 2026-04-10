@@ -2,8 +2,9 @@
 
 import { prisma } from "@/prisma/client";
 import { AdminEvent, EventParticipant, VerificationFilter } from "@/types/admin";
-import { unstable_cache } from "next/cache";
+import { revalidateTag, unstable_cache } from "next/cache";
 import { checkAdminAuthorization } from "@/services/AuthService";
+import { auth } from "@/auth";
 
 const _getAdminEvents = async (
   userId: string,
@@ -311,4 +312,54 @@ export const removeEventAdmin = async (eventId: string, userId: string) => {
   }
 };
 
-export { getAdminEvents, getEventParticipantsBySlug };
+const closeEventRegistrations = async (slug: string) => {
+  try{
+    const session = await auth();
+    if(!session || (session.user.role !== "ADMIN" && session.user.role !== "SUPERADMIN")) 
+      return {ok: false, message: "Unauthorized"};
+    if(session.user.role === "ADMIN"){
+      const adminOf = await prisma.eventAdmin.findMany({
+        where: {userId: session.user.id},
+        select: {event: {
+          select: {slug: true}
+        }}
+      });
+      if(!adminOf.find(event => event.event.slug === slug)) return {ok: false, message: "Unauthorized"};
+    }
+    
+    await prisma.event.update({where: {slug}, data: {registrationOpen: false}});
+    revalidateTag(slug, {});
+    
+    return {ok: true, message: "Closed registrations"};
+  }catch(err){
+    console.error("Error while closing registrations for " + slug, err);
+    return {ok: false, message: "Error occurred"};
+  }
+}
+
+const openEventRegistrations = async (slug: string) => {
+  try{
+    const session = await auth();
+    if(!session || (session.user.role !== "ADMIN" && session.user.role !== "SUPERADMIN")) 
+      return {ok: false, message: "Unauthorized"};
+    if(session.user.role === "ADMIN"){
+      const adminOf = await prisma.eventAdmin.findMany({
+        where: {userId: session.user.id},
+        select: {event: {
+          select: {slug: true}
+        }}
+      });
+      if(!adminOf.find(event => event.event.slug === slug)) return {ok: false, message: "Unauthorized"};
+    }
+    
+    await prisma.event.update({where: {slug}, data: {registrationOpen: true}});
+    revalidateTag(slug, {});
+    
+    return {ok: true, message: "Opened registrations"};
+  }catch(err){
+    console.error("Error while opening registrations for " + slug, err);
+    return {ok: false, message: "Error occurred"};
+  }
+}
+
+export { getAdminEvents, getEventParticipantsBySlug, closeEventRegistrations, openEventRegistrations };

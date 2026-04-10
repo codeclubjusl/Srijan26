@@ -60,7 +60,7 @@ function Registered({
                         <h4 className="text-xl font-bold tracking-tight text-white">
                             {team?.name}
                         </h4>
-                        {isTeamLead && (
+                        {(isTeamLead && event.registrationOpen) && (
                             <EditTeamName teamId={team.id} />
                         )}
                     </div>
@@ -81,7 +81,7 @@ function Registered({
                             </p>
                             <p className="sm:hidden">Email</p>
                             <p className="justify-self-end">{member.email}</p>
-                            {isTeamLead && member.id !== team.leader && (
+                            {isTeamLead && member.id !== team.leader && event.registrationOpen && (
                                 <MemberControls
                                     memberId={member.id!}
                                     memberName={member.name}
@@ -110,7 +110,7 @@ function Registered({
                                     <p className="justify-self-end">
                                         {member.email}
                                     </p>
-                                    {isTeamLead && (
+                                    {isTeamLead && event.registrationOpen && (
                                         <PendingMemberControls
                                             memberId={member.id!}
                                             memberName={member.name}
@@ -151,7 +151,7 @@ function Registered({
                     {isTeamLead ? (
                         <TeamControls team={team} event={event} />
                     ) : (
-                        <LeaveTeam teamId={team.id} id={user.id} />
+                        <LeaveTeam teamId={team.id} id={user.id} registrationOpen={event.registrationOpen} />
                     )}
                 </div>
             </div>

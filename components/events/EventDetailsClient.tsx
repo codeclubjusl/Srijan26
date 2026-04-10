@@ -15,11 +15,13 @@ import EventTitleBlock from "./EventTitleBlock";
 import EventDetailsBox from "./EventDetailsBox";
 import EventPrizePool from "./EventPrizePool";
 import EventRules from "./EventRules";
-import EventScoring from "./EventScoring"; // <-- Imported EventScoring here
+import EventScoring from "./EventScoring"; 
 import EventContact from "./EventContact";
 import FloatingActionBar from "./FloatingActionBar";
 import EventPrizeDetails from "./EventPrizeDetails";
 import EventFormat from "./EventFormat";
+import EventSubmission from "./EventSubmission";
+import EventUpdates from "./EventUpdates";
 
 interface Props {
   event: Event;
@@ -103,30 +105,60 @@ export default function EventDetailsClient({ event }: Props) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 backdrop-blur-sm mt-4">
               <EventDetailsBox event={event} />
               <EventPrizePool event={event} />
+              
+              {/* UPDATES MOVED HERE: Taking full width of this 2-column grid */}
+              {event.updates && event.updates.length > 0 && (
+                <div className="col-span-1 sm:col-span-2 pt-8 w-full">
+                  <EventUpdates
+                    updates={event.updates}
+                    color={event.color}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </section>
 
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-12 items-end">
-          {/* Rules and Scoring side-by-side vertically */}
-          <div className="lg:col-span-2 space-y-12">
-            {/* Conditional renders added just in case an event doesn't have rules or scoring */}
-            {event.rules && event.rules.length > 0 && (
-              <EventRules rules={event.rules} color={event.color} />
-            )}
-            
+        {/* BOTTOM SECTIONS */}
+        <section className="space-y-12 pt-12">
+          
+          {/* 1. Rules and Contact (Side by Side) */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            <div className="lg:col-span-2">
+              {event.rules && event.rules.length > 0 && (
+                <EventRules rules={event.rules} color={event.color} />
+              )}
+            </div>
+            <div className="lg:col-span-1">
+              <EventContact coordinators={event.coordinators} color={event.color} />
+            </div>
+          </div>
+
+          {/* 2. Full Width Sections (Scoring, Format, Prizes) */}
+          <div className="space-y-12 w-full">
             {event.scoring && event.scoring.length > 0 && (
               <EventScoring scoring={event.scoring} color={event.color} />
             )}
+
             {event.eventFormat && event.eventFormat.length > 0 && (
               <EventFormat format={event.eventFormat} color={event.color} />
             )}
+
             {event.prizeDetails && event.prizeDetails.length > 0 && (
-              <EventPrizeDetails prizeDetails={event.prizeDetails} color={event.color} />
+              <EventPrizeDetails
+                prizeDetails={event.prizeDetails}
+                color={event.color}
+              />
             )}
+
+            {/* No condition needed — component handles its own null check */}
+            {/* <EventSubmission
+              submissionNote={event.submissionNote}
+              submissionLinks={event.submissionLinks}
+              color={event.color}
+            /> */}
           </div>
-          
-          <EventContact coordinators={event.coordinators} color={event.color} />
+
         </section>
       </div>
 
