@@ -24,10 +24,10 @@ export interface Coordinator {
   contact: string;
 }
 
-// export interface SubmissionLink {
-//   label: string;
-//   url: string;
-// }
+export interface SubmissionLink {
+  label: string;
+  url: string;
+}
 
 export interface EventLink {
   label: string;
